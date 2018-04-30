@@ -1,12 +1,6 @@
 import { call, spawn } from 'redux-saga/effects';
 import { counterSagas } from 'ducks/counter/counterSaga';
-import count from 'ducks/counter/counterReducer';
 
-const reducers = {
-  count
-}
-
-export default reducers;
 
 export function* rootSaga () {
   const allCounterSagas = [...counterSagas];
