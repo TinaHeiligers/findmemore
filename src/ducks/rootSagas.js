@@ -1,16 +1,11 @@
-import { call, spawn } from 'redux-saga/effects'
-import count, { sagas as counterSagas } from 'ducks/count'
+import { call, spawn } from 'redux-saga/effects';
+import { counterSagas } from 'ducks/counter/counterSaga';
 
-const reducers = {
-  count
-}
-
-export default reducers
 
 export function* rootSaga () {
-  const sagas = [...counterSagas]
+  const allCounterSagas = [...counterSagas];
 
-  yield sagas.map(saga =>
+  yield allCounterSagas.map(saga =>
     spawn(function* () {
       let isSyncError = false
       while (!isSyncError) {
@@ -26,5 +21,5 @@ export function* rootSaga () {
         }
       }
     })
-  )
+  );
 }
