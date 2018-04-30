@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const StartPageWrapper = styled.div`
+const StartPageWrapper = styled.div`
   box-shadow: 0 0 10px black;
   position: absolute;
   top:50px;
@@ -10,26 +10,25 @@ export const StartPageWrapper = styled.div`
   background-color: #987;
   opacity: 0.7;
 `;
-
-export const StartPageMainDivH1 = styled.h1`
+const StartPageMainDivH1 = styled.h1`
   text-align: center;
   font-size: 5em;
   margin: 0;
 `;
-export const StartPageMainDivH2 = styled.h2`
+const StartPageMainDivH2 = styled.h2`
   text-align: center;
   font-size: 2em;
   margin-top: 0;
 `;
-export const StartFormDiv = styled.div`
+const StartFormDiv = styled.div`
   text-align: center;
   font-size: 3vh;
 `;
-export const ButtonDiv = styled.div`
+const ButtonDiv = styled.div`
   text-align: center;
   font-size: 1.5vh;
 `;
-export const InputWithProps = styled.input.attrs({
+const InputWithProps = styled.input.attrs({
   type: 'text',
   placeholder: 'Player Name',
   margin: props => props.size || '1em',
@@ -44,7 +43,7 @@ export const InputWithProps = styled.input.attrs({
   border-style: inset;
   min-width: 50%;
 `;
-export const ButtonAddMe = styled.button.attrs({
+const ButtonAddMe = styled.button.attrs({
   type: 'submit',
 })`
   padding: 5px;
@@ -56,8 +55,7 @@ export const ButtonAddMe = styled.button.attrs({
   background: radial-gradient(white, blue);
   border-style: outset;
 `;
-
-export const Button = styled.button`
+const Button = styled.button`
   text-align: center;
   color: black;
   margin: 25px;
@@ -67,15 +65,29 @@ export const Button = styled.button`
   font-size: 1.5em;
 `;
 
-export const ButtonEasy = Button.extend`
+const ButtonEasy = Button.extend`
   background: radial-gradient(#00e600, #006800);
   border: 'green';
 `;
-export const ButtonMedium = Button.extend`
+const ButtonMedium = Button.extend`
   background: radial-gradient(#ff8c00, #cd6600);
   border: 'orange';
 `;
-export const ButtonHard = Button.extend`
+const ButtonHard = Button.extend`
   background: radial-gradient(#ff0000, #8b0000);
   border: 'red';
 `;
+const components = {
+  StartPageWrapper,
+  StartPageMainDivH1,
+  StartPageMainDivH2,
+  StartFormDiv,
+  Button,
+  ButtonAddMe,
+  ButtonDiv,
+  ButtonEasy,
+  ButtonHard,
+  ButtonMedium,
+  InputWithProps
+};
+export default components;

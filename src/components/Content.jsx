@@ -2,12 +2,12 @@ import React from 'react';
 import { Fragment, Link } from 'redux-little-router';
 import styled, { ThemeProvider } from 'styled-components';
 
-import Foo from 'components/Foo.jsx';
+import Help from 'components/help.jsx';
 import Bar from 'components/Bar.jsx';
-import Counter from 'components/counter.jsx';
-import List from 'components/List.jsx';
-import ListItem from 'components/ListItem.jsx';
-import StartPage from 'components/StartPage.jsx';
+import Counter from 'components/counter/counter.jsx';
+import StartPage from 'components/startPage/StartPage.jsx';
+import List from 'components/shared/List.jsx';
+import ListItem from 'components/shared/ListItem.jsx';
 
 import themes from 'components/themes.js';
 
@@ -18,22 +18,22 @@ export default () =>
   <Content>
     <ThemeProvider theme = { themes.nav }>
       <List>
-        <ListItem><Link href='/findMeMore/counter'>Async Counter</Link></ListItem>
-        <ListItem><Link href='/findMeMore/startPage'>Start Page</Link></ListItem>
-        <ListItem><Link href='/findMeMore/help'>Help</Link></ListItem>
+        <ListItem><Link href='/counter'>Async Counter</Link></ListItem>
+        <ListItem><Link href='/startPage'>Game</Link></ListItem>
+        <ListItem><Link href='/help'>Help</Link></ListItem>
       </List>
     </ThemeProvider>
     <hr/>
-    <Fragment forRoute='/findMeMore/counter'>
+    <Fragment forRoute='/counter'>
       <Counter />
     </Fragment>
-    <Fragment forRoute='/findMeMore/startPage'>
+    <Fragment forRoute='/startPage'>
       <StartPage />
     </Fragment>
-    <Fragment forRoute='/findMeMore/help'>
-      <Foo />
+    <Fragment forRoute='/help'>
+      <Help />
     </Fragment>
-    <Fragment forRoute='/findMeMore/bar'>
+    <Fragment forRoute='/bar'>
       <Bar />
     </Fragment>
   </Content>;
