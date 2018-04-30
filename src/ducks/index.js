@@ -1,5 +1,6 @@
-import { call, spawn } from 'redux-saga/effects'
-import count, { sagas as counterSagas } from 'ducks/count'
+import { call, spawn } from 'redux-saga/effects';
+import { sagas as counterSagas } from 'ducks/count';
+import count from 'ducks/counter/counterReducer';
 
 const reducers = {
   count
