@@ -1,7 +1,7 @@
 import playerActions from 'ducks/player/playerActions';
 const { ADD_PLAYER } = playerActions;
 
-const initialState = {
+export const initialState = {
   current: null,
   all: [],
 };
