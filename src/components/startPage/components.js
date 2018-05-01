@@ -21,10 +21,11 @@ const StartPageMainDivH2 = styled.h2`
   font-size: 3em;
   padding: 1vh;
 `;
-const StartPageP = styled.p`
+const StartPageP = styled.p.attrs({
+  fontSize: props => props.size || '1em',
+})`
   padding: 1vh;
   text-align: center;
-  font-size: 1em;
 `;
 const StartFormDiv = styled.div`
   text-align: center;

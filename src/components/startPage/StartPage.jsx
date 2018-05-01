@@ -34,9 +34,9 @@ class StartPage extends Component {
     if (num < 1) {
       return "Please add your name to start playing!"
     } else if (num < 2) {
-      return "Add another player or press button to start"
+      return "Add another player or click a button to start"
     } else if (num === 2) {
-      return "We're all set!"
+      return "We're all set! Click a button to start:"
     } else {
       return ""
     }
@@ -52,23 +52,8 @@ class StartPage extends Component {
     }
   }
   startGame(level) {
-    this.props.startGame(level);
-    let message;
-    switch(level) {
-      case 'easy':
-        message = 'Start an easy game';
-        break;
-      case 'medium':
-        message = 'Start a medium game';
-        break;
-      case 'hard':
-        message = 'Start a hard game';
-        break;
-      default:
-        break;
-    }
-    console.log(message);
-    return message;
+    console.log('start Game with:', level);
+    // this.props.startGame(level);
   }
 
   render() {
@@ -84,6 +69,7 @@ class StartPage extends Component {
           Find my matching partner in all the cards!
         </StartPageMainDivH2>
         <StartFormDiv>
+        { players && players.map((player, index) => <StartPageP key={index} size='2em'>Welcome {player.name}!</StartPageP>) }
           <StartPageP>{this.message(players.length)}</StartPageP>
           { players.length === 2 ?
             <div></div> :
@@ -98,8 +84,7 @@ class StartPage extends Component {
           </form>
           }
         </StartFormDiv>
-        { players.length ? <div>{this.props.welcomePlayer(players[0])}</div> : 'Um.....'}
-        {players.length ?
+        { players.length ?
           <ButtonDiv>
           <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
           <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
@@ -114,6 +99,5 @@ class StartPage extends Component {
 export default connect(
   state => ({
     players: state.players.all,
-    message: state.players.message,
 }),
-  { addPlayer, welcomePlayer })(StartPage);
+  { addPlayer })(StartPage);
