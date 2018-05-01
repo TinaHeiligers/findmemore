@@ -14,6 +14,8 @@ const Button = components.Button;
 const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
+// REDUX
+import { addPlayer } from 'ducks/player/playerActions';
 
 class StartPage extends Component {
   // static propTypes = {
@@ -24,20 +26,15 @@ class StartPage extends Component {
     return count > 0 ? 'Start Game' : 'Add a player';
   }
   handleCreatePlayer(event) {
-    // all of this will move to redux
     event.preventDefault();
-
-    // if (this.props.players.length < 2) {
-      const player = {
-        name: this.name.value,
-        matchedCards: [],
-      }
-      // this.props.addPlayer(player);
+    if (this.props.players.length < 2) {
+      const player = { name: this.name.value }
+      this.props.addPlayer(player);
       this.playerForm.reset();
-      // }
-    // else {
-      // return null
-    // }
+      }
+    else {
+      return null
+    }
     console.log('player', player);
   }
 
@@ -74,7 +71,6 @@ class StartPage extends Component {
     )
   }
 }
-export default StartPage;
-// export default connect(
-//   state => ({ players: state.players }),
-//   { savePlayers })(StartPage);
+export default connect(
+  state => ({ player: state.player }),
+  { addPlayer })(StartPage);
