@@ -18,7 +18,7 @@ const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
 // REDUX
 import playersActions from 'ducks/player/playerActions';
-const { addPlayer } = playersActions;
+const { addPlayer, welcomePlayer } = playersActions;
 const theme = {
   font: 'Tahoma',
   color: 'red',
@@ -27,6 +27,7 @@ const theme = {
 class StartPage extends Component {
   static propTypes = {
     players: PropTypes.array,
+    message: PropTypes.string,
     addPlayer: PropTypes.func,
   };
    message(num) {
@@ -49,6 +50,25 @@ class StartPage extends Component {
     else {
       return null
     }
+  }
+  startGame(level) {
+    this.props.startGame(level);
+    let message;
+    switch(level) {
+      case 'easy':
+        message = 'Start an easy game';
+        break;
+      case 'medium':
+        message = 'Start a medium game';
+        break;
+      case 'hard':
+        message = 'Start a hard game';
+        break;
+      default:
+        break;
+    }
+    console.log(message);
+    return message;
   }
 
   render() {
@@ -78,16 +98,15 @@ class StartPage extends Component {
           </form>
           }
         </StartFormDiv>
+        { players.length ? <div>{this.props.welcomePlayer(players[0])}</div> : 'Um.....'}
         {players.length ?
           <ButtonDiv>
-          <ButtonEasy>easy</ButtonEasy>
-          <ButtonMedium>medium</ButtonMedium>
-          <ButtonHard>hard</ButtonHard>
+          <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
+          <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
+          <ButtonHard onClick={() => this.startGame('hard')}>hard</ButtonHard>
         </ButtonDiv> :
         <ButtonDiv />
         }
-
-
       </StartPageWrapper>
     )
   }
@@ -95,5 +114,6 @@ class StartPage extends Component {
 export default connect(
   state => ({
     players: state.players.all,
+    message: state.players.message,
 }),
-  { addPlayer })(StartPage);
+  { addPlayer, welcomePlayer })(StartPage);

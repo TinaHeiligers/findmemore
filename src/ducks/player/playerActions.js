@@ -1,6 +1,7 @@
 const playersActions = {
   ADD_PLAYER: 'ADD_PLAYER',
-  GET_PLAYERS: 'GET_PLAYERS',
+  WELCOME_PLAYER: 'WELCOME_PLAYER',
   addPlayer: (name) => ({ type: playersActions.ADD_PLAYER, name }),
+  welcomePlayer: (player) => ({ type: playersActions.WELCOME_PLAYER, player }),
 }
 export default playersActions;
