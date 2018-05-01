@@ -1,13 +1,24 @@
-import { ADD_PLAYER } from 'ducks/player/playerActions';
+import playerActions from 'ducks/player/playerActions';
+const { ADD_PLAYER } = playerActions;
 
 const initialState = {
-  name: null,
-  matchedCards: null,
+  current: null,
+  all: [],
 };
-export default function reducer(currentState = initialState, action) {
+export default function playersReducer(
+  currentState = initialState,
+  action
+) {
   switch (action.type) {
     case ADD_PLAYER:
-      return {...currentState, name: action.name, matchedCards: []}
+      const newPlayer = {
+        name: action.name,
+        matchedCards: [],
+      }
+      return {
+        ...currentState,
+        all: (currentState.all || []).concat([newPlayer]),
+      }
     default:
       return currentState;
   };

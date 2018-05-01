@@ -1,7 +1,6 @@
-export const ADD_PLAYER = 'ADD_PLAYER';
-export const GET_PLAYERS = 'GET_PLAYERS';
-
-const actions = {
-  addPlayer: (name) => ({ type: ADD_PLAYER, name: name }),
+const playersActions = {
+  ADD_PLAYER: 'ADD_PLAYER',
+  GET_PLAYERS: 'GET_PLAYERS',
+  addPlayer: (name) => ({ type: playersActions.ADD_PLAYER, name }),
 }
-export default actions;
+export default playersActions;

@@ -15,7 +15,8 @@ const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
 // REDUX
-import { addPlayer } from 'ducks/player/playerActions';
+import playersActions from 'ducks/player/playerActions';
+const { addPlayer } = playersActions;
 
 class StartPage extends Component {
   // static propTypes = {
@@ -27,19 +28,18 @@ class StartPage extends Component {
   }
   handleCreatePlayer(event) {
     event.preventDefault();
+    console.log(this.props.players.length)
     if (this.props.players.length < 2) {
-      const player = { name: this.name.value }
-      this.props.addPlayer(player);
+      this.props.addPlayer(this.name.value);
       this.playerForm.reset();
       }
     else {
       return null
     }
-    console.log('player', player);
   }
 
   render() {
-    const players = [];
+    const players = this.props.players;
     return (
       <StartPageWrapper>
         <StartPageMainDivH1>
@@ -72,5 +72,7 @@ class StartPage extends Component {
   }
 }
 export default connect(
-  state => ({ player: state.player }),
+  state => ({
+    players: state.players.all,
+}),
   { addPlayer })(StartPage);
