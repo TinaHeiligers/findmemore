@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import styled, { keyframes } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import themes from 'components/themes.js';
 import components from 'components/startPage/components.js'; // path in imports is relative to src.
 const StartPageWrapper = components.StartPageWrapper;
 const StartPageMainDivH1 = components.StartPageMainDivH1;
 const StartPageMainDivH2 = components.StartPageMainDivH2;
+const StartPageP = components.StartPageP;
 const StartFormDiv = components.StartFormDiv;
 const ButtonDiv = components.ButtonDiv;
 const InputWithProps = components.InputWithProps;
@@ -17,18 +19,29 @@ const ButtonHard = components.ButtonHard;
 // REDUX
 import playersActions from 'ducks/player/playerActions';
 const { addPlayer } = playersActions;
-
+const theme = {
+  font: 'Tahoma',
+  color: 'red',
+  fontSize: '20px',
+}
 class StartPage extends Component {
-  // static propTypes = {
-  //   players: PropTypes.array,
-  //   savePlayers: PropTypes.func,
-  // };
-  message(count) {
-    return count > 0 ? 'Start Game' : 'Add a player';
+  static propTypes = {
+    players: PropTypes.array,
+    addPlayer: PropTypes.func,
+  };
+   message(num) {
+    if (num < 1) {
+      return "Please add your name to start playing!"
+    } else if (num < 2) {
+      return "Add another player or press button to start"
+    } else if (num === 2) {
+      return "We're all set!"
+    } else {
+      return ""
+    }
   }
   handleCreatePlayer(event) {
     event.preventDefault();
-    console.log(this.props.players.length)
     if (this.props.players.length < 2) {
       this.props.addPlayer(this.name.value);
       this.playerForm.reset();
@@ -42,31 +55,39 @@ class StartPage extends Component {
     const players = this.props.players;
     return (
       <StartPageWrapper>
+      <ThemeProvider theme={theme}>
         <StartPageMainDivH1>
           Find Me
         </StartPageMainDivH1>
+        </ThemeProvider>
         <StartPageMainDivH2>
           Find my matching partner in all the cards!
         </StartPageMainDivH2>
         <StartFormDiv>
-          <p>{this.message(players.length)}</p>
-          <form
-            ref={(input) => this.playerForm = input}
-            className={ players.length === 2 ? 'hidden': 'player-edit' }
-            onSubmit={ (e) => this.handleCreatePlayer(e) }>
-            <InputWithProps
-              innerRef={(input) => this.name = input}/>
-            <div className='add-me-button-container'>
-              <ButtonAddMe className='add-me-button' type='Submit'>Add Me</ButtonAddMe>
+          <StartPageP>{this.message(players.length)}</StartPageP>
+          { players.length === 2 ?
+            <div></div> :
+            <form
+              ref={(input) => this.playerForm = input}
+              onSubmit={ (e) => this.handleCreatePlayer(e) }>
+              <InputWithProps
+                innerRef={(input) => this.name = input}/>
+            <div>
+              <ButtonAddMe>Add Me</ButtonAddMe>
             </div>
           </form>
-          <br />
+          }
         </StartFormDiv>
-        <ButtonDiv>
+        {players.length ?
+          <ButtonDiv>
           <ButtonEasy>easy</ButtonEasy>
           <ButtonMedium>medium</ButtonMedium>
           <ButtonHard>hard</ButtonHard>
-        </ButtonDiv>
+        </ButtonDiv> :
+        <ButtonDiv />
+        }
+
+
       </StartPageWrapper>
     )
   }
