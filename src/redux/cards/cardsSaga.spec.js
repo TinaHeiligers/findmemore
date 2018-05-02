@@ -7,7 +7,7 @@ import { getCardsRequestWatcher, getCardsRequest } from 'redux/cards/cardsSaga';
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
 
-describe('getCardsRequestWatcher', () => {
+describe('cards saga -> getCardsRequestWatcher', () => {
   const steps = ['1) takes every START_GAME action'];
   const getCardsRequestWatcherGen = getCardsRequestWatcher();
   it('should act on every GET_CARDS_REQUEST action', () => {
@@ -15,7 +15,7 @@ describe('getCardsRequestWatcher', () => {
     .toEqual(takeEvery(cardsActions.GET_CARDS_REQUEST, getCardsRequest));
   });
 });
-describe('getCardsRequest', () => {
+describe('cards saga -> getCardsRequest', () => {
   const steps = ['1) puts GET_CARDS_REQUEST', '2) puts SET_FIRST_PLAYER_REQUEST'];
   const testLevel = { level: 'easy' };
   const getCardsRequestGen = getCardsRequest(testLevel);

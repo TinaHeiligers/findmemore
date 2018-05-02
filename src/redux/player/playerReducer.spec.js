@@ -1,7 +1,7 @@
 import reducer, { initialState } from 'redux/player/playerReducer';
 import playerActions from 'redux/player/playerActions';
 
-describe('reducer -> addPlayer', () => {
+describe('player reducer -> addPlayer', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);

@@ -1,5 +1,5 @@
 import cardsActions from 'redux/cards/cardsActions.js';
-describe ('action creators -> cardsActions', () => {
+describe ('cards action creators -> cardsActions', () => {
   it('gets cards on getCardsRequest', () => {
     const testLevel = 'easy';
     const testGetCardsRequest = cardsActions.getCardsRequest(testLevel);

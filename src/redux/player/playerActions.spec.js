@@ -1,5 +1,5 @@
 import playerActions from 'redux/player/playerActions.js';
-describe ('action creators -> playerActions', () => {
+describe ('player action creators -> playerActions', () => {
   it('addPlayer adds a player, given a name', () => {
     const testName = 'Name';
     const testAddPlayer = playerActions.addPlayer(testName);

@@ -1,7 +1,7 @@
 import reducer, { initialState, GAME_STATE } from 'redux/game/gameReducer';
 import gameActions from 'redux/game/gameActions';
 
-describe('reducer -> start game', () => {
+describe('game reducer -> start game', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);

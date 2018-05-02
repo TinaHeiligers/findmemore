@@ -7,7 +7,7 @@ import { startGameWatcher, startGame } from 'redux/game/gameSaga';
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
 
-describe('startGameWatcher', () => {
+describe('game saga -> startGameWatcher', () => {
   const steps = ['1) takes every START_GAME action'];
   const startGameWatcherGen = startGameWatcher();
   it('should act on every START_GAME action', () => {
@@ -15,7 +15,7 @@ describe('startGameWatcher', () => {
     .toEqual(takeEvery(gameActions.START_GAME, startGame));
   });
 });
-describe('startGame', () => {
+describe('game saga -> startGame', () => {
   const steps = ['1) puts GET_CARDS_REQUEST', '2) puts SET_FIRST_PLAYER_REQUEST'];
   const testLevel = { level: 'easy' };
   const startGameGen = startGame(testLevel);

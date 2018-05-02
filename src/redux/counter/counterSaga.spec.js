@@ -7,7 +7,7 @@ import { incrementAsyncWorker } from 'redux/counter/counterSaga';
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
 
-describe('incrementAsync', () => {
+describe('counter saga -> incrementAsync', () => {
   const steps = ['1) calls delay(100)', '2) puts increment()'];
   it(steps.join(SEP), () => {
     const saga = incrementAsyncWorker();
