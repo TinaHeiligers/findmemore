@@ -17,8 +17,10 @@ const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
 // REDUX
-import playersActions from 'ducks/player/playerActions';
-const { addPlayer, welcomePlayer } = playersActions;
+import playersActions from 'redux/player/playerActions';
+import gameActions from 'redux/game/gameActions';
+const { addPlayer } = playersActions;
+const { startGame } = gameActions;
 const theme = {
   font: 'Tahoma',
   color: 'red',
@@ -27,18 +29,16 @@ const theme = {
 class StartPage extends Component {
   static propTypes = {
     players: PropTypes.array,
-    message: PropTypes.string,
     addPlayer: PropTypes.func,
   };
    message(num) {
-    if (num < 1) {
-      return "Please add your name to start playing!"
-    } else if (num < 2) {
-      return "Add another player or click a button to start"
-    } else if (num === 2) {
-      return "We're all set! Click a button to start:"
-    } else {
-      return ""
+    switch (num) {
+      case 1:
+        return "Add another player or click a button to start";
+      case 2:
+        return "We're all set! Click a button to start:";
+      default:
+        return "Please add your name to start playing!";
     }
   }
   handleCreatePlayer(event) {
@@ -53,7 +53,7 @@ class StartPage extends Component {
   }
   startGame(level) {
     console.log('start Game with:', level);
-    // this.props.startGame(level);
+    this.props.startGame(level);
   }
 
   render() {
@@ -99,5 +99,7 @@ class StartPage extends Component {
 export default connect(
   state => ({
     players: state.players.all,
+    gameStarted: state.game.started,
+    gameOver: state.game.over,
 }),
-  { addPlayer })(StartPage);
+  { addPlayer, startGame })(StartPage);

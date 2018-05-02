@@ -1,8 +1,8 @@
 /* global describe, it, expect */
 import { delay } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
-import { increment } from 'ducks/counter/counterActions';
-import { incrementAsyncWorker } from 'ducks/counter/counterSaga';
+import { increment } from 'redux/counter/counterActions';
+import { incrementAsyncWorker } from 'redux/counter/counterSaga';
 
 const SEP = '\n      ';
 const done = { done: true, value: undefined };

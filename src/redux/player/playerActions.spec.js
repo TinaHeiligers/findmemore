@@ -1,4 +1,4 @@
-import playerActions from 'ducks/player/playerActions.js';
+import playerActions from 'redux/player/playerActions.js';
 describe ('>>ACTION -- Test playerActions', () => {
   it('++actionCreator addPlayer', () => {
     const testName = 'Name';

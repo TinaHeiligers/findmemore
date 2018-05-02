@@ -1,5 +1,5 @@
-import reducer, { initialState } from 'ducks/player/playerReducer';
-import playerActions from 'ducks/player/playerActions';
+import reducer, { initialState } from 'redux/player/playerReducer';
+import playerActions from 'redux/player/playerActions';
 
 describe('reducer > addPlayer', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });

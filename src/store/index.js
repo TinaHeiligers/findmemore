@@ -2,8 +2,8 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { routerForBrowser } from 'redux-little-router';
-import reducers from 'ducks/rootReducers';
-import { rootSaga } from 'ducks/rootSagas';
+import reducers from 'redux/rootReducers';
+import rootSaga from 'redux/rootSagas';
 export default function () {
   // any data to attach to the router key of state when we're on this route
   const routes = {

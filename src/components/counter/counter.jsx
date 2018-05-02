@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import themes from 'components/themes.js';
 
-import { requestIncrement } from 'ducks/counter/counterActions';
+import { requestIncrement } from 'redux/counter/counterActions';
 
 const CounterWrapper = styled.div`
   display: flex;
