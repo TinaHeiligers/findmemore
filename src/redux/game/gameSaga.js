@@ -5,11 +5,11 @@ import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';
 
 
-export function* startGame() {
-  yield takeEvery(gameActions.START_GAME, executeStartGame);
+export function* startGameWatcher() {
+  yield takeEvery(gameActions.START_GAME, startGame);
 };
 
-export function* executeStartGame(payload) {
+export function* startGame(payload) {
   try {
     yield put({
       type: cardsActions.GET_CARDS_REQUEST,
@@ -26,6 +26,6 @@ export function* executeStartGame(payload) {
 
 export default function* rootSaga() {
   yield all([
-    fork(startGame),
+    fork(startGameWatcher),
   ]);
 }
