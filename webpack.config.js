@@ -89,7 +89,16 @@ module.exports = {
         test: /\.css$/,
         exclude: /node_modules/,
         loaders: ['style-loader', 'css-loader']
-      }
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader', // image loader from file
+            options: {}
+          }
+        ]
+      },
     ]
   },
   devServer: {

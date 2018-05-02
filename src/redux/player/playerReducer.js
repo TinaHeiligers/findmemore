@@ -1,5 +1,5 @@
-import playerActions from 'ducks/player/playerActions';
-const { ADD_PLAYER } = playerActions;
+import playerActions from 'redux/player/playerActions';
+const { ADD_PLAYER, SET_FIRST_PLAYER } = playerActions;
 
 export const initialState = {
   current: null,
@@ -19,6 +19,11 @@ export default function playersReducer(
         ...currentState,
         all: (currentState.all || []).concat([newPlayer]),
       }
+    case SET_FIRST_PLAYER:
+    return {
+      ...currentState,
+      current: 0,
+    }
     default:
       return currentState;
   };

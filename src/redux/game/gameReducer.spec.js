@@ -1,25 +1,26 @@
-import reducer, { initialState } from 'ducks/player/playerReducer';
-import playerActions from 'ducks/player/playerActions';
+import reducer, { initialState, GAME_STATE } from 'redux/game/gameReducer';
+import gameActions from 'redux/game/gameActions';
 
-describe('reducer > addPlayer', () => {
+describe('game reducer -> start game', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);
   });
   it('returns an object equal to initialState', () => {
     expect(Object.keys(defaultState)).toEqual(expect.arrayContaining([
-      "current",
-      "all",
+      'level',
+      'state',
+      'cards',
     ]));
   });
-  it('updates state on ADD_PLAYER', () => {
-    const testNewPlayer = 'Name';
-    let testAction = playerActions.addPlayer(testNewPlayer);
+  it('updates state on START_GAME', () => {
+    const testNewGame = 'easy';
+    let testAction = gameActions.startGame(testNewGame);
     const newState = reducer(defaultState, testAction);
     const expectedState = {
       ...defaultState,
-      current: null,
-      all: [{ name: 'Name', matchedCards: [] }],
+      level: testNewGame,
+      state: 'inProgress'
     };
     expect(newState).toEqual(expectedState);
   });

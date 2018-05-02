@@ -1,4 +1,4 @@
-import { INCREMENT } from 'ducks/counter/counterActions';
+import { INCREMENT } from 'redux/counter/counterActions';
 
 const initialState = 0;
 

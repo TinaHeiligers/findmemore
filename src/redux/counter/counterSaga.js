@@ -1,6 +1,6 @@
 import { delay } from 'redux-saga'
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { INCREMENT_REQUESTED, increment } from 'ducks/counter/counterActions';
+import { call, put, takeLatest, all, fork } from 'redux-saga/effects';
+import { INCREMENT_REQUESTED, increment } from 'redux/counter/counterActions';
 
 
 function* incrementAsyncWatcher () {
@@ -12,4 +12,8 @@ export function* incrementAsyncWorker (action) {
   yield put(increment())
 }
 
-export const counterSagas = [incrementAsyncWatcher]
+export default function* rootSaga() {
+  yield all([
+    fork(incrementAsyncWatcher),
+  ]);
+}
