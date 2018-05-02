@@ -30,7 +30,7 @@ describe('cards reducer -> get cards', () => {
     const newState = reducer(defaultState, testAction);
     const expectedState = {
       ...defaultState,
-      error: 'bob',
+      error: 'error',
     };
     expect(newState).toEqual(expectedState);
   });
