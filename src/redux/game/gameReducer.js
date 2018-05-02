@@ -24,7 +24,8 @@ export default function gameReducer(
       }
       return {
         ...currentState,
-        level: newGame,
+        level: newGame.level,
+        state: newGame.state,
       }
     default:
       return currentState;
