@@ -26,7 +26,7 @@ describe('cards saga -> getCardsRequest', () => {
   it('should put START_GAME on success of the api call', () => {
     const testResult = { cards: [] };
     expect(getCardsRequestGen.next(testResult).value)
-    .toEqual(put({ type: cardsActions.GET_CARDS_SUCCESS, cards: testResult.cards }));
+    .toEqual(put({ type: cardsActions.GET_CARDS_SUCCESS, cards: testResult }));
   });
   xit('should push to the game component when we have cards on start', () => {
     expect(getCardsRequestGen.next().value)
