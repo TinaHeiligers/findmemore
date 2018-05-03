@@ -18,14 +18,14 @@ const Content = styled.div`
 // hide the nav stuff, easily done!
 export default () =>
   <Content>
-    <ThemeProvider theme = { themes.nav }>
+    {/*<ThemeProvider theme = { themes.nav }>
       <List>
         <ListItem><Link href='/counter'>Async Counter</Link></ListItem>
         <ListItem><Link href='/startPage'>Game</Link></ListItem>
         <ListItem><Link href='/help'>Help</Link></ListItem>
       </List>
     </ThemeProvider>
-    <hr/>
+    <hr/>*/}
     <Fragment forRoute='/counter'>
       <Counter />
     </Fragment>
