@@ -6,14 +6,16 @@ import Help from 'components/help.jsx';
 import Bar from 'components/Bar.jsx';
 import Counter from 'components/counter/counter.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
+import Game from 'components/game/Game.jsx';
 import List from 'components/shared/List.jsx';
 import ListItem from 'components/shared/ListItem.jsx';
 
 import themes from 'components/themes.js';
 
 const Content = styled.div`
-  margin: 30px;
+  padding: 1vh;
 `;
+// hide the nav stuff, easily done!
 export default () =>
   <Content>
     <ThemeProvider theme = { themes.nav }>
@@ -29,6 +31,9 @@ export default () =>
     </Fragment>
     <Fragment forRoute='/startPage'>
       <StartPage />
+    </Fragment>
+    <Fragment forRoute='/game'>
+      <Game />
     </Fragment>
     <Fragment forRoute='/help'>
       <Help />
