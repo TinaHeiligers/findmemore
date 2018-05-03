@@ -1,51 +1,21 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
+import { Fragment } from 'redux-little-router';
 import styled, { ThemeProvider } from 'styled-components';
+import CardsContainer from 'components/cards/CardsContainer.jsx';
+import PlayersContainer from 'components/players/PlayersContainer.jsx';
 import components from 'components/game/components.js'; // path in imports is relative to src.
 const GameWrapper = components.GameWrapper;
-// REDUX
 
-class Game extends Component {
-  static propTypes = {
-    cards: PropTypes.array,
-    players: PropTypes.array,
-  };
-  render() {
-    const cards = this.props.cards;
-    return (
-      <GameWrapper>
-      <div>Other containers go in here</div>
-      {/*<CardsContainer />
-      <GameProgress />
-      <Players />
-      <PlayerTurn />
-      <GameOver />*/}
-      </GameWrapper>
-    )
-  }
-}
-export default connect(
-  state => ({
-    players: state.players.all,
-    gameStarted: state.game.started,
-    gameOver: state.game.over,
-    cards: state.cards.cards,
-}), { })(Game);
+export default () =>
+    <GameWrapper>
+      <CardsContainer>CARDS</CardsContainer>
+      {/*<PlayersContainer />*/}
+      {/*<div>PlayerTurn</div>*/}
+      {/*<div>GameOver</div>*/}
+    </GameWrapper>
 
 // CARDS CONTAINER
-// class CardsContainer extends component {
-//   // need to connect to store
-//   render() {
-//     return (
-//       <div>Cards get laid out here</div>
-//     )
-//   };
-// };
-// export connect(
-//   state => ({
-//     cards: state.cards.cards,
-//   }), {})(CardsContainer);
 
 // // GAME CONTAINER
 // class GameProgress extends component {

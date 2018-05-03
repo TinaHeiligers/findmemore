@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+// TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
   font-family: 'Baloo', sans-serif;
   box-shadow: 0 0 10px black;

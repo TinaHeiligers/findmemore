@@ -6,7 +6,7 @@ import Help from 'components/help.jsx';
 import Bar from 'components/Bar.jsx';
 import Counter from 'components/counter/counter.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
-import Game from 'components/game/Game.jsx';
+import GameLayout from 'components/game/gameLayout.jsx';
 import List from 'components/shared/List.jsx';
 import ListItem from 'components/shared/ListItem.jsx';
 
@@ -15,17 +15,8 @@ import themes from 'components/themes.js';
 const Content = styled.div`
   padding: 1vh;
 `;
-// hide the nav stuff, easily done!
 export default () =>
   <Content>
-    {/*<ThemeProvider theme = { themes.nav }>
-      <List>
-        <ListItem><Link href='/counter'>Async Counter</Link></ListItem>
-        <ListItem><Link href='/startPage'>Game</Link></ListItem>
-        <ListItem><Link href='/help'>Help</Link></ListItem>
-      </List>
-    </ThemeProvider>
-    <hr/>*/}
     <Fragment forRoute='/counter'>
       <Counter />
     </Fragment>
@@ -33,7 +24,7 @@ export default () =>
       <StartPage />
     </Fragment>
     <Fragment forRoute='/game'>
-      <Game />
+      <GameLayout />
     </Fragment>
     <Fragment forRoute='/help'>
       <Help />

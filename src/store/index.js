@@ -7,14 +7,14 @@ import rootSaga from 'redux/rootSagas';
 export default function () {
   // any data to attach to the router key of state when we're on this route
   const routes = {
-    '/findMeMore': {
-      '/counter': {
-        test: 'foo'
-      },
-      '/startPage' : {},
-      '/game': {
-        title: 'Game',
-      },
+    '/counter': {
+      test: 'foo'
+    },
+    '/startPage' : {
+      title: 'Start',
+    },
+    '/game': {
+      title: 'Game',
     },
   };
 

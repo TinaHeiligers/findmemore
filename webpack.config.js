@@ -103,7 +103,7 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    port: 3000,
+    port: 3030,
     compress: false,
     contentBase: path.join(__dirname, 'src', 'public'),
     inline: true,

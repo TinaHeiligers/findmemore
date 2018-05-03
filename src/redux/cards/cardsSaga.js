@@ -11,9 +11,10 @@ export function* getCardsRequestWatcher() {
 export function* getCardsRequest(payload) {
   try {
     const result = yield call(getCards, payload.level);
+    console.log('result', result)
     yield put({
       type: cardsActions.GET_CARDS_SUCCESS,
-      cards: result.cards,
+      cards: result,
     });
     // push to the game component
     yield put(push('/game'))

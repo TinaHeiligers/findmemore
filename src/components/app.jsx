@@ -8,6 +8,7 @@ const App = styled.div`
   height: 100vh;
   width: 100vw;
   background-image: url(${img});
+  background-size: cover;
 `;
 export default () =>
   <App>

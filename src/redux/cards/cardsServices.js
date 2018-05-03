@@ -9,7 +9,6 @@ const levelToNum = {
 export const getCards = (level) => {
   const cardsFromApi = cards;
   const result = randomizeCards(cardsFromApi, levelToNum[level])
-  console.log(result)
   return result;
 }
 
@@ -18,14 +17,12 @@ const randomizeCards = (cardsFromApi, num) => {
     const newCards = cardsFromApi.slice(0, num).concat(cardsFromApi.slice(0, num)).map(card => Object.assign({}, card));//making dups
     const shuffledCards = shuffle(newCards);
     //Resetting selected prop to false on repressing the button
-    console.log('shuffledCards', shuffledCards)
     const cardsWithProps = shuffledCards.map(card => {
       card.status = 'hidden';
       card.selected = false;
       card.matched = false;
       return card;
     });
-    console.log('cardsWithProps', [...cardsWithProps])
     return [...cardsWithProps];
 }
 

@@ -52,7 +52,6 @@ class StartPage extends Component {
     }
   }
   startGame(level) {
-    console.log('start Game with:', level);
     this.props.startGame(level);
   }
   render() {
@@ -98,7 +97,7 @@ class StartPage extends Component {
 export default connect(
   state => ({
     players: state.players.all,
-    gameStarted: state.game.started,
-    gameOver: state.game.over,
+    gameState: state.game.state,
+    router: state.router,
 }),
   { addPlayer, startGame })(StartPage);
