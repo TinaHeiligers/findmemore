@@ -55,7 +55,6 @@ class StartPage extends Component {
     console.log('start Game with:', level);
     this.props.startGame(level);
   }
-
   render() {
     const players = this.props.players;
     return (

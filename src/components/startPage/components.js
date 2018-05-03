@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 const StartPageWrapper = styled.div`
   font-family: 'Baloo', sans-serif;
   box-shadow: 0 0 10px black;
@@ -74,7 +74,6 @@ const Button = styled.button`
   width: 100px;
   font-size: 1.5em;
 `;
-
 const ButtonEasy = Button.extend`
   background: radial-gradient(#00e600, #006800);
   border: 'green';

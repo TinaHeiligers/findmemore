@@ -12,6 +12,9 @@ export default function () {
         test: 'foo'
       },
       '/startPage' : {},
+      '/game': {
+        title: 'Game',
+      },
     },
   };
 
@@ -32,7 +35,6 @@ export default function () {
     combineReducers(allReducers),
     composeWithDevTools(enhancer, applyMiddleware(...middlewares))
   );
-
   sagaMiddleware.run(rootSaga);
 
   return store;

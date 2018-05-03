@@ -16,7 +16,7 @@ export function* getCardsRequest(payload) {
       cards: result.cards,
     });
     // push to the game component
-    // yield put(push('/game/newGame'))
+    yield put(push('/game'))
   } catch (err) {
     yield put({ type: cardsActions.GET_CARDS_ERROR, error: err });
   }
