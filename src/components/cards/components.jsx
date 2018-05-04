@@ -11,9 +11,12 @@ const CardsWrapper = styled.div`
 `;
 const CardDiv = styled.div`
   background-image: url(${props => props.image});
+  background-color: white;
   background-size: cover;
   border-radius: 10px;
   border: 1px solid goldenrod;
+  filter: drop-shadow(2px 2px 5px #B8860B);
+
 `
 const CardsComponents = {
   CardsWrapper,
