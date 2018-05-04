@@ -10,10 +10,12 @@ const GameStatusWrapper = styled.div`
   left: 0;
   bottom: 0;
   margin: 0px 10px 0px 0px;
-  border: 1px solid blue;
+  border: 1px solid gold;
+  filter: drop-shadow(2px 2px 5px #D4AF37);
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
+  border-top-right-radius: 90px;
   border-bottom: none;
   border-left: none;
   padding: 1vh;
