@@ -10,7 +10,7 @@ class CardsContainer extends Component {
   render() {
     console.log('cards:',this.props.cards)
     return(
-      <CardsWrapper>
+      <CardsWrapper gameLevel={this.props.gameLevel}>
         {this.props.cards.map((card, id) => {
           return <CardDiv image={card.image} key={id}>{card.name}</CardDiv>
         })}

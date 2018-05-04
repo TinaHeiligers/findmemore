@@ -1,9 +1,9 @@
 import cards from 'redux/cards/cardsData';
 
 const levelToNum = {
-  easy: 12,
-  medium: 16,
-  hard: 18,
+  easy: 6,
+  medium: 8,
+  hard: 12,
 };
 
 export const getCards = (level) => {
