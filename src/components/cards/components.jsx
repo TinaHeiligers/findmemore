@@ -1,90 +1,22 @@
 import styled, { css } from 'styled-components';
 import cardBackImage from 'redux/cards/images/card-back.png';
-const flexHash = {
-  'easy':'1 1 25%',
-  'medium':'1 1 16.6%',
-  'hard':'1 1 12.5%',
-};
-const selectedHash = {
-  'true': 'rotateY(180deg) scale(1.05) translateX(-10%)',
-  'false': '',
-}
-const matchedHash = {
-  'true': 'transform: rotateY(180deg) translateX(-10%)',
-  'false': '',
-}
-const transformHash = (selected, matched) => {
-  if (selected) {
-    return 'rotateY(180deg) scale(1.05) translateX(-10%)';
-  } else if (matched) {
-    return 'transform: rotateY(180deg) translateX(-10%)';
-  } else {
-    return null;
-  }
-};
-
-  // position: relative;
-  // height: 33.3%;
-  // perspective: 800px;
-  // display: inline-block;
-const CardsMainComponentDiv = styled.div`
-  background-color: red;
-`;
-const CardComponent = styled.div`
-  position: relative;
-  height: 33.3%;
-  perspective: 800px;
-  display: inline-block;
+const CardsWrapper = styled.div`
+  grid-row: 1;
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
 `;
 const CardDiv = styled.div`
-  padding: 5%;
-  width: 90%;
-  height: 90%;
-  position: absolute;
-  transition-duration: 0.3s;
-  transition-property: transform;
-  transform-style: preserve-3d;
-  cursor: grab;
-  transform: ${props => transformHash(props.selected, props.matched)};
-`;
-const CardFaceFrontDiv = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  border-width: 0.1%;
-  border-color: white;
-  border-style: solid;
-  background-color: white;
-  box-shadow: 0 0 3px black;
-  overflow: hidden;
-  backface-visibility: hidden;
-  background-size: cover;
-  background-position: center;
-  transform: rotateY(180deg);
   background-image: url(${props => props.image});
-`;
-const CardNameDiv = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: white;
-  opacity: 0.8;
-  font-family: 'Baloo', sans-serif;
-  text-shadow: 0 0 2px black;
-`;
-const CardFaceBackDiv = styled.div`
-  background-image: url(${cardBackImage});
-  background-repeat: repeat;
-  background-size: unset;
-  `;
-const components = {
-  CardsMainComponentDiv,
-  CardComponent,
+  background-size: cover;
+  border-radius: 10px;
+  border: 1px solid goldenrod;
+`
+const CardsComponents = {
+  CardsWrapper,
   CardDiv,
-  CardFaceFrontDiv,
-  CardNameDiv,
-  CardFaceBackDiv,
 };
-export default components;
+export default CardsComponents;
