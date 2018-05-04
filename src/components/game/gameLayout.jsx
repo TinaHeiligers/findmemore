@@ -10,7 +10,35 @@ const PlayerWrapper = components.PlayerWrapper;
 
 export default () =>
     <GameWrapper>
-      <CardsWrapper>CARDS</CardsWrapper>
-      <GameStatus>GameStatus</GameStatus>
-      <PlayerWrapper>PlayerStatus</PlayerWrapper>
+      <CardsContainer></CardsContainer>
+      <GameStatusContainer></GameStatusContainer>
+      <PlayerStatusContainer></PlayerStatusContainer>
     </GameWrapper>
+
+class CardsContainer extends Component {
+  render() {
+    return(
+      <CardsWrapper>
+        CARDS
+      </CardsWrapper>
+    )
+  }
+};
+class GameStatusContainer extends Component {
+  render() {
+    return(
+      <GameStatus>
+        GameStatus
+      </GameStatus>
+    )
+  }
+};
+class PlayerStatusContainer extends Component {
+  render() {
+    return(
+      <PlayerWrapper>
+        PlayerStatus
+      </PlayerWrapper>
+    )
+  }
+};
