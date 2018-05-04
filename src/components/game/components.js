@@ -1,29 +1,36 @@
 import styled, { css } from 'styled-components';
-const gameStateHash = {
-  'unstarted': 'none',
-  'inProgress': 'none',
-  'over': 'block',
-};
+
 const GameWrapper = styled.div`
-  position: absolute;
-  top:50px;
-  left:50px;
-  bottom:50px;
-  right:50px;
-  border-radius: 5px;
-  border: 1px solid silver;
-  opacity: 0.7;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 40vw 60vw;
+  grid-template-rows: 70vh 30vh;
 `;
-export const GameOverDiv = styled.div`
-  display: ${props => gameStateHash[props.gameState]};
-  position: relative;
-  top: 50px;
-  text-align: center;
-  transform: rotate(-15deg);
-  font-size: 3em;
+const CardsWrapper = styled.div`
+  grid-row: 1;
+  grid-column: 1 / -1;
+  background-color: green;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 10px;
+  padding: 10px;
+`;
+const GameStatus = styled.div`
+  grid-row: 2;
+  grid-column: 1;
+  background-color: blue;
+`;
+const PlayerWrapper = styled.div`
+  grid-row: 2;
+grid-column: 2;
+background-color: red;
 `;
 const components = {
   GameWrapper,
-  GameOverDiv,
+  CardsWrapper,
+  GameStatus,
+  PlayerWrapper,
 };
 export default components;

@@ -13,7 +13,7 @@ import ListItem from 'components/shared/ListItem.jsx';
 import themes from 'components/themes.js';
 
 const Content = styled.div`
-  padding: 1vh;
+  /*padding: 1vh;*/
 `;
 export default () =>
   <Content>
