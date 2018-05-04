@@ -14,17 +14,21 @@ const PlayerStatusWrapper = styled.div`
   border-top-left-radius: 90px;
   filter: drop-shadow(2px 2px 5px #D4AF37);
 `;
-const PlayerStatusListItem = styled.li`
+const PlayerStatusListItem = styled.div`
     list-style: none;
     padding-left: 3vw;
     text-align: left;
     font-size: 6vw;
     color: #8b0000;
     text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
+`;
+const PlayerNameSpan = styled.span`
+  margin-right: 10px;
+`;
 
-`
 const PlayerStatusComponents = {
   PlayerStatusWrapper,
   PlayerStatusListItem,
+  PlayerNameSpan,
 };
 export default PlayerStatusComponents;

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import PlayerStatusComponents from 'components/PlayerStatus/playerStatusComponents';
+import PlayerStatusComponents from 'components/PlayerStatus/playerStatusComponents.jsx';
 const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
+const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 
 class PlayerStatusContainer extends Component {
   message(player) {
@@ -13,7 +14,8 @@ class PlayerStatusContainer extends Component {
     return(
       <PlayerStatusWrapper>
           {this.props.players.map((player, index) => {
-            return <PlayerStatusListItem key={index}>{player.name}
+            return <PlayerStatusListItem key={index}>
+              <PlayerNameSpan>{player.name}</PlayerNameSpan>
               <span>{this.message(player)}</span>
             </PlayerStatusListItem>
           })}
