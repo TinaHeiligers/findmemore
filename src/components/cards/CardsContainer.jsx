@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
-import CardsComponents from 'components/cards/components.jsx'; // path in imports is relative to src.
+import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDiv = CardsComponents.CardDiv;
 //TODO: add click events and redux action creators to handle the clicks.

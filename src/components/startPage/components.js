@@ -78,14 +78,17 @@ const Button = styled.button`
 const ButtonEasy = Button.extend`
   background: radial-gradient(#00e600, #006800);
   border: 'green';
+  margin: ${props => props.margin ? props.margin : '25px'};
 `;
 const ButtonMedium = Button.extend`
   background: radial-gradient(#ff8c00, #cd6600);
   border: 'orange';
+  margin: ${props => props.margin ? props.margin : '25px'};
 `;
 const ButtonHard = Button.extend`
   background: radial-gradient(#ff0000, #8b0000);
   border: 'red';
+  margin: ${props => props.margin ? props.margin : '25px'};
 `;
 const components = {
   StartPageWrapper,
