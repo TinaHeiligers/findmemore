@@ -1,51 +1,51 @@
 import styled, { css } from 'styled-components';
-// TODO: make the Wrappers shared.
+import cardBackImage from 'redux/cards/images/card-back.png';
 const flexHash = {
   'easy':'1 1 25%',
   'medium':'1 1 16.6%',
   'hard':'1 1 12.5%',
 };
-// prob not done right.
-const transformHash = {
-  'selected':'rotateY(180deg) scale(1.05) translateX(-10%)',
-  'matched':'rotateY(180deg) translateX(-10%);',
+const selectedHash = {
+  'true': 'rotateY(180deg) scale(1.05) translateX(-10%)';
+  'false': '';
+}
+const matchedHash = {
+  'true': 'transform: rotateY(180deg) translateX(-10%)';
+  'false': ''
+}
+const transfromHash = (selected, matched) => {
+  if (selected) {
+    return 'rotateY(180deg) scale(1.05) translateX(-10%)';
+  } else if (matched) {
+    return 'transform: rotateY(180deg) translateX(-10%)';
+  } else {
+    return null;
+  }
 };
-const CardsDiv = styled.div`
-  top: 0;
-  bottom: 25vh;
-  left: 0;
-  right: 0;
-  position: absolute;
-  padding: 1vh;
-  display: flex;
-  justify-content: space-between;
-  flex-flow: wrap;
-`;
-const CardsWrapper = styled.div`
-  border: 1px solid silver;
-  flex: ${props => flexHash[props.gameLevel]};
-`;
-const CardDiv = styled.div`
+const CardsMainContainerDiv = styled.div`
   position: relative;
-  height: 33.3%; /* here */
+  height: 33.3%;
   perspective: 800px;
   display: inline-block;
-  flex: 1 1 12.5%;
 `;
-// the status prop in line 44 is prob wrong.
-const CardStatus = styled.div`
+const CardContainer = styled.div`
+  position: relative;
+  height: 33.3%;
+  perspective: 800px;
+  display: inline-block;
+`;
+const CardDiv = styled.div`
   padding: 5%;
   width: 90%;
   height: 90%;
   position: absolute;
-  border: 1px solid red;
-  /*transition-duration: 0.3s;*/
-  /*transition-property: transform;*/
-  /*transform-style: preserve-3d;*/
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transform-style: preserve-3d;
   cursor: grab;
-  /*transform: ${props => transformHash[status]};*/
+  transform: ${props => transformHash(props.selected, props.matched)};
 `;
-const CardFaceFront = styled.div`
+const CardFaceFrontDiv = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -57,13 +57,32 @@ const CardFaceFront = styled.div`
   box-shadow: 0 0 3px black;
   overflow: hidden;
   backface-visibility: hidden;
-  background-image: url(${props => props.img});
-`
+  background-size: cover;
+  background-position: center;
+  transform: rotateY(180deg);
+  background-image: `url(${props => props.image})`;
+`;
+const CardNameDiv = styled.div`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  opacity: 0.8;
+  font-family: 'Baloo', sans-serif;
+  text-shadow: 0 0 2px black;
+`;
+const CardFaceBackDiv = styled.div`
+  background-image: url(${cardBackImage});
+  background-repeat: repeat;
+  background-size: unset;
+  `
 const components = {
-  CardsDiv,
-  CardsWrapper,
+  CardsMainContainerDiv,
+  CardContainer,
   CardDiv,
-  CardStatus,
-  CardFaceFront,
+  CardFaceFrontDiv,
+  CardNameDiv,
+  CardFaceBackDiv,
 };
 export default components;
