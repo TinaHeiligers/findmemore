@@ -17,9 +17,9 @@ const PlayerWrapper = styled.div`
   grid-column: 2;
   background-color: red;
 `;
-const components = {
+const gameComponents = {
   GameWrapper,
   GameStatus,
   PlayerWrapper,
 };
-export default components;
+export default gameComponents;

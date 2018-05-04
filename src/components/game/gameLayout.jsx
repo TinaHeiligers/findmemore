@@ -3,10 +3,10 @@ import { PropTypes } from 'prop-types';
 import { Fragment } from 'redux-little-router';
 import styled, { ThemeProvider } from 'styled-components';
 import CardsContainer from 'components/cards/CardsContainer';
-import components from 'components/game/components.js'; // path in imports is relative to src.
-const GameWrapper = components.GameWrapper;
-const GameStatus = components.GameStatus;
-const PlayerWrapper = components.PlayerWrapper;
+import gameComponents from 'components/game/gameComponents.js'; // path in imports is relative to src.
+const GameWrapper = gameComponents.GameWrapper;
+const GameStatus = gameComponents.GameStatus;
+const PlayerWrapper = gameComponents.PlayerWrapper;
 
 export default () =>
     <GameWrapper>
