@@ -5,18 +5,7 @@ const PlayerStatusWrapper = styled.div`
   grid-column: 2;
   background-image: url(${animalTracks});
   background-repeat: repeat;
-  background-size: unset;
-  color: #8b0000;
-  text-shadow:
-      0.1vw 0.1vw 0 black,
-     -0.1vw -0.1vw 0 black,
-      0.1vw -0.1vw 0 black,
-     -0.1vw  0.1vw 0 black,
-      0.1vw  0.1vw 0 black,
-      0vw  0vw 1vw black;
-  /*left: 240px;
-  right: 0;
-  bottom: 0;*/
+  background-size: cover;
   margin: 0px 0px 0px 10px;
   padding: 1vh;
   border: 1px solid gold;
@@ -28,11 +17,19 @@ const PlayerStatusWrapper = styled.div`
 const PlayerStatusListItem = styled.li`
   list-style: none;
   padding-left: 3vw;
-  padding-top: 3vh;
+  padding-top: 1vh;
   text-align: left;
   line-height: 1.0em;
-  font-size: 10vw;
-  color: black;
+  font-size: 6vw;
+  color: #8b0000;
+  text-shadow:
+    0.1vw 0.1vw 0 black,
+    -0.1vw -0.1vw 0 black,
+    0.1vw -0.1vw 0 black,
+    -0.1vw 0.1vw 0 black,
+    0.1vw 0.1vw 0 black,
+    0vw 0vw 1vw black;
+
 `
 const PlayerStatusComponents = {
   PlayerStatusWrapper,
