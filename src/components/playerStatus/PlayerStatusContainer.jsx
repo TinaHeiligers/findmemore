@@ -6,16 +6,17 @@ const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 
 class PlayerStatusContainer extends Component {
+  message(player) {
+    return this.props.gameState === 'inProgress' ? player.matchedCards.length : 'Welcome!';
+  }
   render() {
     return(
       <PlayerStatusWrapper>
-        <ul>
           {this.props.players.map((player, index) => {
-            return <PlayerStatusListItem key={index}>
-              <span>{player.name}</span>
+            return <PlayerStatusListItem key={index}>{player.name}
+              <span>{this.message(player)}</span>
             </PlayerStatusListItem>
           })}
-        </ul>
       </PlayerStatusWrapper>
     )
   }

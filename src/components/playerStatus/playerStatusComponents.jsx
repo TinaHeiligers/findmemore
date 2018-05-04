@@ -15,20 +15,12 @@ const PlayerStatusWrapper = styled.div`
   filter: drop-shadow(2px 2px 5px #D4AF37);
 `;
 const PlayerStatusListItem = styled.li`
-  list-style: none;
-  padding-left: 3vw;
-  padding-top: 1vh;
-  text-align: left;
-  line-height: 1.0em;
-  font-size: 6vw;
-  color: #8b0000;
-  text-shadow:
-    0.1vw 0.1vw 0 black,
-    -0.1vw -0.1vw 0 black,
-    0.1vw -0.1vw 0 black,
-    -0.1vw 0.1vw 0 black,
-    0.1vw 0.1vw 0 black,
-    0vw 0vw 1vw black;
+    list-style: none;
+    padding-left: 3vw;
+    text-align: left;
+    font-size: 6vw;
+    color: #8b0000;
+    text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
 
 `
 const PlayerStatusComponents = {
