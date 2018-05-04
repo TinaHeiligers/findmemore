@@ -5,12 +5,13 @@ import styled, { ThemeProvider } from 'styled-components';
 import themes from 'components/themes.js';
 import components from 'components/cards/components.jsx'; // path in imports is relative to src.
 import { GameOverDiv } from 'components/game/components.js';//src/components/game/components.js
-const CardsMainContainerDiv = components.CardsMainContainerDiv;
-const CardContainer = components.CardContainer;
-const CardDiv = components.CardGameLevelDiv;
+const CardsMainComponentDiv = components.CardsMainComponentDiv;
+const CardComponent = components.CardComponent;
+const CardDiv = components.CardDiv;
 const CardFaceFrontDiv = components.CardFaceFrontDiv;
 const CardNameDiv = components.CardNameDiv;
 const CardFaceBackDiv = components.CardFaceBackDiv;
+
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.array,
@@ -29,16 +30,16 @@ class CardsContainer extends Component {
     // this.props.selectedCardsCheck();
   };
   // cardDiv: always have card, in addition, if it is selected add the transform. If it is matched add a different transform
-  renderCards(card, idx) => {
+  renderCards(card, idx) {
     return(
-      <CardContainer key={idx} name="selected" value={card.selected} onClick={(e) => this.handleClick(e, card)}>
+      <CardComponent key={idx} name="selected" value={card.selected} onClick={(e) => this.handleClick(e, card)}>
         <CardDiv selected={card.selected} matched={card.matched}>
           <CardFaceFrontDiv>
             <CardNameDiv>{card.name}</CardNameDiv>
           </CardFaceFrontDiv>
           <CardFaceBackDiv></CardFaceBackDiv>
         </CardDiv>
-      </CardContainer>
+      </CardComponent>
     )
   };
   render() {
@@ -48,12 +49,12 @@ class CardsContainer extends Component {
       return 'No cards Loaded'
     }
     return(
-      <CardsMainContainerDiv>
+      <CardsMainComponentDiv>
       <GameOverDiv gameState={gameState}>
           <div>{gameState === 'over' ? "GAME OVER! " : ""}</div>
       </GameOverDiv>
         {this.props.cards.map(this.renderCards)}
-      </CardsMainContainerDiv>
+      </CardsMainComponentDiv>
     )
   }
 }

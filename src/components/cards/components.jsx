@@ -6,14 +6,14 @@ const flexHash = {
   'hard':'1 1 12.5%',
 };
 const selectedHash = {
-  'true': 'rotateY(180deg) scale(1.05) translateX(-10%)';
-  'false': '';
+  'true': 'rotateY(180deg) scale(1.05) translateX(-10%)',
+  'false': '',
 }
 const matchedHash = {
-  'true': 'transform: rotateY(180deg) translateX(-10%)';
-  'false': ''
+  'true': 'transform: rotateY(180deg) translateX(-10%)',
+  'false': '',
 }
-const transfromHash = (selected, matched) => {
+const transformHash = (selected, matched) => {
   if (selected) {
     return 'rotateY(180deg) scale(1.05) translateX(-10%)';
   } else if (matched) {
@@ -22,13 +22,15 @@ const transfromHash = (selected, matched) => {
     return null;
   }
 };
-const CardsMainContainerDiv = styled.div`
-  position: relative;
-  height: 33.3%;
-  perspective: 800px;
-  display: inline-block;
+
+  // position: relative;
+  // height: 33.3%;
+  // perspective: 800px;
+  // display: inline-block;
+const CardsMainComponentDiv = styled.div`
+  background-color: red;
 `;
-const CardContainer = styled.div`
+const CardComponent = styled.div`
   position: relative;
   height: 33.3%;
   perspective: 800px;
@@ -60,7 +62,7 @@ const CardFaceFrontDiv = styled.div`
   background-size: cover;
   background-position: center;
   transform: rotateY(180deg);
-  background-image: `url(${props => props.image})`;
+  background-image: url(${props => props.image});
 `;
 const CardNameDiv = styled.div`
   position: absolute;
@@ -76,10 +78,10 @@ const CardFaceBackDiv = styled.div`
   background-image: url(${cardBackImage});
   background-repeat: repeat;
   background-size: unset;
-  `
+  `;
 const components = {
-  CardsMainContainerDiv,
-  CardContainer,
+  CardsMainComponentDiv,
+  CardComponent,
   CardDiv,
   CardFaceFrontDiv,
   CardNameDiv,
