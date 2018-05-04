@@ -77,18 +77,33 @@ const Button = styled.button`
 `;
 const ButtonEasy = Button.extend`
   background: radial-gradient(#00e600, #006800);
-  border: 'green';
+  border: 1px solid 'green';
+  outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
+  &:focus {
+    background: radial-gradient(#006800, #00e600);
+    color: white;
+  }
 `;
 const ButtonMedium = Button.extend`
   background: radial-gradient(#ff8c00, #cd6600);
-  border: 'orange';
+  border: 1px solid 'orange';
+  outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
+  &:focus {
+    background: radial-gradient(#cd6600, #ff8c00);
+    color: white;
+  }
 `;
 const ButtonHard = Button.extend`
   background: radial-gradient(#ff0000, #8b0000);
-  border: 'red';
+  border: 1px solid 'red';
+  outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
+  &:focus {
+    background: radial-gradient(#8b0000, #ff0000);
+    color: white;
+  }
 `;
 const components = {
   StartPageWrapper,

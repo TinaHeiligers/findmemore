@@ -15,7 +15,6 @@ const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 //TODO: add click events and redux action creators to handle the clicks.
 class GameStatusContainer extends Component {
   render() {
-    console.log('props', this.props)
     return(
       <GameStatusWrapper gameLevel={this.props.gameLevel}>
       <GameStatusDiv>Play again?</GameStatusDiv>

@@ -19,6 +19,7 @@ const GameStatusWrapper = styled.div`
   padding: 1vh;
 `;
 const GameStatusDiv = styled.div`
+  text-shadow: 1px 1px 2px pink;
   text-align: center;
   margin-top: 0.1vh;
   margin-bottom: 3vh;
