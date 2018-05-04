@@ -38,11 +38,12 @@ const CardStatus = styled.div`
   width: 90%;
   height: 90%;
   position: absolute;
-  transition-duration: 0.3s;
-  transition-property: transform;
-  transform-style: preserve-3d;
+  border: 1px solid red;
+  /*transition-duration: 0.3s;*/
+  /*transition-property: transform;*/
+  /*transform-style: preserve-3d;*/
   cursor: grab;
-  transform: ${props => transformHash[status]};
+  /*transform: ${props => transformHash[status]};*/
 `;
 const CardFaceFront = styled.div`
   position: absolute;
@@ -56,7 +57,7 @@ const CardFaceFront = styled.div`
   box-shadow: 0 0 3px black;
   overflow: hidden;
   backface-visibility: hidden;
-  background-image: ${props => url(props.image)};
+  background-image: url(${props => props.img});
 `
 const components = {
   CardsDiv,

@@ -29,17 +29,20 @@ class CardsContainer extends Component {
     // this.props.selectedCardsCheck();
   };
     renderCards(card, idx) {
-
-    return(
-      <CardDiv key={idx} name="selected" value={card.selected} onClick={(e) => this.handleClick(e, card)}>
-        <CardStatus status={card.selected || card.matched}>Tricky one in here, additional styles depending on if the card is both selected and matched.
-          <CardFaceFront style={{backgroundImage:`url(${card.image})`}}>
-            <div className="name">{card.name}</div>
-          </CardFaceFront>
-          <div className="face back"></div>
-        </CardStatus>
-      </CardDiv>
-      )
+      console.log('current card:', card)
+      return(
+        <CardDiv key={ idx } style={{ height: '80%', width: '80%', backgroundImage: `url(${card.image})`}}>{card.name}</CardDiv>
+        )
+    // return(
+    //   <CardDiv key={idx} name="selected" value={card.selected} onClick={(e) => this.handleClick(e, card)}>
+    //     <CardStatus status={card.selected || card.matched}>
+    //       <CardFaceFront img={card.image}>
+    //         <div className="name">{card.name}</div>
+    //       </CardFaceFront>
+    //       <div className="face back"></div>
+    //     </CardStatus>
+    //   </CardDiv>
+    //   )
   }
   // check the state to see which wrapper to render based on the number of cards we're going to show.
   render() {
@@ -52,7 +55,7 @@ class CardsContainer extends Component {
     return(
       <CardsDiv>
       <GameOverDiv gameState={gameState}>
-          {/*<div>{gameState === 'over' ? "GAME OVER! " : ""}</div>*/}
+          <div>{gameState === 'over' ? "GAME OVER! " : ""}</div>
       </GameOverDiv>
       <CardsWrapper gameLevel={gameLevel}>
         {this.props.cards.map(this.renderCards)}
