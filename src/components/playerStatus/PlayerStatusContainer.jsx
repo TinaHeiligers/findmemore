@@ -5,7 +5,7 @@ import PlayerStatusComponents from 'components/PlayerStatus/playerStatusComponen
 const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
-
+const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
 class PlayerStatusContainer extends Component {
   message(player) {
     return this.props.gameState === 'inProgress' ? player.matchedCards.length : 'Welcome!';
@@ -19,7 +19,7 @@ class PlayerStatusContainer extends Component {
               <span>{this.message(player)}</span>
             </PlayerStatusListItem>
           })}
-          <span className="cards-remaining">Cards Remaining: {(this.props.cards.length - this.props.totalScores)}</span>
+          <CardsRemainingSpan className="cards-remaining">{(this.props.cards.length - this.props.totalScores)}</CardsRemainingSpan>
       </PlayerStatusWrapper>
     )
   }

@@ -25,10 +25,19 @@ const PlayerStatusListItem = styled.div`
 const PlayerNameSpan = styled.span`
   margin-right: 10px;
 `;
+const CardsRemainingSpan = styled.span`
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  line-height: 1em;
+  font-size: 3vw;
+  padding: 0.1em;
+`;
 
 const PlayerStatusComponents = {
   PlayerStatusWrapper,
   PlayerStatusListItem,
   PlayerNameSpan,
+  CardsRemainingSpan,
 };
 export default PlayerStatusComponents;
