@@ -31,7 +31,7 @@ color: #8b0000;
     0vw 0vw 1vw black;
   text-align: center;
   margin-top: 0.1vh;
-  font-size: 5.5vw;
+  font-size: 5vw;
 `;
 const GameStatusComponents = {
   GameStatusWrapper,

@@ -40,44 +40,46 @@ const InputWithProps = styled.input.attrs({
   type: 'text',
   placeholder: 'Player Name',
   margin: props => props.size || '0.5em',
-  padding: props => props.size || '1em',
+  padding: props => props.size || '0.5em',
 })`
+  outline: 'none',
   font-family: 'Baloo', sans-serif;
   text-align: center;
   font-size: 5vh;
   border: 5px solid gray;
-  margin: ${props => props.margin || '0.5em'};
-  padding: ${props => props.padding || '0.5em'};
+  margin: '0.5em';
+  padding: '0.5em';
   border-radius: 10px;
   border-style: inset;
   min-width: 50%;
+  &:focus {
+    outline: none;
+    background: silver;
+  }
 `;
 const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
 })`
-  font-family: 'Baloo', sans-serif;
   padding: 5px;
   padding: 1vh;
   font-size: 5vh;
   margin: 1vh;
+  border: none;
   border-radius: 10px;
-  background: blue;
-  background: radial-gradient(white, blue);
-  border-style: outset;
+  background: radial-gradient(white,blue);
 `;
 const Button = styled.button`
   font-family: 'Baloo', sans-serif;
   text-align: center;
-  color: black;
   margin: 25px;
   border-radius: 50px;
+  border: none;
   height: 100px;
   width: 100px;
   font-size: 1.5em;
 `;
 const ButtonEasy = Button.extend`
   background: radial-gradient(#00e600, #006800);
-  border: 1px solid 'green';
   outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
   &:focus {
@@ -87,7 +89,6 @@ const ButtonEasy = Button.extend`
 `;
 const ButtonMedium = Button.extend`
   background: radial-gradient(#ff8c00, #cd6600);
-  border: 1px solid 'orange';
   outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
   &:focus {
@@ -97,7 +98,6 @@ const ButtonMedium = Button.extend`
 `;
 const ButtonHard = Button.extend`
   background: radial-gradient(#ff0000, #8b0000);
-  border: 1px solid 'red';
   outline: none;
   margin: ${props => props.margin ? props.margin : '25px'};
   &:focus {

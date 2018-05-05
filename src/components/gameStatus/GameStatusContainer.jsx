@@ -19,9 +19,9 @@ class GameStatusContainer extends Component {
       <GameStatusWrapper gameLevel={this.props.gameLevel}>
       <GameStatusDiv>Play again?</GameStatusDiv>
         <ButtonDiv>
-          <ButtonEasy margin={'10px'} onClick={() => this.props.startGame('easy')}>easy</ButtonEasy>
-          <ButtonMedium margin={'10px'} onClick={() => this.props.startGame('medium')}>medium</ButtonMedium>
-          <ButtonHard margin={'10px'} onClick={() => this.props.startGame('hard')}>hard</ButtonHard>
+          <ButtonEasy margin={'3px'} onClick={() => this.props.startGame('easy')}>easy</ButtonEasy>
+          <ButtonMedium margin={'3px'} onClick={() => this.props.startGame('medium')}>medium</ButtonMedium>
+          <ButtonHard margin={'3px'} onClick={() => this.props.startGame('hard')}>hard</ButtonHard>
         </ButtonDiv>
       </GameStatusWrapper>
     )
