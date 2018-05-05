@@ -19,7 +19,7 @@ class PlayerStatusContainer extends Component {
               <span>{this.message(player)}</span>
             </PlayerStatusListItem>
           })}
-          <span className="cards-remaining">{(this.props.cards.length - this.props.totalScores)}</span>
+          <span className="cards-remaining">Cards Remaining: {(this.props.cards.length - this.props.totalScores)}</span>
       </PlayerStatusWrapper>
     )
   }

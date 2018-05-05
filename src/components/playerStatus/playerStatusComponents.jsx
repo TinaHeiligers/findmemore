@@ -18,7 +18,7 @@ const PlayerStatusListItem = styled.div`
     list-style: none;
     padding-left: 3vw;
     text-align: left;
-    font-size: 6vw;
+    font-size: 4vw;
     color: #8b0000;
     text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
 `;
