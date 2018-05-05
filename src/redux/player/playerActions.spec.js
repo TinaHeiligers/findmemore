@@ -1,3 +1,4 @@
+/* global describe, it, expect */
 import playerActions from 'redux/player/playerActions.js';
 describe ('player action creators -> playerActions', () => {
   it('addPlayer adds a player, given a name', () => {

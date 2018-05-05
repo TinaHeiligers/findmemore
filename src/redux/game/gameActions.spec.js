@@ -1,3 +1,4 @@
+/* global describe, it, expect */
 import gameActions from 'redux/game/gameActions.js';
 describe ('game action creators -> gameActions', () => {
   it('startGame starts a new game, given a level', () => {

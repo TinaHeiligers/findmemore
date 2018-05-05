@@ -1,3 +1,4 @@
+/* global describe, it, expect */
 import reducer, { initialState } from 'redux/player/playerReducer';
 import playerActions from 'redux/player/playerActions';
 
