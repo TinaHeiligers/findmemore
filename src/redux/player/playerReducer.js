@@ -4,6 +4,7 @@ const { ADD_PLAYER, SET_FIRST_PLAYER } = playerActions;
 export const initialState = {
   current: null,
   all: [],
+  totalScores: 0,
 };
 export default function playersReducer(
   currentState = initialState,

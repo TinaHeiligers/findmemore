@@ -19,13 +19,16 @@ class PlayerStatusContainer extends Component {
               <span>{this.message(player)}</span>
             </PlayerStatusListItem>
           })}
+          <span className="cards-remaining">{(this.props.cards.length - this.props.totalScores)}</span>
       </PlayerStatusWrapper>
     )
   }
 };
 export default connect(
   state => ({
+    cards: state.cards.all,
     players: state.players.all,
+    totalScores: state.players.totalScores,
     currentPlayer: state.players.current,
     gameState: state.game.state,
   }), {  })(PlayerStatusContainer);
