@@ -1,5 +1,5 @@
 import cardsActions from 'redux/cards/cardsActions';
-const { GET_CARDS_SUCCESS, GET_CARDS_ERROR } = cardsActions;
+const { GET_CARDS_SUCCESS, GET_CARDS_ERROR, CHOOSE_CARD } = cardsActions;
 
 export const initialState = {
   all: [],
@@ -12,22 +12,28 @@ export default function cardsReducer(
 ) {
   switch (action.type) {
     case GET_CARDS_SUCCESS:
-    return {
-      ...currentState,
-      all: action.cards,
-    }
+      return {
+        ...currentState,
+        all: action.cards,
+      };
     case GET_CARDS_ERROR:
       return {
         ...currentState,
         error: action.error,
-      }
+      };
+    case CHOOSE_CARD: {
+      const allCards = currentState.all;
+      const updatedCard = {
+        ...allCards[action.index],
+        selected: true,
+        status: 'visible'
+      };
+      return {
+        ...currentState,
+        all: allCards.map((card, index) => index === action.index ? updatedCard : card),
+      };
+    }
     default:
       return currentState;
-  };
-};
-// cards have:
-// status
-// selected
-// matched
-// on them, we should probably add that in within redux.
-// // we need a selected array on cards too
+  }
+}

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import styled, { ThemeProvider } from 'styled-components';
-import themes from 'components/themes.js';
+import { ThemeProvider } from 'styled-components';
 import components from 'components/startPage/components.js'; // path in imports is relative to src.
 const StartPageWrapper = components.StartPageWrapper;
 const StartPageMainDivH1 = components.StartPageMainDivH1;
@@ -11,8 +10,7 @@ const StartPageP = components.StartPageP;
 const StartFormDiv = components.StartFormDiv;
 const ButtonDiv = components.ButtonDiv;
 const InputWithProps = components.InputWithProps;
-const ButtonAddMe = components.ButtonAddMe
-const Button = components.Button;
+const ButtonAddMe = components.ButtonAddMe;
 const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
@@ -58,10 +56,10 @@ class StartPage extends Component {
     const players = this.props.players;
     return (
       <StartPageWrapper>
-      <ThemeProvider theme={theme}>
-        <StartPageMainDivH1>
-          Find Me
-        </StartPageMainDivH1>
+        <ThemeProvider theme={ theme }>
+          <StartPageMainDivH1>
+            Find Me
+          </StartPageMainDivH1>
         </ThemeProvider>
         <StartPageMainDivH2>
           Find my matching partner in all the cards!
@@ -76,19 +74,19 @@ class StartPage extends Component {
               onSubmit={ (e) => this.handleCreatePlayer(e) }>
               <InputWithProps
                 innerRef={(input) => this.name = input}/>
-            <div>
-              <ButtonAddMe>Add Me</ButtonAddMe>
-            </div>
-          </form>
+              <div>
+                <ButtonAddMe>Add Me</ButtonAddMe>
+              </div>
+            </form>
           }
         </StartFormDiv>
         { players.length ?
           <ButtonDiv>
-          <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
-          <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
-          <ButtonHard onClick={() => this.startGame('hard')}>hard</ButtonHard>
-        </ButtonDiv> :
-        <ButtonDiv />
+            <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
+            <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
+            <ButtonHard onClick={() => this.startGame('hard')}>hard</ButtonHard>
+          </ButtonDiv> :
+          <ButtonDiv />
         }
       </StartPageWrapper>
     )
