@@ -34,4 +34,17 @@ describe('cards reducer -> get cards', () => {
     };
     expect(newState).toEqual(expectedState);
   });
+  it('updates state on CHOOSE_CARD', () => {
+    const testCard = { selected: false, status: 'hidden' };
+    const testIndex = 0;
+    const testDefaultState = { all: [testCard], error: null, selected: null };
+    let testAction = cardsActions.chooseCard(testCard, testIndex);
+    const newState = reducer(testDefaultState, testAction);
+    const expectedState = {
+      ...testDefaultState,
+      all: [{ selected: true, status: 'visible' }],
+      error: null,
+    };
+    expect(newState).toEqual(expectedState);
+  });
 });

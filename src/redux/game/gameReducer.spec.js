@@ -1,4 +1,5 @@
-import reducer, { initialState, GAME_STATE } from 'redux/game/gameReducer';
+/* global describe, it, expect */
+import reducer, { initialState } from 'redux/game/gameReducer';
 import gameActions from 'redux/game/gameActions';
 
 describe('game reducer -> start game', () => {

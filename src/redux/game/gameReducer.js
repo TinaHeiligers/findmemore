@@ -17,17 +17,18 @@ export default function gameReducer(
   action
 ) {
   switch (action.type) {
-    case START_GAME:
+    case START_GAME: {
       const newGame = {
         level: action.level,
         state: GAME_STATE.inProgress,
-      }
+      };
       return {
         ...currentState,
         level: newGame.level,
         state: newGame.state,
-      }
+      };
+    }
     default:
       return currentState;
-  };
-};
+  }
+}
