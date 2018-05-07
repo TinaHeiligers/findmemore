@@ -1,5 +1,5 @@
 import cardsActions from 'redux/cards/cardsActions.js';
-describe ('cards action creators -> cardsActions', () => {
+describe('cards action creators -> cardsActions', () => {
   it('gets cards on getCardsRequest', () => {
     const testLevel = 'easy';
     const testGetCardsRequest = cardsActions.getCardsRequest(testLevel);
@@ -22,6 +22,15 @@ describe ('cards action creators -> cardsActions', () => {
     expect(testGetCardsError).toEqual({
       type: cardsActions.GET_CARDS_ERROR,
       error: testError.message,
+    });
+  });
+  it("changes a card's props on chooseCard", () => {
+    const testCard = { name: 'testCard', index: 1 };
+    const testChooseCard = cardsActions.chooseCard(testCard, testCard.index);
+    expect(testChooseCard).toEqual({
+      type: cardsActions.CHOOSE_CARD,
+      card: testCard,
+      index: testCard.index,
     });
   });
 });
