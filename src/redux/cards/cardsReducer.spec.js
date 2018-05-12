@@ -31,6 +31,11 @@ describe('cards reducer -> get cards', () => {
     const testDefaultState = defaultState.merge({ all: [{ selected: false, status: 'hidden' }], error: null, selected: null });
     let testAction = cardsActions.chooseCard(0);
     const newState = reducer(testDefaultState, testAction);
+    // alternate syntax:
+    const actualState = [...newState.get('all').get(0).entries()];
+    const expectedState = [['selected', true], ['status', 'visible']];
+    expect(actualState).toEqual(expectedState)
+    // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ selected: true, status: 'visible' }]);
     expect(newState.get('error')).toBeNull();
   });
