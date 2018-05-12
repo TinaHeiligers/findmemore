@@ -18,7 +18,7 @@ class CardsContainer extends Component {
   selectCard(e, card, index) {
     e.preventDefault();
     // switch to visible
-    this.props.chooseCard(card, index);
+    this.props.chooseCard(index);
   }
   render() {
     return(

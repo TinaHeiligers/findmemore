@@ -25,12 +25,10 @@ describe('cards action creators -> cardsActions', () => {
     });
   });
   it("changes a card's props on chooseCard", () => {
-    const testCard = { name: 'testCard', index: 1 };
-    const testChooseCard = cardsActions.chooseCard(testCard, testCard.index);
+    const testChooseCard = cardsActions.chooseCard(1);
     expect(testChooseCard).toEqual({
       type: cardsActions.CHOOSE_CARD,
-      card: testCard,
-      index: testCard.index,
+      index: 1,
     });
   });
 });

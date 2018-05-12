@@ -117,6 +117,7 @@
   },
   "dependencies": {
     "immutable": "^3.8.2",
-    "redux-immutable": "^4.0.0"
+    "redux-immutable": "^4.0.0",
+    "reselect": "^3.0.1"
   }
 }
