@@ -6,7 +6,7 @@ export const cardsActions = {
   getCardsRequest: (level) => ({ type: cardsActions.GET_CARDS_REQUEST, level: level }),
   getCardsSuccess: (cards) => ({ type: cardsActions.GET_CARDS_SUCCESS, cards: cards }),
   getCardsError: (error) => ({ type: cardsActions.GET_CARDS_ERROR, error: error.message }),
-  chooseCard: (card, index) => ({ type: cardsActions.CHOOSE_CARD, card: card, index: index }),
+  chooseCard: (index) => ({ type: cardsActions.CHOOSE_CARD, index: index }),
 };
 
 export default cardsActions;

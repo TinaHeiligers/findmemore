@@ -1,4 +1,6 @@
-import { applyMiddleware, combineReducers, createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
+import Immutable from 'immutable';
+import { combineReducers } from 'redux-immutable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import { routerForBrowser } from 'redux-little-router';
@@ -31,6 +33,7 @@ export default function () {
     router: routerReducer
   };
 
+  const initialState = Immutable.Map({});
   const store = createStore(
     combineReducers(allReducers),
     composeWithDevTools(enhancer, applyMiddleware(...middlewares))

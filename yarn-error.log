@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/Tina/.nvm/versions/node/v8.9.1/bin/node /usr/local/Cellar/yarn/1.6.0/libexec/bin/yarn.js add husky --dev
+  /Users/Tina/.nvm/versions/node/v8.9.1/bin/node /usr/local/Cellar/yarn/1.6.0/libexec/bin/yarn.js add reselect
 
 PATH: 
   /Users/Tina/.rvm/gems/ruby-2.3.1/bin:/Users/Tina/.rvm/gems/ruby-2.3.1@global/bin:/Users/Tina/.rvm/rubies/ruby-2.3.1/bin:/usr/local/bin/aws:/Users/Tina/.nvm/versions/node/v8.9.1/bin:/Library/TeX/texbin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin:/opt/X11/bin:/Users/Tina/.rvm/bin:/Applications/Postgres.app/Contents/Versions/latest/bin
@@ -40,7 +40,8 @@ npm manifest:
       "build": "better-npm-run build",
       "build:dll": "webpack --config dll.webpack.config.js",
       "test": "jest --verbose",
-      "test:watch": "NODE_ENV=test jest --verbose --watch"
+      "test:watch": "NODE_ENV=test jest --verbose --watch",
+      "prepush": "npm run test"
     },
     "betterScripts": {
       "start": {
@@ -113,6 +114,9 @@ npm manifest:
       "eslint-plugin-promise": "^2.0.1",
       "eslint-plugin-react": "^5.2.2",
       "eslint-plugin-standard": "^2.0.0",
+      "file-loader": "^1.1.11",
+      "husky": "^0.14.3",
+      "image-webpack-loader": "^4.2.0",
       "imagemin-webpack-plugin": "^1.2.1",
       "jest": "^22.0.4",
       "prop-types": "^15.6.0",
@@ -131,6 +135,10 @@ npm manifest:
       "webpack-dashboard": "^1.0.2",
       "webpack-dev-server": "^2.9.7",
       "whatwg-fetch": "^1.0.0"
+    },
+    "dependencies": {
+      "immutable": "^3.8.2",
+      "redux-immutable": "^4.0.0"
     }
   }
 
