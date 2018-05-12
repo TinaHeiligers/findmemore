@@ -1,4 +1,5 @@
 /* global describe, it, expect */
+import Immutable from 'immutable';
 import reducer, { initialState } from 'redux/player/playerReducer';
 import playerActions from 'redux/player/playerActions';
 
@@ -8,20 +9,17 @@ describe('player reducer -> addPlayer', () => {
     expect(defaultState).toBeInstanceOf(Object);
   });
   it('returns an object equal to initialState', () => {
-    expect(Object.keys(defaultState)).toEqual(expect.arrayContaining([
-      "current",
-      "all",
-    ]));
+    expect(defaultState.keySeq().toArray()).toEqual(expect.arrayContaining(["current", "all"]));
   });
   it('updates state on ADD_PLAYER', () => {
     const testNewPlayer = 'Name';
-    let testAction = playerActions.addPlayer(testNewPlayer);
+    const testAction = playerActions.addPlayer(testNewPlayer);
     const newState = reducer(defaultState, testAction);
-    const expectedState = {
-      ...defaultState,
-      current: null,
-      all: [{ name: 'Name', matchedCards: [] }],
-    };
-    expect(newState).toEqual(expectedState);
+    expect(newState.get('all').toJS()).toEqual([{ name: 'Name', matchedCards: [] }]);
   });
+  it('updates state on SET_FIRST_PLAYER', () => {
+    const testAction = playerActions.setFirstPlayer();
+    const newState = reducer(defaultState, testAction);
+    expect(newState.get('current')).toEqual(0);
+  })
 });

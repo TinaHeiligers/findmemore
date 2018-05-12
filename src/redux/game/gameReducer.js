@@ -22,15 +22,6 @@ export default function gameReducer(
       const newGame = Immutable.Map({ 'level': action.level, state: GAME_STATE.get('inProgress') });
       const newState = currentState.merge(newGame);
       return newState;
-      // const newGame = {
-      //   level: action.level,
-      //   state: GAME_STATE.inProgress,
-      // };
-      // return {
-      //   ...currentState,
-      //   level: newGame.level,
-      //   state: newGame.state,
-      // };
     }
     default:
       return currentState;
