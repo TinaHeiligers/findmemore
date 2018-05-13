@@ -17,8 +17,8 @@ class CardsContainer extends Component {
   };
 
   selectCard(e, card, index) {
-    console.log('type of card', card)
     e.preventDefault();
+    // check number of selected cards first, if it's 0 or 1, carry on, if it's already 2 cards, reset the unmatched cards then continue
     // switch to visible
     this.props.chooseCard(index);
   }

@@ -21,10 +21,12 @@ export default function cardsReducer(
       const newCard = {
         name: selectedCard.name,
         image: selectedCard.image,
+        status: 'visible',
         matched: selectedCard.matched,
         selected: true,
-        status: 'visible' };
-      return currentState.mergeIn(['all', action.index], {...newCard});
+     };
+      const updatedState = currentState.mergeIn(['all', action.index], { ...newCard });
+      return updatedState;
     default:
       return currentState;
   }
