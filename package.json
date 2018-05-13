@@ -15,7 +15,6 @@
   },
   "scripts": {
     "start": "npm run build:dll && better-npm-run start",
-    "start:dash": "better-npm-run start:dash",
     "build": "better-npm-run build",
     "build:dll": "webpack --config dll.webpack.config.js",
     "test": "jest --verbose",
@@ -25,13 +24,6 @@
   "betterScripts": {
     "start": {
       "command": "./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
-      "env": {
-        "NODE_ENV": "development",
-        "BABEL_ENV": "development"
-      }
-    },
-    "start:dash": {
-      "command": "webpack-dashboard -- ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
       "env": {
         "NODE_ENV": "development",
         "BABEL_ENV": "development"
