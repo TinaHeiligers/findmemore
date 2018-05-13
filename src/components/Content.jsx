@@ -1,5 +1,5 @@
 import React from 'react';
-import { Fragment, Link } from 'redux-little-router';
+import { ImmutableFragment, ImmutableLink } from 'redux-little-router';
 import styled, { ThemeProvider } from 'styled-components';
 
 import Help from 'components/help.jsx';
@@ -17,19 +17,19 @@ const Content = styled.div`
 `;
 export default () =>
   <Content>
-    <Fragment forRoute='/counter'>
+    <ImmutableFragment forRoute='/counter'>
       <Counter />
-    </Fragment>
-    <Fragment forRoute='/startPage'>
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/startPage'>
       <StartPage />
-    </Fragment>
-    <Fragment forRoute='/game'>
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/game'>
       <GameLayout />
-    </Fragment>
-    <Fragment forRoute='/help'>
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/help'>
       <Help />
-    </Fragment>
-    <Fragment forRoute='/bar'>
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/bar'>
       <Bar />
-    </Fragment>
+    </ImmutableFragment>
   </Content>;

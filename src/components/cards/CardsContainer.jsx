@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
 const { chooseCard } = cardsActions;
@@ -10,7 +11,7 @@ import cardBackImage from 'redux/cards/images/card-back.png';
 //TODO: add click events and redux action creators to handle the clicks.
 class CardsContainer extends Component {
   static propTypes = {
-    cards: PropTypes.array,
+    cards: PropTypes.instanceOf(Immutable.List),
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
   };
@@ -38,8 +39,8 @@ class CardsContainer extends Component {
 }
 export default connect(
   state => ({
-    cards: state.cards.all,
-    gameState: state.game.state,
-    gameLevel: state.game.level,
+    cards: state.getIn(['cards', 'all']),
+    gameState: state.getIn(['game', 'state']),
+    gameLevel: state.getIn(['game', 'level']),
   }), { chooseCard })(CardsContainer);
 

@@ -13,7 +13,7 @@ export default function cardsReducer(
 ) {
   switch (action.type) {
     case GET_CARDS_SUCCESS:
-      return currentState.set('all', action.cards);
+      return currentState.set('all', Immutable.List(action.cards));
     case GET_CARDS_ERROR:
       return currentState.set('error', action.error);
     case CHOOSE_CARD:

@@ -3,7 +3,8 @@ import Immutable from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import { routerForBrowser } from 'redux-little-router';
+// import { routerForBrowser } from 'redux-little-router';
+import { immutableRouterForBrowser } from 'redux-little-router';
 import reducers from 'redux/rootReducers';
 import rootSaga from 'redux/rootSagas';
 export default function () {
@@ -20,11 +21,13 @@ export default function () {
     },
   };
 
-  const {
-    reducer: routerReducer,
-    middleware: routerMiddleware,
-    enhancer
-  } = routerForBrowser({ routes });
+  // const {
+  //   reducer: routerReducer,
+  //   middleware: routerMiddleware,
+  //   enhancer
+  // } = routerForBrowser({ routes });
+  const { reducer: routerReducer, enhancer, middleware: routerMiddleware } = immutableRouterForBrowser({ routes });
+
   const sagaMiddleware = createSagaMiddleware();
   const middlewares = [routerMiddleware, sagaMiddleware];
 
@@ -39,6 +42,5 @@ export default function () {
     composeWithDevTools(enhancer, applyMiddleware(...middlewares))
   );
   sagaMiddleware.run(rootSaga);
-
   return store;
 }

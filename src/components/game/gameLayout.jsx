@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { Fragment } from 'redux-little-router';
-import styled, { ThemeProvider } from 'styled-components';
 
 import CardsContainer from 'components/cards/CardsContainer';
 import GameStatusContainer from 'components/gameStatus/GameStatusContainer';

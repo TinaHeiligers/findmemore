@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
 const { startGame } = gameActions;
 import styled, { ThemeProvider } from 'styled-components';
@@ -14,6 +15,12 @@ const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
 const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 //TODO: add click events and redux action creators to handle the clicks.
 class GameStatusContainer extends Component {
+  static propTypes = {
+    cards: PropTypes.instanceOf(Immutable.List),
+    gameState: PropTypes.string,
+    gameLevel: PropTypes.string,
+    router: PropTypes.instanceOf(Immutable.Map),
+  };
   render() {
     return(
       <GameStatusWrapper gameLevel={this.props.gameLevel}>
@@ -29,10 +36,10 @@ class GameStatusContainer extends Component {
 };
 export default connect(
   state => ({
-    cards: state.cards.all,
-    gameState: state.game.state,
-    gameLevel: state.game.level,
-    router: state.router,
+    cards: state.getIn(['cards', 'all']),
+    gameState: state.getIn(['game', 'state']),
+    gameLevel: state.getIn(['game', 'level']),
+    router: state.get('router'),
   }), { startGame })(GameStatusContainer);
 // class Game extends React.Component {
 //   render() {

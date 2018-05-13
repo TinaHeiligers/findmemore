@@ -1,10 +1,9 @@
 /* global module, __dirname */
-const Webpack = require('webpack')
-const ImageminPlugin = require('imagemin-webpack-plugin').default
-const DashboardPlugin = require('webpack-dashboard/plugin')
-const path = require('path')
+const Webpack = require('webpack');
+const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const path = require('path');
 
-const IS_DEV = process.env.NODE_ENV === 'development'
+const IS_DEV = process.env.NODE_ENV === 'development';
 
 const plugins = [
   new Webpack.DefinePlugin({
@@ -38,8 +37,7 @@ if (IS_DEV) {
   plugins.push(
     new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NamedModulesPlugin(),
-    new DashboardPlugin()
-  )
+  );
 } else {
   plugins.push(
     new Webpack.LoaderOptionsPlugin({
@@ -63,7 +61,7 @@ if (IS_DEV) {
         comments: false
       }
     })
-  )
+  );
 }
 
 module.exports = {
@@ -121,4 +119,4 @@ module.exports = {
       warnings: true
     }
   }
-}
+};
