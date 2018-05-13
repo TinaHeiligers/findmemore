@@ -1,17 +1,17 @@
 {
-  "name": "react-redux-saga-boilerplate",
-  "version": "0.0.4",
-  "description": "A boilerplate frontend repo that uses react, redux, redux saga, webpack and babel and makes as few other assumptions as possible",
+  "name": "findmemore",
+  "version": "1.0.3",
+  "description": "Front end for a card matching game that uses react, redux, redux saga, webpack, immutable and babel",
   "main": "webpack.config.js",
-  "author": "Matt Granmoe",
+  "author": "Tina Heiligers",
   "license": "MIT",
-  "homepage": "https://github.com/granmoe/react-redux-saga-boilerplate",
+  "homepage": "https://github.com/TinaHeiligers/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/granmoe/react-redux-saga-boilerplate.git"
+    "url": "https://github.com/TinaHeiligers/findmemore.git"
   },
   "bugs": {
-    "url": "https://github.com/granmoe/react-redux-saga-boilerplate/issues"
+    "url": "https://github.com/TinaHeiligers/findmemore/issues"
   },
   "scripts": {
     "start": "npm run build:dll && better-npm-run start",
@@ -83,6 +83,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "better-npm-run": "0.0.13",
     "css-loader": "^0.28.4",
@@ -111,7 +112,6 @@
     "style-loader": "^0.18.2",
     "styled-components": "^2.4.0",
     "webpack": "^3.10.0",
-    "webpack-dashboard": "^1.0.2",
     "webpack-dev-server": "^2.9.7",
     "whatwg-fetch": "^1.0.0"
   },

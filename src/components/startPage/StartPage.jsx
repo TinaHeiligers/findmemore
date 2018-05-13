@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import Immutable from 'immutable';
 import components from 'components/startPage/components.js'; // path in imports is relative to src.
 const StartPageWrapper = components.StartPageWrapper;
 const StartPageMainDivH1 = components.StartPageMainDivH1;
@@ -26,7 +27,7 @@ const theme = {
 }
 class StartPage extends Component {
   static propTypes = {
-    players: PropTypes.array,
+    players: PropTypes.instanceOf(Immutable.List),
     addPlayer: PropTypes.func,
   };
    message(num) {
@@ -40,13 +41,14 @@ class StartPage extends Component {
     }
   }
   handleCreatePlayer(event) {
+    console.log('HELLO?')
     event.preventDefault();
-    if (this.props.players.length < 2) {
+    if (this.props.players.size < 2) {
       this.props.addPlayer(this.name.value);
       this.playerForm.reset();
       }
     else {
-      return null
+      return null;
     }
   }
   startGame(level) {
@@ -65,22 +67,22 @@ class StartPage extends Component {
           Find my matching partner in all the cards!
         </StartPageMainDivH2>
         <StartFormDiv>
-        { players && players.map((player, index) => <StartPageP key={index} size='2em'>Welcome {player.name}!</StartPageP>) }
-          <StartPageP>{this.message(players.length)}</StartPageP>
-          { players.length === 2 ?
+        { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
+          <StartPageP>{this.message(players.size)}</StartPageP>
+          { players.size === 2 ?
             <div></div> :
             <form
-              ref={(input) => this.playerForm = input}
+              ref={ (input) => this.playerForm = input }
               onSubmit={ (e) => this.handleCreatePlayer(e) }>
               <InputWithProps
-                innerRef={(input) => this.name = input}/>
+                innerRef={ (input) => this.name = input }/>
               <div>
                 <ButtonAddMe>Add Me</ButtonAddMe>
               </div>
             </form>
           }
         </StartFormDiv>
-        { players.length ?
+        { players.size ?
           <ButtonDiv>
             <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
             <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
@@ -94,8 +96,8 @@ class StartPage extends Component {
 }
 export default connect(
   state => ({
-    players: state.players.all,
-    gameState: state.game.state,
-    router: state.router,
+    players: state.getIn(['players', 'all']),
+    gameState: state.getIn(['game', 'state']),
+    router: state.get('router'),
 }),
   { addPlayer, startGame })(StartPage);
