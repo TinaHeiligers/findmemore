@@ -17,7 +17,14 @@ export default function cardsReducer(
     case GET_CARDS_ERROR:
       return currentState.set('error', action.error);
     case CHOOSE_CARD:
-      return currentState.mergeIn(['all', action.index], { selected: true, status: 'visible' });
+      const selectedCard = currentState.getIn(['all', action.index]);
+      const newCard = {
+        name: selectedCard.name,
+        image: selectedCard.image,
+        matched: selectedCard.matched,
+        selected: true,
+        status: 'visible' };
+      return currentState.mergeIn(['all', action.index], {...newCard});
     default:
       return currentState;
   }

@@ -1,6 +1,9 @@
 import React from 'react';
+import { ImmutableFragment } from 'redux-little-router';
 import styled from 'styled-components';
-import Content from 'components/content.jsx';
+import Help from 'components/help.jsx';
+import StartPage from 'components/startPage/StartPage.jsx';
+import GameLayout from 'components/game/gameLayout.jsx';
 import img from 'redux/cards/images/table.jpg';
 
 const App = styled.div`
@@ -11,5 +14,13 @@ const App = styled.div`
 `;
 export default () =>
   <App>
-    <Content />
+    <ImmutableFragment forRoute='/startPage'>
+      <StartPage />
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/game'>
+      <GameLayout />
+    </ImmutableFragment>
+    <ImmutableFragment forRoute='/help'>
+      <Help />
+    </ImmutableFragment>
   </App>;
