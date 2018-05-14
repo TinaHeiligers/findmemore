@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push, ImmutableFragment } from 'redux-little-router';
+import { replace, ImmutableFragment } from 'redux-little-router';
 import styled from 'styled-components';
 import Help from 'components/help.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
@@ -16,7 +16,7 @@ const AppDiv = styled.div`
 
 class App extends Component {
   componentDidMount() {
-    this.props.push({ pathname: '/startPage' });
+    this.props.replace({ pathname: '/startPage' });
   }
   render() {
     return (
@@ -34,4 +34,4 @@ class App extends Component {
     );
   }
 }
-export default connect(null, { push })(App);
+export default connect(null, { replace })(App);
