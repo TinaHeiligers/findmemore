@@ -1,2 +1,2 @@
 # TODO
-Convert redux reducers to immutable objects.
+Sort out routing with defaulting to the start page.

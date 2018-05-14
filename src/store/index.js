@@ -7,25 +7,21 @@ import createSagaMiddleware from 'redux-saga';
 import { immutableRouterForBrowser } from 'redux-little-router';
 import reducers from 'redux/rootReducers';
 import rootSaga from 'redux/rootSagas';
+
 export default function () {
   // any data to attach to the router key of state when we're on this route
   const routes = {
-    '/counter': {
-      test: 'foo'
-    },
     '/startPage' : {
       title: 'Start',
     },
     '/game': {
       title: 'Game',
     },
+    '/help': {
+      title: 'Help',
+    },
   };
 
-  // const {
-  //   reducer: routerReducer,
-  //   middleware: routerMiddleware,
-  //   enhancer
-  // } = routerForBrowser({ routes });
   const { reducer: routerReducer, enhancer, middleware: routerMiddleware } = immutableRouterForBrowser({ routes });
 
   const sagaMiddleware = createSagaMiddleware();

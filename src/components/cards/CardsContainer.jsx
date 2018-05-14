@@ -18,7 +18,12 @@ class CardsContainer extends Component {
 
   selectCard(e, card, index) {
     e.preventDefault();
+    // check number of selected cards first, if it's 0 or 1, carry on, if it's already 2 cards, reset the unmatched cards then continue
     // switch to visible
+    const selectedCards = this.props.cards.filter((card) => card.selected === true);
+    if (selectedCards.size > 1) {
+      console.log('Create the actionCreator deselectCards')
+    };
     this.props.chooseCard(index);
   }
   render() {
@@ -30,7 +35,9 @@ class CardsContainer extends Component {
               key={ index }
               image={ card.status === 'visible' ? card.image : cardBackImage }
               size={ card.status === 'visible' ? 'cover' : null }
-              onClick={ e => this.selectCard(e, card, index) }>{ card.name }</CardDivDynamic>
+              onClick={ e => this.selectCard(e, card, index) }>
+              { card.status === 'visible' ? card.name : '' }
+            </CardDivDynamic>
             );
           }) }
       </CardsWrapper>

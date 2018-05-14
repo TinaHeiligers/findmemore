@@ -1,5 +1,6 @@
 import reducer, { initialState } from 'redux/cards/cardsReducer';
 import cardsActions from 'redux/cards/cardsActions';
+import Immutable from 'immutable';
 
 describe('cards reducer -> get cards', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
@@ -28,15 +29,17 @@ describe('cards reducer -> get cards', () => {
     expect(newState.get('error')).toEqual('Test Error');
   });
   it('updates state on CHOOSE_CARD', () => {
-    const testDefaultState = defaultState.merge({ all: [{ selected: false, status: 'hidden' }], error: null, selected: null });
+    const newCard = { name: 'testName', image: 'testImage', status: 'hidden', matched: false, selected: false };
+    const testDefaultState = defaultState.setIn(['all', 0], newCard);
     let testAction = cardsActions.chooseCard(0);
     const newState = reducer(testDefaultState, testAction);
+    const actualNewCardEntries = Object.entries(newState.getIn(['all', 0]));
     // alternate syntax:
-    const actualState = [...newState.get('all').get(0).entries()];
-    const expectedState = [['selected', true], ['status', 'visible']];
-    expect(actualState).toEqual(expectedState)
+    const expectedCardEntries = [['name', 'testName'], ['image', 'testImage'], ['status', 'visible'], ['matched', false], ['selected', true]];
+    expect(actualNewCardEntries).toEqual(expectedCardEntries)
     // alternate syntax:
-    expect(newState.get('all').toJS()).toEqual([{ selected: true, status: 'visible' }]);
+    expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
     expect(newState.get('error')).toBeNull();
+    expect(1).toEqual(1)
   });
 });

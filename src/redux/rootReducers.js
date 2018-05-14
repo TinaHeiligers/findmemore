@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import count from 'redux/counter/counterReducer';
 import players from 'redux/player/playerReducer';
 import game from 'redux/game/gameReducer';
