@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
-const { chooseCard } = cardsActions;
+const { chooseCard, resetChosenCards } = cardsActions;
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
@@ -20,10 +20,10 @@ class CardsContainer extends Component {
     e.preventDefault();
     // check number of selected cards first, if it's 0 or 1, carry on, if it's already 2 cards, reset the unmatched cards then continue
     // switch to visible
-    const selectedCards = this.props.cards.filter((card) => card.selected === true);
+    const selectedCards = this.props.cards.filter((card) => card.get('selected') === true);
     if (selectedCards.size > 1) {
-      console.log('Create the actionCreator deselectCards')
-    };
+      this.props.resetChosenCards();
+    }
     this.props.chooseCard(index);
   }
   render() {
@@ -33,10 +33,10 @@ class CardsContainer extends Component {
           return (
             <CardDivDynamic
               key={ index }
-              image={ card.status === 'visible' ? card.image : cardBackImage }
-              size={ card.status === 'visible' ? 'cover' : null }
+              image={ card.get('status') === 'visible' ? card.get('image') : cardBackImage }
+              size={ card.get('status') === 'visible' ? 'cover' : null }
               onClick={ e => this.selectCard(e, card, index) }>
-              { card.status === 'visible' ? card.name : '' }
+              { card.get('status') === 'visible' ? card.get('name') : '' }
             </CardDivDynamic>
             );
           }) }
@@ -49,5 +49,5 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-  }), { chooseCard })(CardsContainer);
+  }), { chooseCard, resetChosenCards })(CardsContainer);
 
