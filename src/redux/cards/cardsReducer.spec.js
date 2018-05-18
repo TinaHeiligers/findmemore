@@ -33,9 +33,9 @@ describe('cards reducer -> get cards', () => {
     const testDefaultState = defaultState.setIn(['all', 0], newCard);
     let testAction = cardsActions.chooseCard(0);
     const newState = reducer(testDefaultState, testAction);
-    const actualNewCardEntries = Object.entries(newState.getIn(['all', 0]));
+    const actualNewCardEntries = newState.getIn(['all', 0]);
     // alternate syntax:
-    const expectedCardEntries = [['name', 'testName'], ['image', 'testImage'], ['status', 'visible'], ['matched', false], ['selected', true]];
+    const expectedCardEntries = Immutable.Map({ "name": "testName", "image": "testImage", "status": "visible", "matched": false, "selected": true })
     expect(actualNewCardEntries).toEqual(expectedCardEntries)
     // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
