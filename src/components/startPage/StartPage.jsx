@@ -41,7 +41,6 @@ class StartPage extends Component {
     }
   }
   handleCreatePlayer(event) {
-    console.log('HELLO?')
     event.preventDefault();
     if (this.props.players.size < 2) {
       this.props.addPlayer(this.name.value);

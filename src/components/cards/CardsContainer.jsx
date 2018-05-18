@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
-const { chooseCard, resetChosenCards } = cardsActions;
+const { chooseCard, resetChosenCards, chosenCardsCheck, matchCards } = cardsActions;
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
@@ -14,6 +14,10 @@ class CardsContainer extends Component {
     cards: PropTypes.instanceOf(Immutable.List),
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
+    chooseCard: PropTypes.func,
+    resetChosenCards: PropTypes.func,
+    chosenCardsCheck: PropTypes.func,
+    matchCards: PropTypes.func
   };
 
   selectCard(e, card, index) {
@@ -21,9 +25,14 @@ class CardsContainer extends Component {
     // check number of selected cards first, if it's 0 or 1, carry on, if it's already 2 cards, reset the unmatched cards then continue
     // switch to visible
     const selectedCards = this.props.cards.filter((card) => card.get('selected') === true);
-    if (selectedCards.size > 1) {
+    if (selectedCards.size === 2) {
+      this.props.chosenCardsCheck();
+      this.props.matchCards();
       this.props.resetChosenCards();
     }
+    // if (selectedCards.size > 2) {
+
+    // }
     this.props.chooseCard(index);
   }
   render() {
@@ -49,5 +58,5 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-  }), { chooseCard, resetChosenCards })(CardsContainer);
+  }), { chooseCard, resetChosenCards, chosenCardsCheck, matchCards })(CardsContainer);
 
