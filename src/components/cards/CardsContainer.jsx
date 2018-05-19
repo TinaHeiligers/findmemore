@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
-const { chooseCard, resetChosenCards, extractChosenCards, matchCards } = cardsActions;
+const {
+  chooseCard,
+  matchCardsRequest,
+  extractChosenCards,
+  resetChosenCards,
+  matchCards } = cardsActions;
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
@@ -17,16 +22,17 @@ class CardsContainer extends Component {
     chooseCard: PropTypes.func,
     resetChosenCards: PropTypes.func,
     extractChosenCards: PropTypes.func,
-    matchCards: PropTypes.func
+    matchCardsRequest: PropTypes.func
   };
 
   selectCard(e, card, index) {
     e.preventDefault();
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
-      this.props.extractChosenCards();
-      this.props.matchCards();
-      this.props.resetChosenCards();
+      this.props.matchCardsRequest();
+      // this.props.extractChosenCards();
+      // this.props.matchCards();
+      // this.props.resetChosenCards();
     }
     this.props.chooseCard(index);
   }
@@ -53,5 +59,6 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-  }), { chooseCard, resetChosenCards, extractChosenCards, matchCards })(CardsContainer);
+  }), { chooseCard, extractChosenCards, resetChosenCards, matchCards, matchCardsRequest,
+     })(CardsContainer);
 

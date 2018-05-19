@@ -50,6 +50,8 @@ export default function cardsReducer(
     }
     return currentState;
     }
+    case cardsActions.MATCH_CARDS_ERROR:
+      return currentState.set('error', action.error);
     default:
       return currentState;
   }

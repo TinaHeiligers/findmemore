@@ -2,7 +2,7 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import { getCards } from 'redux/cards/cardsServices';
-import { getCardsRequestWatcher, getCardsRequest } from 'redux/cards/cardsSaga';
+import { getCardsRequestWatcher, getCardsRequest, matchCardsRequestWatcher, matchCardsRequest } from 'redux/cards/cardsSaga';
 
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
@@ -36,5 +36,34 @@ describe('cards saga -> getCardsRequest', () => {
     const testError = new Error('Error');
     expect(getCardsRequestGen.throw(testError).value)
     .toEqual(put({ type: cardsActions.GET_CARDS_ERROR, error: testError }));
+  });
+});
+describe('cards saga -> matchCardsRequestWatcher', () => {
+  const steps = ['1) takes every MATCH_CARDS_REQUEST action'];
+  const matchCardsRequestWatcherGen = matchCardsRequestWatcher();
+  it('should act on every MATCH_CARDS_REQUEST action', () => {
+    expect(matchCardsRequestWatcherGen.next().value)
+    .toEqual(takeEvery(cardsActions.MATCH_CARDS_REQUEST, matchCardsRequest));
+  });
+});
+describe('cards saga -> matchCardsRequest', () => {
+  const steps = ['1) puts EXTRACT_CHOSEN_CARDS', '2) puts MATCH_CARDS', '3) puts RESET_CHOSEN_CARDS'];
+  const matchCardsRequestGen = matchCardsRequest();
+  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+    expect(matchCardsRequestGen.next().value)
+    .toEqual(put({ type: cardsActions.EXTRACT_CHOSEN_CARDS }));
+  });
+  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+    expect(matchCardsRequestGen.next(cardsActions.extractChosenCards()).value)
+    .toEqual(put({ type: cardsActions.MATCH_CARDS }));
+  });
+  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+    expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
+    .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
+  });
+  it('should put MATCH_CARDS_ERROR action on an error', () => {
+    const testError = {message: 'cannot match cards'};
+    expect(matchCardsRequestGen.throw(testError).value)
+    .toEqual(put({ type: cardsActions.MATCH_CARDS_ERROR, error: testError.message }));
   });
 });
