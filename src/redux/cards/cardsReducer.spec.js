@@ -58,4 +58,23 @@ describe('cards reducer -> get cards', () => {
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       ]);
   });
+  it('updates state on MATCH_CARDS', () => {
+    const testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      ];
+    const testSelectedCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+    ];
+    const testDefaultState = defaultState
+    .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+    .set('selected', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    const testAction = cardsActions.matchCards();
+    const newState = reducer(testDefaultState, testAction);
+    const actualAllCards = newState.get('all');
+    expect(actualAllCards.toJS().filter(card => card.matched === true)).toHaveLength(2);
+  });
 });
