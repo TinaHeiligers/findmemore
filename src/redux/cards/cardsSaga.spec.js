@@ -53,17 +53,17 @@ describe('cards saga -> matchCardsRequest', () => {
     expect(matchCardsRequestGen.next().value)
     .toEqual(put({ type: cardsActions.EXTRACT_CHOSEN_CARDS }));
   });
-  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+  it('should put MATCH_CARDS after EXTRACT_CHOSEN_CARDS', () => {
     expect(matchCardsRequestGen.next(cardsActions.extractChosenCards()).value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS }));
   });
-  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+  it('should put RESET_CHOSEN_CARDS after MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
     .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
   });
   it('should put MATCH_CARDS_ERROR action on an error', () => {
-    const testError = {message: 'cannot match cards'};
+    const testError = { message: 'cannot match cards' };
     expect(matchCardsRequestGen.throw(testError).value)
-    .toEqual(put({ type: cardsActions.MATCH_CARDS_ERROR, error: testError.message }));
+    .toEqual(put({ type: cardsActions.MATCH_CARDS_ERROR, error: testError }));
   });
 });
