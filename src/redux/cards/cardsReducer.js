@@ -25,7 +25,7 @@ export default function cardsReducer(
       return updatedState;
     }
     case cardsActions.RESET_CHOSEN_CARDS: {
-      return currentState.set('all', currentState.get('all').map((card) => {
+      return currentState.set('all', currentState.get('all').map(card => {
         if(card.get('selected') && !card.get('matched')) {
           return card.merge({ selected: false, status: 'hidden' });
         } else {
@@ -33,19 +33,14 @@ export default function cardsReducer(
         }
       }));
     }
-    case cardsActions.CHOSEN_CARDS_CHECK: {
-      // get the cards that are selected (filter)
-      // From these two cards, check if their names match
-      return currentState.set('selected', currentState.get('all').filter((card) => card.get('selected') && !card.get('matched')));
+    case cardsActions.EXTRACT_CHOSEN_CARDS: {
+      return currentState.set('selected', currentState.get('all').filter(card => {
+        return card.get('selected') && !card.get('matched');
+      }));
     }
     case cardsActions.MATCH_CARDS: {
-      const cardName1 = currentState.getIn(['selected','0']);
-      const cardName2 = currentState.getIn(['selected','1']);
-      // /* eslint-disable no-console */
-      console.log('cardName1', currentState.getIn(['selected','0']).get('name'));
-      console.log('cardName2', currentState.getIn(['selected','1']).get('name'));
       if (currentState.getIn(['selected','0']).get('name') === currentState.getIn(['selected','1']).get('name')) {
-        return currentState.set('all', currentState.get('all').map((card) => {
+        return currentState.set('all', currentState.get('all').map(card => {
         if (card.get('name') === currentState.getIn(['selected','0']).get('name')) {
           return card.merge({ selected: false, status: 'visible', matched: true });
         } else {
