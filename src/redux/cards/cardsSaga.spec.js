@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { push } from 'redux-little-router';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import { getCards } from 'redux/cards/cardsServices';
@@ -28,9 +29,9 @@ describe('cards saga -> getCardsRequest', () => {
     expect(getCardsRequestGen.next(testResult).value)
     .toEqual(put({ type: cardsActions.GET_CARDS_SUCCESS, cards: testResult }));
   });
-  xit('should push to the game component when we have cards on start', () => {
-    expect(getCardsRequestGen.next().value)
-    .toEqual(put({ type: cardsActions.GET_CARDS_SUCCESS, cards: testResult.cards }));
+  it('should push to the game component when we have cards on start', () => {
+    expect(getCardsRequestGen.next(cardsActions.getCardsSuccess()).value)
+    .toEqual(put(push('/game')));
   });
   it('should put START_GAME_ERROR action on an error', () => {
     const testError = new Error('Error');
