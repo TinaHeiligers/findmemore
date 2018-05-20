@@ -16,7 +16,7 @@ export const cardsActions = {
   extractChosenCards: () => ({ type: cardsActions.EXTRACT_CHOSEN_CARDS }),
   matchCards: () => ({ type: cardsActions.MATCH_CARDS }),
   matchCardsRequest: () => ({ type: cardsActions.MATCH_CARDS_REQUEST }),
-  matchCardsError: error => ({ type: cardsActions.MATCH_CARDS_ERROR, error: error.message })
+  matchCardsError: error => ({ type: cardsActions.MATCH_CARDS_ERROR, error: error.message }),
 };
 
 export default cardsActions;

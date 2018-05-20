@@ -11,7 +11,7 @@ describe('cards reducer -> get cards', () => {
     expect(defaultState.keySeq().toArray()).toEqual(expect.arrayContaining([
       'all',
       'error',
-      'selected',
+      'selectedCards',
     ]));
   });
   it('updates state on GET_CARDS_SUCCESS', () => {
@@ -35,7 +35,7 @@ describe('cards reducer -> get cards', () => {
     const newState = reducer(testDefaultState, testAction);
     const actualNewCardEntries = newState.getIn(['all', 0]);
     // alternate syntax:
-    const expectedCardEntries = Immutable.Map({ "name": "testName", "image": "testImage", "status": "visible", "matched": false, "selected": true })
+    const expectedCardEntries = Immutable.Map({ name: 'testName', image: 'testImage', status: 'visible', matched: false, selected: true })
     expect(actualNewCardEntries).toEqual(expectedCardEntries)
     // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
@@ -53,7 +53,7 @@ describe('cards reducer -> get cards', () => {
     const newState = reducer(testDefaultState, testAction);
     const actualSelectedCards = newState.get('selected');
     expect(actualSelectedCards.size).toEqual(2)
-    expect(newState.get('selected').toJS()).toEqual([
+    expect(newState.get('selectedCards').toJS()).toEqual([
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       ]);

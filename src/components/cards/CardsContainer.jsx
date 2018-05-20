@@ -30,9 +30,6 @@ class CardsContainer extends Component {
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
-      // this.props.extractChosenCards();
-      // this.props.matchCards();
-      // this.props.resetChosenCards();
     }
     this.props.chooseCard(index);
   }
