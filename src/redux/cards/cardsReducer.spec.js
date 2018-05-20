@@ -39,24 +39,8 @@ describe('cards reducer -> get cards', () => {
     expect(actualNewCardEntries).toEqual(expectedCardEntries)
     // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
+    expect(newState.get('selectedCards').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
     expect(newState.get('error')).toBeNull();
-  });
-  it('updates state on EXTRACT_CHOSEN_CARDS', () => {
-    const testCards = [
-      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
-      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
-      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
-      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
-      ];
-    const testDefaultState = defaultState.set('all', Immutable.List(testCards.map(card => Immutable.Map(card))));
-    let testAction = cardsActions.extractChosenCards();
-    const newState = reducer(testDefaultState, testAction);
-    const actualSelectedCards = newState.get('selected');
-    expect(actualSelectedCards.size).toEqual(2)
-    expect(newState.get('selectedCards').toJS()).toEqual([
-      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
-      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
-      ]);
   });
   it('updates state on MATCH_CARDS', () => {
     const testAllCards = [
@@ -71,10 +55,29 @@ describe('cards reducer -> get cards', () => {
     ];
     const testDefaultState = defaultState
     .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
-    .set('selected', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
     const testAction = cardsActions.matchCards();
     const newState = reducer(testDefaultState, testAction);
     const actualAllCards = newState.get('all');
     expect(actualAllCards.toJS().filter(card => card.matched === true)).toHaveLength(2);
   });
+  it('updates state on RESET_CHOSEN_CARDS', () => {
+    const testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      ];
+    const testSelectedCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+    ];
+    const testDefaultState = defaultState
+    .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+    .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    const testAction = cardsActions.resetChosenCards();
+    const newState = reducer(testDefaultState, testAction);
+    const actualselectedCards = newState.get('selectedCards');
+    expect(actualselectedCards.toJS()).toEqual([]);
+  })
 });

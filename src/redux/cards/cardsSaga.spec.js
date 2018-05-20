@@ -48,14 +48,10 @@ describe('cards saga -> matchCardsRequestWatcher', () => {
   });
 });
 describe('cards saga -> matchCardsRequest', () => {
-  const steps = ['1) puts EXTRACT_CHOSEN_CARDS', '2) puts MATCH_CARDS', '3) puts RESET_CHOSEN_CARDS'];
+  const steps = ['1) puts MATCH_CARDS', '3) puts RESET_CHOSEN_CARDS'];
   const matchCardsRequestGen = matchCardsRequest();
-  it('should put EXTRACT_CHOSEN_CARDS when cards selected is 2', () => {
+  it('should put MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next().value)
-    .toEqual(put({ type: cardsActions.EXTRACT_CHOSEN_CARDS }));
-  });
-  it('should put MATCH_CARDS after EXTRACT_CHOSEN_CARDS', () => {
-    expect(matchCardsRequestGen.next(cardsActions.extractChosenCards()).value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS }));
   });
   it('should put RESET_CHOSEN_CARDS after MATCH_CARDS', () => {

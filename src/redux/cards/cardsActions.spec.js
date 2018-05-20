@@ -37,12 +37,7 @@ describe('cards action creators -> cardsActions', () => {
       type: cardsActions.RESET_CHOSEN_CARDS,
     });
   })
-  it('extracts selected cards into the selected item', () => {
-    const testChosenCards = cardsActions.extractChosenCards();
-    expect(testChosenCards).toEqual({
-      type: cardsActions.EXTRACT_CHOSEN_CARDS,
-    });
-  });
+
   it('matches selected cards', () => {
     const testMatchCards = cardsActions.matchCards();
     expect(testMatchCards).toEqual({

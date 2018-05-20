@@ -36,11 +36,6 @@ export default function cardsReducer(
       // intermediate extraction of selectedCards
       return currentState.merge({ all: updatedAllCards, selectedCards: Immutable.List() });
     }
-    case cardsActions.EXTRACT_CHOSEN_CARDS: {
-      return currentState.set('selectedCards', currentState.get('all').filter(card => {
-        return card.get('selected') && !card.get('matched');
-      }));
-    }
     case cardsActions.MATCH_CARDS: {
       // combine extraction of selected cards and matching in here so that we can get rid of the selectedCards altogether
       if (currentState.getIn(['selectedCards','0']).get('name') === currentState.getIn(['selectedCards','1']).get('name')) {

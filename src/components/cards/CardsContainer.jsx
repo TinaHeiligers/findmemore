@@ -7,9 +7,7 @@ import cardsActions from 'redux/cards/cardsActions';
 const {
   chooseCard,
   matchCardsRequest,
-  extractChosenCards,
-  resetChosenCards,
-  matchCards } = cardsActions;
+} = cardsActions;
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
@@ -20,8 +18,6 @@ class CardsContainer extends Component {
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
     chooseCard: PropTypes.func,
-    resetChosenCards: PropTypes.func,
-    extractChosenCards: PropTypes.func,
     matchCardsRequest: PropTypes.func
   };
 
@@ -56,6 +52,5 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-  }), { chooseCard, extractChosenCards, resetChosenCards, matchCards, matchCardsRequest,
-     })(CardsContainer);
+  }), { chooseCard, matchCardsRequest })(CardsContainer);
 
