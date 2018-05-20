@@ -27,7 +27,6 @@ export function* matchCardsRequestWatcher() {
 
 export function* matchCardsRequest() {
   try {
-    // yield put({ type: cardsActions.EXTRACT_CHOSEN_CARDS });
     yield put({ type: cardsActions.MATCH_CARDS });
     yield put({ type: cardsActions.RESET_CHOSEN_CARDS });
     // yield the update player score action, player turn action and game state actions now
