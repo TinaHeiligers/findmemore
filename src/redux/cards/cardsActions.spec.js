@@ -24,11 +24,24 @@ describe('cards action creators -> cardsActions', () => {
       error: testError.message,
     });
   });
-  it("changes a card's props on chooseCard", () => {
+  it('changes a card\'s props on chooseCard', () => {
     const testChooseCard = cardsActions.chooseCard(1);
     expect(testChooseCard).toEqual({
       type: cardsActions.CHOOSE_CARD,
       index: 1,
+    });
+  });
+  it('resets all unmatched selected cards to hidden and unselected', () => {
+    const testResetChosenCards = cardsActions.resetChosenCards();
+    expect(testResetChosenCards).toEqual({
+      type: cardsActions.RESET_CHOSEN_CARDS,
+    });
+  })
+
+  it('matches selected cards', () => {
+    const testMatchCards = cardsActions.matchCards();
+    expect(testMatchCards).toEqual({
+      type: cardsActions.MATCH_CARDS,
     });
   });
 });

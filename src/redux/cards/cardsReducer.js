@@ -4,7 +4,7 @@ import Immutable from 'immutable';
 export const initialState = Immutable.Map({
   all: Immutable.List(),
   error: null,
-  selected: null,
+  selectedCards: Immutable.List(),
 });
 export default function cardsReducer(
   currentState = initialState,
@@ -21,32 +21,26 @@ export default function cardsReducer(
         status: 'visible',
         selected: true,
       });
-      const updatedState = currentState.mergeIn(['all', action.index], newCard);
+      const updatedState = currentState.mergeIn(['all', action.index], newCard)
+        .mergeIn(['selectedCards', currentState.get('selectedCards').size], newCard);
       return updatedState;
     }
     case cardsActions.RESET_CHOSEN_CARDS: {
-      return currentState.set('all', currentState.get('all').map((card) => {
+      const updatedAllCards = Immutable.List(currentState.get('all').map(card => {
         if(card.get('selected') && !card.get('matched')) {
           return card.merge({ selected: false, status: 'hidden' });
         } else {
           return card;
         }
-      }));
-    }
-    case cardsActions.CHOSEN_CARDS_CHECK: {
-      // get the cards that are selected (filter)
-      // From these two cards, check if their names match
-      return currentState.set('selected', currentState.get('all').filter((card) => card.get('selected') && !card.get('matched')));
+      }))
+      // intermediate extraction of selectedCards
+      return currentState.merge({ all: updatedAllCards, selectedCards: Immutable.List() });
     }
     case cardsActions.MATCH_CARDS: {
-      const cardName1 = currentState.getIn(['selected','0']);
-      const cardName2 = currentState.getIn(['selected','1']);
-      // /* eslint-disable no-console */
-      console.log('cardName1', currentState.getIn(['selected','0']).get('name'));
-      console.log('cardName2', currentState.getIn(['selected','1']).get('name'));
-      if (currentState.getIn(['selected','0']).get('name') === currentState.getIn(['selected','1']).get('name')) {
-        return currentState.set('all', currentState.get('all').map((card) => {
-        if (card.get('name') === currentState.getIn(['selected','0']).get('name')) {
+      // combine extraction of selected cards and matching in here so that we can get rid of the selectedCards altogether
+      if (currentState.getIn(['selectedCards','0']).get('name') === currentState.getIn(['selectedCards','1']).get('name')) {
+        return currentState.set('all', currentState.get('all').map(card => {
+        if (card.get('name') === currentState.getIn(['selectedCards','0']).get('name')) {
           return card.merge({ selected: false, status: 'visible', matched: true });
         } else {
           return card;
@@ -55,7 +49,10 @@ export default function cardsReducer(
     }
     return currentState;
     }
+    case cardsActions.MATCH_CARDS_ERROR:
+      return currentState.set('error', action.error);
     default:
       return currentState;
   }
 }
+

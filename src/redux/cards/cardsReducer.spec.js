@@ -11,7 +11,7 @@ describe('cards reducer -> get cards', () => {
     expect(defaultState.keySeq().toArray()).toEqual(expect.arrayContaining([
       'all',
       'error',
-      'selected',
+      'selectedCards',
     ]));
   });
   it('updates state on GET_CARDS_SUCCESS', () => {
@@ -29,17 +29,55 @@ describe('cards reducer -> get cards', () => {
     expect(newState.get('error')).toEqual('Test Error');
   });
   it('updates state on CHOOSE_CARD', () => {
-    const newCard = { name: 'testName', image: 'testImage', status: 'hidden', matched: false, selected: false };
+    const newCard = Immutable.Map({ name: 'testName', image: 'testImage', status: 'hidden', matched: false, selected: false });
     const testDefaultState = defaultState.setIn(['all', 0], newCard);
     let testAction = cardsActions.chooseCard(0);
     const newState = reducer(testDefaultState, testAction);
     const actualNewCardEntries = newState.getIn(['all', 0]);
     // alternate syntax:
-    const expectedCardEntries = Immutable.Map({ "name": "testName", "image": "testImage", "status": "visible", "matched": false, "selected": true })
+    const expectedCardEntries = Immutable.Map({ name: 'testName', image: 'testImage', status: 'visible', matched: false, selected: true })
     expect(actualNewCardEntries).toEqual(expectedCardEntries)
     // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
+    expect(newState.get('selectedCards').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
     expect(newState.get('error')).toBeNull();
-    expect(1).toEqual(1)
   });
+  it('updates state on MATCH_CARDS', () => {
+    const testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      ];
+    const testSelectedCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+    ];
+    const testDefaultState = defaultState
+    .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+    .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    const testAction = cardsActions.matchCards();
+    const newState = reducer(testDefaultState, testAction);
+    const actualAllCards = newState.get('all');
+    expect(actualAllCards.toJS().filter(card => card.matched === true)).toHaveLength(2);
+  });
+  it('updates state on RESET_CHOSEN_CARDS', () => {
+    const testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      ];
+    const testSelectedCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+    ];
+    const testDefaultState = defaultState
+    .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+    .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    const testAction = cardsActions.resetChosenCards();
+    const newState = reducer(testDefaultState, testAction);
+    const actualselectedCards = newState.get('selectedCards');
+    expect(actualselectedCards.toJS()).toEqual([]);
+  })
 });
