@@ -15,7 +15,7 @@ describe('player reducer -> addPlayer', () => {
     const testNewPlayer = 'Name';
     const testAction = playerActions.addPlayer(testNewPlayer);
     const newState = reducer(defaultState, testAction);
-    expect(newState.get('all').toJS()).toEqual([{ name: 'Name', matchedCards: [] }]);
+    expect(newState.get('all').toJS()).toEqual([{ name: 'Name', playerScore: 0 }]);
   });
   it('updates state on SET_FIRST_PLAYER', () => {
     const testAction = playerActions.setFirstPlayer();
