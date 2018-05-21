@@ -17,17 +17,30 @@ class CardsContainer extends Component {
     cards: PropTypes.instanceOf(Immutable.List),
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
+    currentPlayer: PropTypes.instanceOf(Immutable.Map),
     chooseCard: PropTypes.func,
     matchCardsRequest: PropTypes.func
   };
 
   selectCard(e, card, index) {
     e.preventDefault();
+    const currentScore
+    const currentMatchedCards = this.props.cards.filter(card => card.get('matched') === true).length;
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
+      this.updateScore(urrentMatchedCards);
     }
     this.props.chooseCard(index);
+  }
+  updateScore(currentMatchedCards) {
+    const currentScore = this.props.currentPlayer.get('playerScore'); // cards have been matched but the player score is still the same
+    const updatedMatchedCards = this.props.cards.reduce((acc, curr) => {
+      return acc + (curr.get('matched') === true ? 1 : 0);
+    }, 0);
+    if (updatedMatchedCards > currentMatchedCards) {
+      this.props.updatePlayerScore();
+    }
   }
   render() {
     return(
@@ -52,5 +65,6 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
+    currentPlayer: state.getIn(['players', currentPlayer]);
   }), { chooseCard, matchCardsRequest })(CardsContainer);
 
