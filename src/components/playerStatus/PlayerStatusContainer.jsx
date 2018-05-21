@@ -8,9 +8,20 @@ const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
 class PlayerStatusContainer extends Component {
   message(player) {
-    return this.props.gameState === 'inProgress' ? player.getIn(['matchedCards', 'size']) : 'Welcome!';
+    const playerScore = player.get('playerScore');
+    return this.props.gameState === 'inProgress' ? playerScore : 'Welcome!';
+  }
+  checkMatchedCards() {
+    const matchedCount = this.props.cards ? this.props.cards.reduce((acc, curr) => {
+        return acc + ((curr.get('matched') === true) ? 1 : 0);
+    }, 0) : 'not loaded yet';
+    return matchedCount;
   }
   render() {
+    const currentPlayerScore = this.props.currentPlayer;
+    const currentMatchedCards = this.checkMatchedCards();
+    console.log('currentPlayerScore', currentPlayerScore)
+    console.log('currentMatchedCards', currentMatchedCards)
     return(
       <PlayerStatusWrapper>
           { this.props.players.map((player, index) => {
@@ -21,6 +32,7 @@ class PlayerStatusContainer extends Component {
               </PlayerStatusListItem>);
           }) }
         <CardsRemainingSpan className='cards-remaining'>{ (this.props.cards.size - this.props.totalScores) }</CardsRemainingSpan>
+        <div style={ { 'fontSize': 20 } }>{ this.checkMatchedCards() }</div>
       </PlayerStatusWrapper>
     );
   }

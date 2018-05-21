@@ -30,6 +30,7 @@ export function* matchCardsRequest() {
     yield put({ type: cardsActions.MATCH_CARDS });
     yield put({ type: cardsActions.RESET_CHOSEN_CARDS });
     // yield the update player score action, player turn action and game state actions now
+    console.log(2)
   } catch (err) {
     yield put({ type: cardsActions.MATCH_CARDS_ERROR, error: { message: 'cannot match cards' } });
   }
