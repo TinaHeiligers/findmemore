@@ -22,6 +22,7 @@ export default function playersReducer(
       return currentState.setIn(['all', playerIdx, 'playerScore'], playerScore + 1);
     case playerActions.SWITCH_PLAYER:
       const nextPlayerIdx = (currentState.get('current') + 1) % (currentState.get('all').size);
+      console.log('nextPlayerIdx', nextPlayerIdx)
       return currentState.set('current', nextPlayerIdx);
     default:
       return currentState;

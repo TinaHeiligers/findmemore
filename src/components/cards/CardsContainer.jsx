@@ -4,10 +4,13 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
+import playerActions from 'redux/player/playerActions';
 const {
   chooseCard,
   matchCardsRequest,
 } = cardsActions;
+const { switchPlayer } = playerActions;
+
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
@@ -17,24 +20,39 @@ class CardsContainer extends Component {
     cards: PropTypes.instanceOf(Immutable.List),
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
-    currentPlayer: PropTypes.instanceOf(Immutable.Map),
+    players: PropTypes.instanceOf(Immutable.List),
+    currentPlayerIndex: PropTypes.number,
     chooseCard: PropTypes.func,
-    matchCardsRequest: PropTypes.func
+    matchCardsRequest: PropTypes.func,
+    switchPlayer: PropTypes.func,
   };
 
   selectCard(e, card, index) {
     e.preventDefault();
-    const currentScore
-    const currentMatchedCards = this.props.cards.filter(card => card.get('matched') === true).length;
+    let currentMatchedCards = this.countMatchedCards();
+    // console.log('currentMatchedCards 1', currentMatchedCards);
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
-      this.updateScore(urrentMatchedCards);
+      let currentMatchedCards = this.countMatchedCards();
+      console.log('currentMatchedCards 2', currentMatchedCards);
+      this.updateScore(currentMatchedCards);
+      this.props.switchPlayer();
+
+
     }
     this.props.chooseCard(index);
   }
+  countMatchedCards() {
+    // this method isn't returning the correct thing.
+    console.log('matchedCards', matchedCards);
+    const matchedCount = this.props.cards ? this.props.cards.reduce((acc, curr) => {
+        return acc + ((curr.get('matched') === true) ? 1 : 0);
+    }, 0) : 'not loaded yet';
+    return matchedCount;
+  }
   updateScore(currentMatchedCards) {
-    const currentScore = this.props.currentPlayer.get('playerScore'); // cards have been matched but the player score is still the same
+    const currentPlayer = this.props.players.getIn('all', this.props.currentPlayerIndex); // cards have been matched but the player score is still the same
     const updatedMatchedCards = this.props.cards.reduce((acc, curr) => {
       return acc + (curr.get('matched') === true ? 1 : 0);
     }, 0);
@@ -65,6 +83,7 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-    currentPlayer: state.getIn(['players', currentPlayer]);
-  }), { chooseCard, matchCardsRequest })(CardsContainer);
+    currentPlayerIndex: state.getIn(['players', 'current']),
+    players: state.getIn(['players', 'all']),
+  }), { chooseCard, matchCardsRequest, switchPlayer })(CardsContainer);
 

@@ -18,10 +18,8 @@ class PlayerStatusContainer extends Component {
     return matchedCount;
   }
   render() {
-    const currentPlayerScore = this.props.currentPlayer;
-    const currentMatchedCards = this.checkMatchedCards();
-    console.log('currentPlayerScore', currentPlayerScore)
-    console.log('currentMatchedCards', currentMatchedCards)
+    const currentPlayerIndex = this.props.currentPlayer;
+    // const currentMatchedCards = this.checkMatchedCards();
     return(
       <PlayerStatusWrapper>
           { this.props.players.map((player, index) => {
