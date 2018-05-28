@@ -33,12 +33,10 @@ export default function cardsReducer(
         } else {
           return card;
         }
-      }))
-      // intermediate extraction of selectedCards
+      }));
       return currentState.merge({ all: updatedAllCards, selectedCards: Immutable.List() });
     }
     case cardsActions.MATCH_CARDS: {
-      // combine extraction of selected cards and matching in here so that we can get rid of the selectedCards altogether
       if (currentState.getIn(['selectedCards','0']).get('name') === currentState.getIn(['selectedCards','1']).get('name')) {
         return currentState.set('all', currentState.get('all').map(card => {
         if (card.get('name') === currentState.getIn(['selectedCards','0']).get('name')) {
@@ -59,7 +57,7 @@ export default function cardsReducer(
         } else {
           return acc;
         }
-      }, 0)
+      }, 0);
       const updatedState = currentState.set('totalMatchedCards', updatedCount);
       return updatedState;
     }

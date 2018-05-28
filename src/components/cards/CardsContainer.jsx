@@ -36,9 +36,6 @@ class CardsContainer extends Component {
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
-      // this.props.countMatchedCards();
-      // console.log('In IFF currentMatchedCards', currentMatchedCards);
-      // this.updateScore(currentMatchedCards);
       this.props.switchPlayer();
     }
     this.props.chooseCard(index);
