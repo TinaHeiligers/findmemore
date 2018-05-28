@@ -28,7 +28,10 @@ export function* matchCardsRequestWatcher() {
 export function* matchCardsRequest() {
   try {
     yield put({ type: cardsActions.MATCH_CARDS });
+    yield put ({ type: cardsActions.COUNT_MATCHED_CARDS });
+    console.log('In cards saga, MATCH_CARDS');
     yield put({ type: cardsActions.RESET_CHOSEN_CARDS });
+    console.log('In cards saga, after RESET_CHOSEN_CARDS')
   } catch (err) {
     yield put({ type: cardsActions.MATCH_CARDS_ERROR, error: { message: 'cannot match cards' } });
   }

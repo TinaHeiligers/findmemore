@@ -5,6 +5,7 @@ export const initialState = Immutable.Map({
   all: Immutable.List(),
   error: null,
   selectedCards: Immutable.List(),
+  totalMatchedCards: 0,
 });
 export default function cardsReducer(
   currentState = initialState,
@@ -51,6 +52,17 @@ export default function cardsReducer(
     }
     case cardsActions.MATCH_CARDS_ERROR:
       return currentState.set('error', action.error);
+    case cardsActions.COUNT_MATCHED_CARDS: {
+      const updatedCount = currentState.get('all').reduce((acc, curr) => {
+        if (curr.get('matched') === true) {
+          return acc + 1;
+        } else {
+          return acc;
+        }
+      }, 0)
+      const updatedState = currentState.set('totalMatchedCards', updatedCount);
+      return updatedState;
+    }
     default:
       return currentState;
   }

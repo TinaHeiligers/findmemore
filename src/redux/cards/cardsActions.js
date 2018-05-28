@@ -7,6 +7,7 @@ export const cardsActions = {
   MATCH_CARDS: 'MATCH_CARDS',
   MATCH_CARDS_REQUEST: 'MATCH_CARDS_REQUEST',
   MATCH_CARDS_ERROR: 'MATCH_CARDS_ERROR',
+  COUNT_MATCHED_CARDS: 'COUNT_MATCHED_CARDS',
   getCardsRequest: level => ({ type: cardsActions.GET_CARDS_REQUEST, level: level }),
   getCardsSuccess: cards => ({ type: cardsActions.GET_CARDS_SUCCESS, cards: cards }),
   getCardsError: error => ({ type: cardsActions.GET_CARDS_ERROR, error: error.message }),
@@ -15,6 +16,7 @@ export const cardsActions = {
   matchCards: () => ({ type: cardsActions.MATCH_CARDS }),
   matchCardsRequest: () => ({ type: cardsActions.MATCH_CARDS_REQUEST }),
   matchCardsError: error => ({ type: cardsActions.MATCH_CARDS_ERROR, error: error.message }),
+  countMatchedCards: () => ({ type: cardsActions.COUNT_MATCHED_CARDS }),
 };
 
 export default cardsActions;

@@ -35,7 +35,7 @@ class CardsContainer extends Component {
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
       let currentMatchedCards = this.countMatchedCards();
-      console.log('currentMatchedCards 2', currentMatchedCards);
+      console.log('In IFF currentMatchedCards', currentMatchedCards);
       this.updateScore(currentMatchedCards);
       this.props.switchPlayer();
 
@@ -45,7 +45,6 @@ class CardsContainer extends Component {
   }
   countMatchedCards() {
     // this method isn't returning the correct thing.
-    console.log('matchedCards', matchedCards);
     const matchedCount = this.props.cards ? this.props.cards.reduce((acc, curr) => {
         return acc + ((curr.get('matched') === true) ? 1 : 0);
     }, 0) : 'not loaded yet';
