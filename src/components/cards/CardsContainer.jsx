@@ -8,6 +8,7 @@ import playerActions from 'redux/player/playerActions';
 const {
   chooseCard,
   matchCardsRequest,
+  countMatchedCards,
 } = cardsActions;
 const { switchPlayer } = playerActions;
 
@@ -24,22 +25,21 @@ class CardsContainer extends Component {
     currentPlayerIndex: PropTypes.number,
     chooseCard: PropTypes.func,
     matchCardsRequest: PropTypes.func,
+    matchedCardsCount: PropTypes.number,
     switchPlayer: PropTypes.func,
+    countMatchedCards: PropTypes.func,
   };
 
   selectCard(e, card, index) {
     e.preventDefault();
-    let currentMatchedCards = this.countMatchedCards();
-    // console.log('currentMatchedCards 1', currentMatchedCards);
+    let currentMatchedCards = this.props.matchedCardsCount;
     const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
     if (selectedCards.size === 2) {
       this.props.matchCardsRequest();
-      let currentMatchedCards = this.countMatchedCards();
-      console.log('In IFF currentMatchedCards', currentMatchedCards);
-      this.updateScore(currentMatchedCards);
+      // this.props.countMatchedCards();
+      // console.log('In IFF currentMatchedCards', currentMatchedCards);
+      // this.updateScore(currentMatchedCards);
       this.props.switchPlayer();
-
-
     }
     this.props.chooseCard(index);
   }
@@ -80,9 +80,10 @@ class CardsContainer extends Component {
 export default connect(
   state => ({
     cards: state.getIn(['cards', 'all']),
+    matchedCardsCount: state.getIn(['cards', 'totalMatchedCards']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     players: state.getIn(['players', 'all']),
-  }), { chooseCard, matchCardsRequest, switchPlayer })(CardsContainer);
+  }), { chooseCard, matchCardsRequest, switchPlayer, countMatchedCards })(CardsContainer);
 
