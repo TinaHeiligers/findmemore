@@ -79,5 +79,6 @@ describe('cards reducer -> get cards', () => {
     const newState = reducer(testDefaultState, testAction);
     const actualselectedCards = newState.get('selectedCards');
     expect(actualselectedCards.toJS()).toEqual([]);
-  })
+  });
+  //TODO: COUNT_MATCHED_CARDS
 });

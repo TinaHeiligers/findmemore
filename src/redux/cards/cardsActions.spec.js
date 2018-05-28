@@ -44,4 +44,5 @@ describe('cards action creators -> cardsActions', () => {
       type: cardsActions.MATCH_CARDS,
     });
   });
+  // TODO: countMatchedCards
 });

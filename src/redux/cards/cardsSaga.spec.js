@@ -54,7 +54,11 @@ describe('cards saga -> matchCardsRequest', () => {
     expect(matchCardsRequestGen.next().value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS }));
   });
-  it('should put RESET_CHOSEN_CARDS after MATCH_CARDS', () => {
+  it('should put COUNT_MATCHED_CARDS after MATCH_CARDS', () => {
+    expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
+    .toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }));
+  });
+  it('should put RESET_CHOSEN_CARDS after COUNT_MATCHED_CARDS', () => {
     expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
     .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
   });
