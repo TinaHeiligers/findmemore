@@ -28,10 +28,10 @@ export function* getCardsRequest(payload) {
 }
 
 export function* chooseCardRequestWatcher() {
-  yield takeEvery(cardsActions.CHOOSE_CARD_REQUEST, chooseCardRquest);
+  yield takeEvery(cardsActions.CHOOSE_CARD_REQUEST, chooseCardRequest);
 }
 
-export function* chooseCardRquest(action) {
+export function* chooseCardRequest(action) {
   yield put({ type: cardsActions.CHOOSE_CARD, index: action.index });
   const cards = yield select(selectedCards);
   if (cards.size === 2) {
