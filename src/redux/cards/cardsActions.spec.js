@@ -36,12 +36,17 @@ describe('cards action creators -> cardsActions', () => {
     expect(testResetChosenCards).toEqual({
       type: cardsActions.RESET_CHOSEN_CARDS,
     });
-  })
-
+  });
   it('matches selected cards', () => {
     const testMatchCards = cardsActions.matchCards();
     expect(testMatchCards).toEqual({
       type: cardsActions.MATCH_CARDS,
+    });
+  });
+  it('counts the number of matched cards', () => {
+    const testCountMatchedCards = cardsActions.countMatchedCards();
+    expect(testCountMatchedCards).toEqual({
+      type: cardsActions.COUNT_MATCHED_CARDS,
     });
   });
 });

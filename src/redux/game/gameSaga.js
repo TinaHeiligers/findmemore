@@ -17,12 +17,11 @@ export function* startGame(payload) {
     });
     yield put({
       type: playerActions.SET_FIRST_PLAYER_REQUEST,
-    })
-
+    });
   } catch (err) {
     yield put({ type: gameActions.START_GAME_ERROR, error: err });
   }
-};
+}
 
 export default function* rootSaga() {
   yield all([
