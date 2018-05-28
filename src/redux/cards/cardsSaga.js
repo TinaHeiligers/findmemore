@@ -5,9 +5,9 @@ import playerActions from 'redux/player/playerActions';
 import gameActions from 'redux/game/gameActions';
 import { getCards } from 'redux/cards/cardsServices';
 
-const selectedCards = state => state.getIn(['cards', 'selectedCards']);
-const hasMatch = state => state.getIn(['cards', 'hasMatch']);
-const totalMatchedCards = state => state.getIn(['cards', 'totalMatchedCards']);
+export const selectedCards = state => state.getIn(['cards', 'selectedCards']);
+export const hasMatch = state => state.getIn(['cards', 'hasMatch']);
+export const totalMatchedCards = state => state.getIn(['cards', 'totalMatchedCards']);
 
 export function* getCardsRequestWatcher() {
   yield takeEvery(cardsActions.GET_CARDS_REQUEST, getCardsRequest);

@@ -1,9 +1,18 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { push } from 'redux-little-router';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
+import playerActions from 'redux/player/playerActions';
 import { getCards } from 'redux/cards/cardsServices';
-import { getCardsRequestWatcher, getCardsRequest, matchCardsRequestWatcher, matchCardsRequest } from 'redux/cards/cardsSaga';
+import {
+  getCardsRequestWatcher,
+  getCardsRequest,
+  matchCardsRequestWatcher,
+  matchCardsRequest,
+  selectedCards,
+  hasMatch,
+  totalMatchedCards,
+} from 'redux/cards/cardsSaga';
 
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
@@ -47,21 +56,42 @@ describe('cards saga -> matchCardsRequestWatcher', () => {
     .toEqual(takeEvery(cardsActions.MATCH_CARDS_REQUEST, matchCardsRequest));
   });
 });
-describe('cards saga -> matchCardsRequest', () => {
-  const steps = ['1) puts MATCH_CARDS', '3) puts RESET_CHOSEN_CARDS'];
+describe.only('cards saga -> matchCardsRequest', () => {
+  const steps = ['1) puts MATCH_CARDS', '3) selects hasMatch'];
   const matchCardsRequestGen = matchCardsRequest();
   it('should put MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next().value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS }));
   });
-  it('should put COUNT_MATCHED_CARDS after MATCH_CARDS', () => {
+  it('should select hasMatch after MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
-    .toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }));
+    .toEqual(select(hasMatch));
   });
-  it('should put RESET_CHOSEN_CARDS after COUNT_MATCHED_CARDS', () => {
-    expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
-    .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
+  it('should put COUNT_MATCHED_CARDS when hasMatch is true', () => {
+    expect(matchCardsRequestGen.next(true).value).toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }))
   });
+  it('should select totalMatchedCards after COUNT_MATCHED_CARDS', () => {
+    expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
+    .toEqual(select(totalMatchedCards));
+  });
+  it('should put UPDATE_PLAYER_SCORE after selecting totalMatchedCards', () => {
+    const testMatchedCardsCount = 4;
+    expect(matchCardsRequestGen.next(testMatchedCardsCount).value).toEqual(put({ type: playerActions.UPDATE_PLAYER_SCORE }));
+  });
+  it('should put UPDATE_TOTAL_SCORE when totalMatchedCards has a value', () => {
+    const testMatchedCardsCount = 4;
+    expect(matchCardsRequestGen.next().value)
+    .toEqual(put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: testMatchedCardsCount }))
+  });
+
+  // it('should put COUNT_MATCHED_CARDS after MATCH_CARDS', () => {
+  //   expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
+  //   .toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }));
+  // });
+  // it('should put RESET_CHOSEN_CARDS after COUNT_MATCHED_CARDS', () => {
+  //   expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
+  //   .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
+  // });
   it('should put MATCH_CARDS_ERROR action on an error', () => {
     const testError = { message: 'cannot match cards' };
     expect(matchCardsRequestGen.throw(testError).value)
