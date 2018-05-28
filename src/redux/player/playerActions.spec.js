@@ -19,7 +19,7 @@ describe ('player action creators -> playerActions', () => {
   });
   it('updates total score with updateTotalScore -> playerActions', () => {
     const testTotalMatchedCards = 4;
-    const testUpdateTotalScore = playerActions.updateTotalScore(testTotalMatchedCards);
+    const testUpdateTotalScore = playerActions.updateTotalScores(testTotalMatchedCards);
     expect(testUpdateTotalScore).toEqual({
       type: playerActions.UPDATE_TOTAL_SCORE,
       totalScores: testTotalMatchedCards,

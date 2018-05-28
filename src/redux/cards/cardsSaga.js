@@ -1,7 +1,13 @@
-import { takeEvery, call, all, fork, put } from 'redux-saga/effects';
+import { takeEvery, call, all, fork, put, select } from 'redux-saga/effects';
 import { push } from 'redux-little-router';
 import cardsActions from 'redux/cards/cardsActions';
+import playerActions from 'redux/player/playerActions';
+import gameActions from 'redux/game/gameActions';
 import { getCards } from 'redux/cards/cardsServices';
+
+const selectedCards = state => state.getIn(['cards', 'selectedCards']);
+const hasMatch = state => state.getIn(['cards', 'hasMatch']);
+const totalMatchedCards = state => state.getIn(['cards', 'totalMatchedCards']);
 
 export function* getCardsRequestWatcher() {
   yield takeEvery(cardsActions.GET_CARDS_REQUEST, getCardsRequest);
@@ -21,6 +27,20 @@ export function* getCardsRequest(payload) {
   }
 }
 
+export function* chooseCardRequestWatcher() {
+  yield takeEvery(cardsActions.CHOOSE_CARD_REQUEST, chooseCardRquest);
+}
+
+export function* chooseCardRquest(action) {
+  yield put({ type: cardsActions.CHOOSE_CARD, index: action.index });
+  const cards = yield select(selectedCards);
+  if (cards.size === 2) {
+    yield put(cardsActions.matchCardsRequest());
+    yield put(gameActions.switchTurns());
+    yield put(playerActions.switchPlayer());
+  }
+}
+
 export function* matchCardsRequestWatcher() {
   yield takeEvery(cardsActions.MATCH_CARDS_REQUEST, matchCardsRequest);
 }
@@ -28,8 +48,13 @@ export function* matchCardsRequestWatcher() {
 export function* matchCardsRequest() {
   try {
     yield put({ type: cardsActions.MATCH_CARDS });
-    yield put ({ type: cardsActions.COUNT_MATCHED_CARDS });
-    yield put({ type: cardsActions.RESET_CHOSEN_CARDS });
+    const matched = yield select(hasMatch);
+    if (matched) {
+      yield put({ type: cardsActions.COUNT_MATCHED_CARDS });
+      const matchedCardsCount = yield select(totalMatchedCards);
+      yield put({ type: playerActions.UPDATE_PLAYER_SCORE });
+      yield put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: matchedCardsCount });
+    }
   } catch (err) {
     yield put({ type: cardsActions.MATCH_CARDS_ERROR, error: { message: 'cannot match cards' } });
   }
@@ -38,6 +63,7 @@ export function* matchCardsRequest() {
 export default function* rootSaga() {
   yield all([
     fork(getCardsRequestWatcher),
+    fork(chooseCardRequestWatcher),
     fork(matchCardsRequestWatcher),
   ]);
 }

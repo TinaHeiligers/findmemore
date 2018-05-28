@@ -8,7 +8,7 @@ const playerActions = {
   addPlayer: (name) => ({ type: playerActions.ADD_PLAYER, name }),
   setFirstPlayer: () => ({ type: playerActions.SET_FIRST_PLAYER }),
   switchPlayer: () => ({ type: playerActions.SWITCH_PLAYER }),
-  updateTotalScore: (totalMatchedCardsCount) => ({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: totalMatchedCardsCount }),
+  updateTotalScores: (totalMatchedCardsCount) => ({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: totalMatchedCardsCount }),
   updatePlayerScore: () => ({ type: playerActions.UPDATE_PLAYER_SCORE }),
 };
 export default playerActions;

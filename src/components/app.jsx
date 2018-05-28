@@ -4,7 +4,7 @@ import { replace, ImmutableFragment } from 'redux-little-router';
 import styled from 'styled-components';
 import Help from 'components/help.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
-import GameLayout from 'components/game/gameLayout.jsx';
+import GameContainer from 'components/game/gameContainer';
 import img from 'redux/cards/images/table.jpg';
 
 const AppDiv = styled.div`
@@ -25,7 +25,7 @@ class App extends Component {
           <StartPage />
         </ImmutableFragment>
         <ImmutableFragment forRoute='/game'>
-          <GameLayout />
+          <GameContainer />
         </ImmutableFragment>
         <ImmutableFragment forRoute='/help'>
           <Help />

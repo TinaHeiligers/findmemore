@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 import cardsActions from 'redux/cards/cardsActions';
-import playerActions from 'redux/player/playerActions';
 const {
-  chooseCard,
-  matchCardsRequest,
-  countMatchedCards,
+  chooseCardRequest
 } = cardsActions;
-const { switchPlayer } = playerActions;
+import { GAME_STATE } from 'redux/game/gameReducer';
 
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
@@ -23,37 +20,11 @@ class CardsContainer extends Component {
     gameLevel: PropTypes.string,
     players: PropTypes.instanceOf(Immutable.List),
     currentPlayerIndex: PropTypes.number,
-    chooseCard: PropTypes.func,
-    matchCardsRequest: PropTypes.func,
-    matchedCardsCount: PropTypes.number,
-    switchPlayer: PropTypes.func,
-    countMatchedCards: PropTypes.func,
   };
-
   selectCard(e, card, index) {
     e.preventDefault();
-    let currentMatchedCards = this.props.matchedCardsCount;
-    const selectedCards = this.props.cards.filter(card => card.get('selected') === true);
-    if (selectedCards.size === 2) {
-      this.props.matchCardsRequest();
-      this.props.switchPlayer();
-    }
-    this.props.chooseCard(index);
-  }
-  countMatchedCards() {
-    // this method isn't returning the correct thing.
-    const matchedCount = this.props.cards ? this.props.cards.reduce((acc, curr) => {
-        return acc + ((curr.get('matched') === true) ? 1 : 0);
-    }, 0) : 'not loaded yet';
-    return matchedCount;
-  }
-  updateScore(currentMatchedCards) {
-    const currentPlayer = this.props.players.getIn('all', this.props.currentPlayerIndex); // cards have been matched but the player score is still the same
-    const updatedMatchedCards = this.props.cards.reduce((acc, curr) => {
-      return acc + (curr.get('matched') === true ? 1 : 0);
-    }, 0);
-    if (updatedMatchedCards > currentMatchedCards) {
-      this.props.updatePlayerScore();
+    if(this.props.gameState === GAME_STATE.get('playerTurn')) {
+      this.props.chooseCardRequest(index);
     }
   }
   render() {
@@ -82,5 +53,7 @@ export default connect(
     gameLevel: state.getIn(['game', 'level']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     players: state.getIn(['players', 'all']),
-  }), { chooseCard, matchCardsRequest, switchPlayer, countMatchedCards })(CardsContainer);
+  }), {
+    chooseCardRequest,
+  })(CardsContainer);
 

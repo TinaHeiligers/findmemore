@@ -4,11 +4,16 @@ import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';
 
-
+export function* startNextTurnWatcher() {
+  yield takeEvery(gameActions.START_NEXT_TURN, startNextTurn);
+}
+export function* startNextTurn() {
+  yield put({ type: cardsActions.RESET_CHOSEN_CARDS });
+  yield put({ type: gameActions.PLAYER_TURN });
+}
 export function* startGameWatcher() {
   yield takeEvery(gameActions.START_GAME, startGame);
-};
-
+}
 export function* startGame(payload) {
   try {
     yield put({
@@ -25,6 +30,7 @@ export function* startGame(payload) {
 
 export default function* rootSaga() {
   yield all([
+    fork(startNextTurnWatcher),
     fork(startGameWatcher),
   ]);
 }

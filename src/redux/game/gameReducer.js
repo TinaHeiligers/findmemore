@@ -1,10 +1,11 @@
 import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
-const { START_GAME } = gameActions;
+const { START_GAME, SWITCH_TURNS, PLAYER_TURN } = gameActions;
 
 export const GAME_STATE = Immutable.Map({
   unstarted: 'unstarted',
-  inProgress: 'inProgress',
+  playerTurn: 'playerTurn',
+  switchTurns: 'switchTurns',
   over: 'over',
 });
 
@@ -19,9 +20,15 @@ export default function gameReducer(
 ) {
   switch (action.type) {
     case START_GAME: {
-      const newGame = Immutable.Map({ 'level': action.level, state: GAME_STATE.get('inProgress') });
+      const newGame = Immutable.Map({ 'level': action.level, state: GAME_STATE.get('playerTurn') });
       const newState = currentState.merge(newGame);
       return newState;
+    }
+    case SWITCH_TURNS: {
+      return currentState.set('state', GAME_STATE.get('switchTurns'));
+    }
+    case PLAYER_TURN: {
+      return currentState.set('state', GAME_STATE.get('playerTurn'));
     }
     default:
       return currentState;
