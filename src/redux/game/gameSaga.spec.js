@@ -3,7 +3,12 @@ import { put, takeEvery } from 'redux-saga/effects';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';
-import { startGameWatcher, startGame } from 'redux/game/gameSaga';
+import {
+  startGameWatcher,
+  startGame,
+  startNextTurnWatcher,
+  startNextTurn,
+} from 'redux/game/gameSaga';
 
 describe('game saga -> startGameWatcher', () => {
   const startGameWatcherGen = startGameWatcher();
@@ -27,5 +32,23 @@ describe('game saga -> startGame', () => {
     const testError = new Error('Error');
     expect(startGameGen.throw(testError).value)
     .toEqual(put({ type: playerActions.START_GAME_ERROR, error: testError }));
+  });
+});
+describe('game saga -> startNextTurnWatcher', () => {
+  const startNextTurnWatcherGen = startNextTurnWatcher();
+  it('should act on every START_NEXT_TURN action', () => {
+    expect(startNextTurnWatcherGen.next().value)
+    .toEqual(takeEvery(gameActions.START_NEXT_TURN, startNextTurn));
+  });
+});
+describe('game saga -> startNextTurn', () => {
+  const startNextTurnGen = startNextTurn();
+  it('should put RESET_CHOSEN_CARDS action', () => {
+    expect(startNextTurnGen.next().value)
+    .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
+  });
+  it('should put PLAYER_TURN action after RESET_CHOSEN_CARDS', () => {
+    expect(startNextTurnGen.next(cardsActions.resetChosenCards()).value)
+    .toEqual(put({ type: gameActions.PLAYER_TURN }));
   });
 });

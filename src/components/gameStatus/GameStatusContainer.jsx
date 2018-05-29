@@ -23,12 +23,12 @@ class GameStatusContainer extends Component {
   };
   render() {
     return(
-      <GameStatusWrapper gameLevel={this.props.gameLevel}>
+      <GameStatusWrapper gameLevel={ this.props.gameLevel }>
       <GameStatusDiv>Play again?</GameStatusDiv>
         <ButtonDiv>
-          <ButtonEasy margin={'3px'} onClick={() => this.props.startGame('easy')}>easy</ButtonEasy>
-          <ButtonMedium margin={'3px'} onClick={() => this.props.startGame('medium')}>medium</ButtonMedium>
-          <ButtonHard margin={'3px'} onClick={() => this.props.startGame('hard')}>hard</ButtonHard>
+          <ButtonEasy margin={ '3px' } onClick={ () => this.props.startGame('easy') }>easy</ButtonEasy>
+          <ButtonMedium margin={ '3px' } onClick={ () => this.props.startGame('medium') }>medium</ButtonMedium>
+          <ButtonHard margin={ '3px' } onClick={ () => this.props.startGame('hard') }>hard</ButtonHard>
         </ButtonDiv>
       </GameStatusWrapper>
     )
@@ -41,21 +41,4 @@ export default connect(
     gameLevel: state.getIn(['game', 'level']),
     router: state.get('router'),
   }), { startGame })(GameStatusContainer);
-// class Game extends React.Component {
-//   render() {
-//     if (!this.props.gameStarted()) {
-//       return null
-//     }
-//     return(
-//       <div className="bottom bottom-left">
-//         <h3 className="gamenumber">{gameName}!</h3>
-//         <p className="game-restart">Play again?</p>
-//         <div className="buttons-restart">
-//           <button className="button-restart-easy" name="easy" onClick={(e) => this.props.restartGame(e.target.name)}>easy</button>
-//           <button className="button-restart-medium" name="medium" onClick={(e) => this.props.restartGame(e.target.name)}>medium</button>
-//           <button className="button-restart-hard" name="hard" onClick={(e) => this.props.restartGame(e.target.name)}>hard</button>
-//         </div>
-//       </div>
-//       )
-//   }
-// }
+

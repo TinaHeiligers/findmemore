@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import reducer, { initialState } from 'redux/game/gameReducer';
 import gameActions from 'redux/game/gameActions';
 
-describe('game reducer -> start game', () => {
+describe('game reducer', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);
@@ -20,9 +20,23 @@ describe('game reducer -> start game', () => {
     const newState = reducer(defaultState, testAction);
     // compare all key values
     const [...expectedEntries] = newState.entries();
-    expect(expectedEntries).toEqual([['level', 'easy'], ['state', 'inProgress'], ['cards', Immutable.List()]]);
+    expect(expectedEntries).toEqual([['level', 'easy'], ['state', 'playerTurn'], ['cards', Immutable.List()]]);
     // compare all values
     const newStateValues = [...newState.values()];
-    expect(newStateValues).toEqual(['easy', 'inProgress', Immutable.List()])
+    expect(newStateValues).toEqual(['easy', 'playerTurn', Immutable.List()])
+  });
+  it('updates state on SWITCH_TURNS', () => {
+    let testAction = gameActions.switchTurns();
+    const newState = reducer(defaultState, testAction);
+    // compare all key values
+    const [...expectedEntries] = newState.entries();
+    expect(expectedEntries).toEqual([['level', null], ['state', 'switchTurns'], ['cards', Immutable.List()]]);
+  });
+  it('updates state on PLAYER_TURN', () => {
+    let testAction = gameActions.playerTurn();
+    const newState = reducer(defaultState, testAction);
+    // compare all key values
+    const [...expectedEntries] = newState.entries();
+    expect(expectedEntries).toEqual([['level', null], ['state', 'playerTurn'], ['cards', Immutable.List()]]);
   });
 });

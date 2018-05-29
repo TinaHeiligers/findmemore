@@ -1,15 +1,26 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
 import { push } from 'redux-little-router';
+import Immutable from 'Immutable';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
+import playerActions from 'redux/player/playerActions';
 import { getCards } from 'redux/cards/cardsServices';
-import { getCardsRequestWatcher, getCardsRequest, matchCardsRequestWatcher, matchCardsRequest } from 'redux/cards/cardsSaga';
+import {
+  getCardsRequestWatcher,
+  getCardsRequest,
+  chooseCardRequestWatcher,
+  chooseCardRequest,
+  matchCardsRequestWatcher,
+  matchCardsRequest,
+  selectedCards,
+  hasMatch,
+  totalMatchedCards,
+} from 'redux/cards/cardsSaga';
 
 const SEP = '\n      ';
 const done = { done: true, value: undefined };
 
 describe('cards saga -> getCardsRequestWatcher', () => {
-  const steps = ['1) takes every START_GAME action'];
   const getCardsRequestWatcherGen = getCardsRequestWatcher();
   it('should act on every GET_CARDS_REQUEST action', () => {
     expect(getCardsRequestWatcherGen.next().value)
@@ -17,7 +28,6 @@ describe('cards saga -> getCardsRequestWatcher', () => {
   });
 });
 describe('cards saga -> getCardsRequest', () => {
-  const steps = ['1) puts GET_CARDS_REQUEST', '2) puts SET_FIRST_PLAYER_REQUEST'];
   const testLevel = { level: 'easy' };
   const getCardsRequestGen = getCardsRequest(testLevel);
   it('should call the api given a game level', () => {
@@ -39,8 +49,40 @@ describe('cards saga -> getCardsRequest', () => {
     .toEqual(put({ type: cardsActions.GET_CARDS_ERROR, error: testError }));
   });
 });
+describe('cards saga -> chooseCardRequestWatcher', () => {
+  const chooseCardRequestWatcherGen = chooseCardRequestWatcher();
+  it('should act on every CHOOSE_CARD_REQUEST action', () => {
+    expect(chooseCardRequestWatcherGen.next().value)
+    .toEqual(takeEvery(cardsActions.CHOOSE_CARD_REQUEST, chooseCardRequest));
+  });
+});
+describe('cards saga -> chooseCardRequest', () => {
+  const testAction = { index: 0 };
+  const chooseCardRequestGen = chooseCardRequest(testAction);
+  it('should put CHOOSE_CARD when provided a card index', () => {
+    const testAction2 = { index: 0 };
+    expect(chooseCardRequestGen.next().value)
+    .toEqual(put({ type: cardsActions.CHOOSE_CARD, index: testAction2.index }))
+  });
+  it('should select selectedCards after CHOOSE_CARD', () => {
+    expect(chooseCardRequestGen.next(cardsActions.chooseCard(0)).value)
+    .toEqual(select(selectedCards));
+  });
+  it('should put matchCardsRequest when selectedCards has size of 2', () => {
+    const testSelectedCards = Immutable.List.of(1, 2);
+    expect(chooseCardRequestGen.next(testSelectedCards).value)
+    .toEqual(put({ type: cardsActions.MATCH_CARDS_REQUEST }));
+  });
+  it('should put switchTurns after matchCardsRequest', () => {
+    expect(chooseCardRequestGen.next(cardsActions.matchCardsRequest()).value)
+    .toEqual(put({ type: gameActions.SWITCH_TURNS }));
+  });
+  it('should put switchPlayer after switchTurns', () => {
+    expect(chooseCardRequestGen.next(gameActions.switchTurns()).value)
+    .toEqual(put({ type: playerActions.SWITCH_PLAYER }));
+  });
+});
 describe('cards saga -> matchCardsRequestWatcher', () => {
-  const steps = ['1) takes every MATCH_CARDS_REQUEST action'];
   const matchCardsRequestWatcherGen = matchCardsRequestWatcher();
   it('should act on every MATCH_CARDS_REQUEST action', () => {
     expect(matchCardsRequestWatcherGen.next().value)
@@ -48,19 +90,30 @@ describe('cards saga -> matchCardsRequestWatcher', () => {
   });
 });
 describe('cards saga -> matchCardsRequest', () => {
-  const steps = ['1) puts MATCH_CARDS', '3) puts RESET_CHOSEN_CARDS'];
   const matchCardsRequestGen = matchCardsRequest();
   it('should put MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next().value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS }));
   });
-  it('should put COUNT_MATCHED_CARDS after MATCH_CARDS', () => {
+  it('should select hasMatch after MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
-    .toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }));
+    .toEqual(select(hasMatch));
   });
-  it('should put RESET_CHOSEN_CARDS after COUNT_MATCHED_CARDS', () => {
-    expect(matchCardsRequestGen.next(cardsActions.resetChosenCards()).value)
-    .toEqual(put({ type: cardsActions.RESET_CHOSEN_CARDS }));
+  it('should put COUNT_MATCHED_CARDS when hasMatch is true', () => {
+    expect(matchCardsRequestGen.next(true).value).toEqual(put({ type: cardsActions.COUNT_MATCHED_CARDS }))
+  });
+  it('should select totalMatchedCards after COUNT_MATCHED_CARDS', () => {
+    expect(matchCardsRequestGen.next(cardsActions.countMatchedCards()).value)
+    .toEqual(select(totalMatchedCards));
+  });
+  it('should put UPDATE_PLAYER_SCORE after selecting totalMatchedCards', () => {
+    const testMatchedCardsCount = 4;
+    expect(matchCardsRequestGen.next(testMatchedCardsCount).value).toEqual(put({ type: playerActions.UPDATE_PLAYER_SCORE }));
+  });
+  it('should put UPDATE_TOTAL_SCORE when totalMatchedCards has a value', () => {
+    const testMatchedCardsCount = 4;
+    expect(matchCardsRequestGen.next().value)
+    .toEqual(put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: testMatchedCardsCount }))
   });
   it('should put MATCH_CARDS_ERROR action on an error', () => {
     const testError = { message: 'cannot match cards' };

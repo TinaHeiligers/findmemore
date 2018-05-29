@@ -6,6 +6,7 @@ export const initialState = Immutable.Map({
   error: null,
   selectedCards: Immutable.List(),
   totalMatchedCards: 0,
+  hasMatch: false
 });
 export default function cardsReducer(
   currentState = initialState,
@@ -37,16 +38,19 @@ export default function cardsReducer(
       return currentState.merge({ all: updatedAllCards, selectedCards: Immutable.List() });
     }
     case cardsActions.MATCH_CARDS: {
-      if (currentState.getIn(['selectedCards','0']).get('name') === currentState.getIn(['selectedCards','1']).get('name')) {
-        return currentState.set('all', currentState.get('all').map(card => {
-        if (card.get('name') === currentState.getIn(['selectedCards','0']).get('name')) {
-          return card.merge({ selected: false, status: 'visible', matched: true });
-        } else {
-          return card;
-        }
-      }));
-    }
-    return currentState;
+      const name = currentState.getIn(['selectedCards','0','name']);
+      if (name === currentState.getIn(['selectedCards','1','name'])) {
+        const newState = currentState.set('hasMatch', true);
+        return newState.set('all', newState.get('all').map(card => {
+          if (card.get('name') === name) {
+            return card.merge({ selected: false, status: 'visible', matched: true });
+          } else {
+            return card;
+          }
+        }));
+      } else {
+        return currentState.set('hasMatch', false);
+      }
     }
     case cardsActions.MATCH_CARDS_ERROR:
       return currentState.set('error', action.error);
