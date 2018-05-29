@@ -3,7 +3,7 @@ import Immutable from 'immutable';
 import reducer, { initialState } from 'redux/player/playerReducer';
 import playerActions from 'redux/player/playerActions';
 
-describe('player reducer -> addPlayer', () => {
+describe('player reducer', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);
@@ -22,9 +22,19 @@ describe('player reducer -> addPlayer', () => {
     const newState = reducer(defaultState, testAction);
     expect(newState.get('current')).toEqual(0);
   });
+  it('updates state on SWITCH_PLAYER', () => {
+    const testPlayer1 = Immutable.Map({ 'name': 'testPlayer1', 'playerScore': 0 });
+    const testPlayer2 = Immutable.Map({ 'name': 'testPlayer2', 'playerScore': 0 });
+    const testState = defaultState.update('all', all => all.push(testPlayer1))
+    const testState2 = testState.update('all', all => all.push(testPlayer2))
+    const testState3 = testState2.set('current', 0);
+    const testAction = playerActions.switchPlayer();
+    const newState = reducer(testState3, testAction);
+    expect(newState.get('current')).toEqual(1);
+  });
   it('updates state on UPDATE_TOTAL_SCORE', () => {
     const testMatchedCardsCount = 4;
-    const testAction = playerActions.updateTotalScore(testMatchedCardsCount);
+    const testAction = playerActions.updateTotalScores(testMatchedCardsCount);
     const newState = reducer(defaultState, testAction);
     expect(newState.get('totalScores')).toEqual(2);
   });
