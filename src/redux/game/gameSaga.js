@@ -1,5 +1,4 @@
-import { takeEvery, call, fork, all, put } from 'redux-saga/effects';
-import { push } from 'redux-little-router';
+import { takeEvery, fork, all, put } from 'redux-saga/effects';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';

@@ -24,6 +24,14 @@ describe('cards action creators -> cardsActions', () => {
       error: testError.message,
     });
   });
+  it('chooses a card on chooseCardRequest', () => {
+    const testCardIndex = 1;
+    const testChooseCardRequest = cardsActions.chooseCardRequest(testCardIndex);
+    expect(testChooseCardRequest).toEqual({
+      type: cardsActions.CHOOSE_CARD_REQUEST,
+      index: 1,
+    });
+  });
   it('changes a card\'s props on chooseCard', () => {
     const testChooseCard = cardsActions.chooseCard(1);
     expect(testChooseCard).toEqual({
@@ -36,6 +44,15 @@ describe('cards action creators -> cardsActions', () => {
     expect(testResetChosenCards).toEqual({
       type: cardsActions.RESET_CHOSEN_CARDS,
     });
+  });
+  it('issues a matchCardsRequest', () => {
+    const testMatchCardsRequest = cardsActions.matchCardsRequest();
+    expect(testMatchCardsRequest).toEqual({ type: cardsActions.MATCH_CARDS_REQUEST });
+  });
+  it('issues a matchCardsError', () => {
+    const testError = { message: 'Test Error Message' };
+    const testMatchCardsError = cardsActions.matchCardsError(testError);
+    expect(testMatchCardsError).toEqual({ type: cardsActions.MATCH_CARDS_ERROR, error: testError.message });
   });
   it('matches selected cards', () => {
     const testMatchCards = cardsActions.matchCards();
