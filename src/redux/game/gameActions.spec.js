@@ -21,4 +21,8 @@ describe ('game action creators -> gameActions', () => {
     const testPlayerTurn = gameActions.playerTurn();
     expect(testPlayerTurn).toEqual({ type: gameActions.PLAYER_TURN });
   });
+  it('endGame issues a GAME_END action', () => {
+    const testGameEnd = gameActions.endGame();
+    expect(testGameEnd).toEqual({ type: gameActions.END_GAME });
+  });
 });

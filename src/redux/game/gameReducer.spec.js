@@ -39,4 +39,10 @@ describe('game reducer', () => {
     const [...expectedEntries] = newState.entries();
     expect(expectedEntries).toEqual([['level', null], ['state', 'playerTurn'], ['cards', Immutable.List()]]);
   });
+  it('updates state on END_GAME', () => {
+    let testAction = gameActions.endGame();
+    const newState = reducer(defaultState, testAction);
+    const [...actualEntries] = newState.entries();
+    expect(actualEntries).toEqual([['level', null], ['state', 'over'], ['cards', Immutable.List()]]);
+  });
 });

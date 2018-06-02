@@ -8,6 +8,8 @@ import {
   startGame,
   startNextTurnWatcher,
   startNextTurn,
+  endGame,
+  endGameWatcher
 } from 'redux/game/gameSaga';
 
 describe('game saga -> startGameWatcher', () => {
@@ -52,3 +54,17 @@ describe('game saga -> startNextTurn', () => {
     .toEqual(put({ type: gameActions.PLAYER_TURN }));
   });
 });
+describe('game saga -> endGameWatcher', () => {
+  const endGameWatcherGen = endGameWatcher();
+  it('should act on every END_GAME action', () => {
+    expect(endGameWatcherGen.next().value)
+    .toEqual(takeEvery(gameActions.END_GAME, endGame));
+  });
+});
+// describe('game saga -> endGame', () => {
+//   const endGameGen = endGame();
+//   it('should put an alert', () => {
+//     expect(endGameGen.next().value)
+//     .toEqual(put(console.log('Game Over')));
+//   });
+// });

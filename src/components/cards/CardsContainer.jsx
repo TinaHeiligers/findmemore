@@ -2,16 +2,20 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
+// REDUX
 import cardsActions from 'redux/cards/cardsActions';
+import sharedActions from 'redux/shared/sharedActions';
 const {
   chooseCardRequest
 } = cardsActions;
 import { GAME_STATE } from 'redux/game/gameReducer';
-
+const { hideModal } = sharedActions;
+// UI COMPONENTS
+import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
+import Modal from 'components/shared/Modal';
 //TODO: add click events and redux action creators to handle the clicks.
 class CardsContainer extends Component {
   static propTypes = {
@@ -25,6 +29,12 @@ class CardsContainer extends Component {
     e.preventDefault();
     if(this.props.gameState === GAME_STATE.get('playerTurn')) {
       this.props.chooseCardRequest(index);
+    }
+    this.checkGameOver();
+  }
+  checkGameOver() {
+    if (this.props.matchedCardsCount === this.props.cards.size) {
+      alert('Game Over!')
     }
   }
   render() {
@@ -41,6 +51,12 @@ class CardsContainer extends Component {
             </CardDivDynamic>
             );
           }) }
+        { this.props.modalVisible &&
+          <Modal
+            show={this.props.modalVisible}
+            handleClose={this.props.hideModal}
+            event={this.props.gameState}>
+          </Modal>}
       </CardsWrapper>
     );
   }
@@ -53,7 +69,9 @@ export default connect(
     gameLevel: state.getIn(['game', 'level']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     players: state.getIn(['players', 'all']),
+    modalVisible: state.getIn(['shared', 'modalVisible']),
   }), {
     chooseCardRequest,
+    hideModal,
   })(CardsContainer);
 
