@@ -5,10 +5,11 @@ import Immutable from 'immutable';
 // REDUX
 import cardsActions from 'redux/cards/cardsActions';
 import sharedActions from 'redux/shared/sharedActions';
+import gameActions from 'redux/game/gameActions';
+import { GAME_STATE } from 'redux/game/gameReducer';
 const {
   chooseCardRequest
 } = cardsActions;
-import { GAME_STATE } from 'redux/game/gameReducer';
 const { hideModal } = sharedActions;
 // UI COMPONENTS
 import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
@@ -20,21 +21,18 @@ import Modal from 'components/shared/Modal';
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
+    matchedCardsCount: PropTypes.number,
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
     players: PropTypes.instanceOf(Immutable.List),
     currentPlayerIndex: PropTypes.number,
+    chooseCardRequest: PropTypes.func,
+    hideModal: PropTypes.func,
   };
   selectCard(e, card, index) {
     e.preventDefault();
     if(this.props.gameState === GAME_STATE.get('playerTurn')) {
       this.props.chooseCardRequest(index);
-    }
-    this.checkGameOver();
-  }
-  checkGameOver() {
-    if (this.props.matchedCardsCount === this.props.cards.size) {
-      alert('Game Over!')
     }
   }
   render() {

@@ -1,52 +1,35 @@
 import React from 'react';
 
 const Modal = ({ show, handleClose, children }) => {
-  const showHideStyle = show ? "displayBlock" : "displayNone";
+  const showHideStyle = show ? styles.displayBlock : styles.displayNone;
+  console.log(showHideStyle)
 
   return (
     <div style={showHideStyle}>
-      <section className="modal-main">
-        {children}
+      <section style={styles.modalMain}>
+        Game over!
         <button onClick={handleClose}>close</button>
       </section>
     </div>
   );
 };
 
+export default Modal;
 const styles = {
-  modal: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.6)',
-  },
   modalMain: {
-    position:'fixed',
-    background: 'white',
-    width: '80%',
-    height: 'auto',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%,-50%)',
+    textAlign: 'center',
+    color: 'white',
+    fontSize: '5em',
   },
   displayBlock: {
     display: 'block',
     position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.6)',
+    top: '5%',
+    left: '5%',
+    width: '90%',
+    background: '#c8e60087',
   },
   displayNone: {
     display: 'none',
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    background: 'rgba(0, 0, 0, 0.6)',
   },
 };
