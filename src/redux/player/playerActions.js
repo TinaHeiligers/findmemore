@@ -6,11 +6,13 @@ const playerActions = {
   UPDATE_TOTAL_SCORE: 'UPDATE_TOTAL_SCORE',
   UPDATE_PLAYER_SCORE: 'UPDATE_PLAYER_SCORE',
   DETERMINE_GAME_WINNER: 'DETERMINE_GAME_WINNER',
+  RESET_PLAYER_SCORES: 'RESET_PLAYER_SCORES',
   addPlayer: (name) => ({ type: playerActions.ADD_PLAYER, name }),
   setFirstPlayer: () => ({ type: playerActions.SET_FIRST_PLAYER }),
   switchPlayer: () => ({ type: playerActions.SWITCH_PLAYER }),
   updateTotalScores: (totalMatchedCardsCount) => ({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: totalMatchedCardsCount }),
   updatePlayerScore: () => ({ type: playerActions.UPDATE_PLAYER_SCORE }),
   determineGameWinner: () => ({ type: playerActions.DETERMINE_GAME_WINNER }),
+  resetPlayerScores: () => ({ type: playerActions.RESET_PLAYER_SCORES }),
 };
 export default playerActions;

@@ -16,32 +16,22 @@ const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
 import Modal from 'components/shared/Modal';
-//TODO: add click events and redux action creators to handle the clicks.
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
-    matchedCardsCount: PropTypes.number,
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
-    players: PropTypes.instanceOf(Immutable.List),
-    currentPlayerIndex: PropTypes.number,
     chooseCardRequest: PropTypes.func,
+    modalVisible: PropTypes.bool,
     hideModal: PropTypes.func,
     winningNames: PropTypes.string,
-  };
+  }
   selectCard(e, card, index) {
     e.preventDefault();
     if(this.props.gameState === GAME_STATE.get('playerTurn')) {
       this.props.chooseCardRequest(index);
     }
   }
-  // TODO: move this to redux
-  // determineGameWinner() {
-  //   const players = this.props.players.toJS();
-  //   const winningScore = Math.max.apply(Math, players.map(o => o.playerScore))
-  //   const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
-  //   return winnersNames;
-  // }
   render() {
     return(
       <CardsWrapper gameLevel={ this.props.gameLevel }>
@@ -55,13 +45,15 @@ class CardsContainer extends Component {
               { card.get('status') === 'visible' ? card.get('name') : '' }
             </CardDivDynamic>
             );
-          }) }
+          })
+        }
         { this.props.modalVisible &&
           <Modal
             show={ this.props.modalVisible }
             handleClose={ this.props.hideModal }
             winningNames={ this.props.winningNames }>
-          </Modal>}
+          </Modal>
+        }
       </CardsWrapper>
     );
   }
@@ -69,11 +61,8 @@ class CardsContainer extends Component {
 export default connect(
   state => ({
     cards: state.getIn(['cards', 'all']),
-    matchedCardsCount: state.getIn(['cards', 'totalMatchedCards']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-    currentPlayerIndex: state.getIn(['players', 'current']),
-    players: state.getIn(['players', 'all']),
     modalVisible: state.getIn(['shared', 'modalVisible']),
     winningNames: state.getIn(['players', 'gameWinnerNames'])
   }), {

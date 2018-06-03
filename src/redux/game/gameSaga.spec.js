@@ -23,6 +23,10 @@ describe('game saga -> startGameWatcher', () => {
 describe('game saga -> startGame', () => {
   const testLevel = { level: 'easy' };
   const startGameGen = startGame(testLevel);
+  it('should put RESET_PLAYER_SCORES', () => {
+    expect(startGameGen.next().value)
+    .toEqual(put({ type: playerActions.RESET_PLAYER_SCORES }));
+  });
   it('should put GET_CARDS_REQUEST action given a game level', () => {
     expect(startGameGen.next(testLevel).value)
     .toEqual(put({ type: cardsActions.GET_CARDS_REQUEST, level: testLevel.level }));

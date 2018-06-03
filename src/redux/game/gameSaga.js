@@ -16,6 +16,7 @@ export function* startGameWatcher() {
 }
 export function* startGame(payload) {
   try {
+    yield put({ type: playerActions.RESET_PLAYER_SCORES });
     yield put({
       type: cardsActions.GET_CARDS_REQUEST,
       level: payload.level,

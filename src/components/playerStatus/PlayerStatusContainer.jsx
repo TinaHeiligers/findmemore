@@ -42,9 +42,9 @@ class PlayerStatusContainer extends Component {
                 <span>{ this.message(player) }</span>
               </PlayerStatusListItem>);
           }) }
-        <CardsRemainingSpan className='cards-remaining'>{ (this.props.cards.size - this.props.totalScores) }</CardsRemainingSpan>
+        <CardsRemainingSpan className='cards-remaining'>Cards remaining: { (this.props.cards.size - this.props.totalScores) }</CardsRemainingSpan>
         <span style={ { 'fontSize': 20 } }>{ this.switchTurnMessage() }</span>
-        <div style={ { 'fontSize': 20 } }>{ this.props.matchedCardsCount }</div>
+        <div style={ { 'fontSize': 20 } }>Cards matched: { this.props.matchedCardsCount/2 }</div>
       </PlayerStatusWrapper>
     );
   }

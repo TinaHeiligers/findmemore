@@ -68,5 +68,15 @@ describe('player reducer', () => {
     const testAction = playerActions.determineGameWinner();
     const newState = reducer(testState2, testAction);
     expect(newState.get('gameWinnerNames')).toEqual('testPlayer1 and testPlayer2');
-  })
+  });
+  it('resets the player scores on starting a new game', () => {
+    const testPlayer1 = Immutable.Map({ 'name': 'testPlayer1', 'playerScore': 1 });
+    const testPlayer2 = Immutable.Map({ 'name': 'testPlayer2', 'playerScore': 2 });
+    const testState = defaultState.update('all', all => all.push(testPlayer1));
+    const testState2 = testState.update('all', all => all.push(testPlayer2));
+    const testAction = playerActions.resetPlayerScores();
+    const newState = reducer(testState2, testAction);
+    expect(newState.getIn(['all', 0, 'playerScore'])).toEqual(0);
+    expect(newState.getIn(['all', 1, 'playerScore'])).toEqual(0);
+  });
 });
