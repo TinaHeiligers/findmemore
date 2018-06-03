@@ -40,10 +40,7 @@ export function* chooseCardRequest(action) {
     yield put(gameActions.switchTurns());
     const gameCards = yield select(allGameCards);
     const matchedCardsCount = yield select(totalMatchedCards);
-    console.log("gameCards", gameCards)
-    console.log("matchedCardsCount", matchedCardsCount)
     if (gameCards === matchedCardsCount + 2) {
-      // the test is skipping this path
       yield put(gameActions.setGameOver());
     }
     yield put(playerActions.switchPlayer());
