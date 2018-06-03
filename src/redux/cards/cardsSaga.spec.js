@@ -77,9 +77,9 @@ describe('cards saga -> chooseCardRequest', () => {
     expect(chooseCardRequestGen.next(cardsActions.matchCardsRequest()).value)
     .toEqual(put({ type: gameActions.SWITCH_TURNS }));
   });
-  it('should select totalMatchedCards after SWITCH-TURNS', () => {
-    expect('TODO').toEqual('TODO');
-  })
+  // it('should select totalMatchedCards after SWITCH-TURNS', () => {
+  //   expect('TODO').toEqual('TODO');
+  // })
   // it('should put switchPlayer after switchTurns', () => {
   //   expect(chooseCardRequestGen.next(gameActions.switchTurns()).value)
   //   .toEqual(put({ type: playerActions.SWITCH_PLAYER }));
