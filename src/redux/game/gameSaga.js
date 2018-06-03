@@ -32,9 +32,6 @@ export function* setGameOverWatcher() {
 }
 
 export function* setGameOver() {
-  // on end game, I want to notify the players that the game is over
-  // I also want to notify the players of who won.
-  console.log('In setGameOver in game saga')
   yield put({ type: gameActions.END_GAME });
   yield put({ type: sharedActions.SHOW_MODAL });
 }

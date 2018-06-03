@@ -3,6 +3,7 @@ import { put, takeEvery } from 'redux-saga/effects';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';
+import sharedActions from 'redux/shared/sharedActions';
 import {
   startGameWatcher,
   startGame,
@@ -54,17 +55,21 @@ describe('game saga -> startNextTurn', () => {
     .toEqual(put({ type: gameActions.PLAYER_TURN }));
   });
 });
-// describe('game saga -> setGameOverWatcher', () => {
-//   const setGameOverWatcherGen = setGameOverWatcher();
-//   it('should act on every SET_GAME_OVER action', () => {
-//     expect(setGameOverWatcherGen.next().value)
-//     .toEqual(takeEvery(gameActions.SET_GAME_OVER));
-//   });
-// });
-// describe('game saga -> setGameOver', () => {
-//   const setGameOver = setGameOver();
-//   it('should put END_GAME', () => {
-//     expect(setGameOver.next().value)
-//     .toEqual(put(gameActions.endGame()));
-//   });
-// });
+describe('game saga -> setGameOverWatcher', () => {
+  const setGameOverWatcherGen = setGameOverWatcher();
+  it('should act on every SET_GAME_OVER action', () => {
+    expect(setGameOverWatcherGen.next().value)
+    .toEqual(takeEvery(gameActions.SET_GAME_OVER, setGameOver));
+  });
+});
+describe('game saga -> setGameOver', () => {
+  const setGameOverGen = setGameOver();
+  it('should put END_GAME', () => {
+    expect(setGameOverGen.next().value)
+    .toEqual(put({ type: gameActions.END_GAME }));
+  });
+  it('should put SHOW_MODAL after END_GAME', () => {
+    expect(setGameOverGen.next(gameActions.endGame()).value)
+    .toEqual(put({ type: sharedActions.SHOW_MODAL }));
+  });
+});
