@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Modal = ({ show, handleClose, gameWinnerNames }) => {
+const Modal = ({ show, handleClose, winningNames }) => {
+  console.log('gameWinnerNames', winningNames)
   const showHideStyle = show ? 'block' : 'none';
   return (
-    <ModalDiv showModal={showHideStyle}>
-      <ModalSection onClick={handleClose}>
+    <ModalDiv showModal={ showHideStyle }>
+      <ModalSection onClick={ handleClose }>
         <div>Game over!</div>
-        <div style={{fontSize: '6vh'}}>Well done {gameWinnerNames}, you won!</div>
+        <div style={ { fontSize: '6vh' } }>Well done { winningNames }, you won!</div>
       </ModalSection>
     </ModalDiv>
   );

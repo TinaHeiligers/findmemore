@@ -5,6 +5,7 @@ export const initialState = Immutable.Map({
   current: null,
   all: Immutable.List(),
   totalScores: 0, //add 1 for every pair matched (we halve the number of matched cards)
+  gameWinnerNames: null,
 });
 export default function playersReducer(
   currentState = initialState,
@@ -27,6 +28,13 @@ export default function playersReducer(
       const playerIdx = currentState.get('current');
       const playerScore = currentState.getIn(['all', playerIdx, 'playerScore']);
       return currentState.setIn(['all', playerIdx, 'playerScore'], playerScore + 1);
+    }
+    case playerActions.DETERMINE_GAME_WINNER: {
+      const players = currentState.get('all').toJS();
+      const winningScore = Math.max.apply(Math, players.map(o => o.playerScore));
+      const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
+      console.log('playerActions.DETERMINE_GAME_WINNER, winnersNames', winnersNames)
+      return currentState.set('gameWinnerNames', winnersNames);
     }
     default:
       return currentState;

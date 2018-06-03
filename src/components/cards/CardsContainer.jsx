@@ -5,7 +5,6 @@ import Immutable from 'immutable';
 // REDUX
 import cardsActions from 'redux/cards/cardsActions';
 import sharedActions from 'redux/shared/sharedActions';
-import gameActions from 'redux/game/gameActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
 const {
   chooseCardRequest
@@ -28,6 +27,7 @@ class CardsContainer extends Component {
     currentPlayerIndex: PropTypes.number,
     chooseCardRequest: PropTypes.func,
     hideModal: PropTypes.func,
+    winningNames: PropTypes.string,
   };
   selectCard(e, card, index) {
     e.preventDefault();
@@ -36,12 +36,12 @@ class CardsContainer extends Component {
     }
   }
   // TODO: move this to redux
-  determineGameWinner() {
-    const players = this.props.players.toJS();
-    const winningScore = Math.max.apply(Math, players.map(o => o.playerScore))
-    const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
-    return winnersNames;
-  }
+  // determineGameWinner() {
+  //   const players = this.props.players.toJS();
+  //   const winningScore = Math.max.apply(Math, players.map(o => o.playerScore))
+  //   const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
+  //   return winnersNames;
+  // }
   render() {
     return(
       <CardsWrapper gameLevel={ this.props.gameLevel }>
@@ -58,9 +58,9 @@ class CardsContainer extends Component {
           }) }
         { this.props.modalVisible &&
           <Modal
-            show={this.props.modalVisible}
-            handleClose={this.props.hideModal}
-            gameWinnerNames={ this.determineGameWinner() }>
+            show={ this.props.modalVisible }
+            handleClose={ this.props.hideModal }
+            winningNames={ this.props.winningNames }>
           </Modal>}
       </CardsWrapper>
     );
@@ -75,6 +75,7 @@ export default connect(
     currentPlayerIndex: state.getIn(['players', 'current']),
     players: state.getIn(['players', 'all']),
     modalVisible: state.getIn(['shared', 'modalVisible']),
+    winningNames: state.getIn(['players', 'gameWinnerNames'])
   }), {
     chooseCardRequest,
     hideModal,

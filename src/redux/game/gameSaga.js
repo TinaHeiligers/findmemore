@@ -32,6 +32,7 @@ export function* setGameOverWatcher() {
 }
 export function* setGameOver() {
   yield put({ type: gameActions.END_GAME });
+  yield put({ type: playerActions.DETERMINE_GAME_WINNER });
   yield put({ type: sharedActions.SHOW_MODAL });
 }
 export default function* rootSaga() {
