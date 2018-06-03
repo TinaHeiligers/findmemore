@@ -1,35 +1,40 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const Modal = ({ show, handleClose, children }) => {
-  const showHideStyle = show ? styles.displayBlock : styles.displayNone;
-  console.log(showHideStyle)
-
+const Modal = ({ show, handleClose, gameWinnerNames }) => {
+  const showHideStyle = show ? 'block' : 'none';
   return (
-    <div style={showHideStyle}>
-      <section style={styles.modalMain}>
-        Game over!
-        <button onClick={handleClose}>close</button>
-      </section>
-    </div>
+    <ModalDiv showModal={showHideStyle}>
+      <ModalSection onClick={handleClose}>
+        <div>Game over!</div>
+        <div style={{fontSize: '6vh'}}>Well done {gameWinnerNames}, you won!</div>
+      </ModalSection>
+    </ModalDiv>
   );
 };
-
 export default Modal;
-const styles = {
-  modalMain: {
-    textAlign: 'center',
-    color: 'white',
-    fontSize: '5em',
-  },
-  displayBlock: {
-    display: 'block',
-    position: 'fixed',
-    top: '5%',
-    left: '5%',
-    width: '90%',
-    background: '#c8e60087',
-  },
-  displayNone: {
-    display: 'none',
-  },
-};
+
+const ModalDiv = styled.div`
+  display: ${props => props.showModal};
+  position: fixed;
+  top: 29%;
+  left: 5%;
+  width: 90%;
+  background: radial-gradient(#c8e60087, #e68400a6);
+  border-radius: 25px;
+`
+
+const ModalSection = styled.section`
+  text-align: center;
+  color: #8b0000;
+  font-size: 5em;
+  text-shadow:
+    0.1vw 0.1vw 0 black,
+    -0.1vw -0.1vw 0 black,
+    0.1vw -0.1vw 0 black,
+    -0.1vw 0.1vw 0 black,
+    0.1vw 0.1vw 0 black,
+    0vw 0vw 1vw black;
+  margin-top: 0.1vh;
+  font-size: 8vw;
+`;

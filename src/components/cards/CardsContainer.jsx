@@ -35,6 +35,13 @@ class CardsContainer extends Component {
       this.props.chooseCardRequest(index);
     }
   }
+  // TODO: move this to redux
+  determineGameWinner() {
+    const players = this.props.players.toJS();
+    const winningScore = Math.max.apply(Math, players.map(o => o.playerScore))
+    const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
+    return winnersNames;
+  }
   render() {
     return(
       <CardsWrapper gameLevel={ this.props.gameLevel }>
@@ -53,7 +60,7 @@ class CardsContainer extends Component {
           <Modal
             show={this.props.modalVisible}
             handleClose={this.props.hideModal}
-            event={this.props.gameState}>
+            gameWinnerNames={ this.determineGameWinner() }>
           </Modal>}
       </CardsWrapper>
     );
