@@ -30,7 +30,7 @@ describe ('player action creators -> playerActions', () => {
     expect(testUpdatePlayerScore).toEqual({ type: playerActions.UPDATE_PLAYER_SCORE });
   });
   it('issues an action to determine the game winner -> playerActions', () => {
-    const testDetermineGameWinner = playerActions.determineGameWinner;
+    const testDetermineGameWinner = playerActions.determineGameWinner();
     expect(testDetermineGameWinner).toEqual({ type: playerActions.DETERMINE_GAME_WINNER });
   });
 });

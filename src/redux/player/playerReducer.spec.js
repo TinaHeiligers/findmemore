@@ -50,5 +50,23 @@ describe('player reducer', () => {
     const newState = reducer(testState4, testAction);
     expect(newState.getIn(['all', 0]).get('playerScore')).toEqual(1);
     expect(newState.getIn(['all', 0]).get('playerScore')).toEqual(newState.get('totalScores')/2);
+  });
+  it('determines the game winner names on DETERMINE_GAME_WINNER', () => {
+    const testPlayer1 = Immutable.Map({ 'name': 'testPlayer1', 'playerScore': 2 });
+    const testPlayer2 = Immutable.Map({ 'name': 'testPlayer2', 'playerScore': 4 });
+    const testState = defaultState.update('all', all => all.push(testPlayer1));
+    const testState2 = testState.update('all', all => all.push(testPlayer2));
+    const testAction = playerActions.determineGameWinner();
+    const newState = reducer(testState2, testAction);
+    expect(newState.get('gameWinnerNames')).toEqual('testPlayer2');
+  });
+  it('two names on DETERMINE_GAME_WINNER when there is a match in playerScores', () => {
+    const testPlayer1 = Immutable.Map({ 'name': 'testPlayer1', 'playerScore': 3 });
+    const testPlayer2 = Immutable.Map({ 'name': 'testPlayer2', 'playerScore': 3 });
+    const testState = defaultState.update('all', all => all.push(testPlayer1));
+    const testState2 = testState.update('all', all => all.push(testPlayer2));
+    const testAction = playerActions.determineGameWinner();
+    const newState = reducer(testState2, testAction);
+    expect(newState.get('gameWinnerNames')).toEqual('testPlayer1 and testPlayer2');
   })
 });

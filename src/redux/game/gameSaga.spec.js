@@ -68,8 +68,12 @@ describe('game saga -> setGameOver', () => {
     expect(setGameOverGen.next().value)
     .toEqual(put({ type: gameActions.END_GAME }));
   });
-  it('should put SHOW_MODAL after END_GAME', () => {
+  it('should put DETERMINE_GAME_WINNER after END_GAME', () => {
     expect(setGameOverGen.next(gameActions.endGame()).value)
+    .toEqual(put({ type: playerActions.DETERMINE_GAME_WINNER }));
+  });
+  it('should put SHOW_MODAL after DETERMINE_GAME_WINNER', () => {
+    expect(setGameOverGen.next(playerActions.determineGameWinner()).value)
     .toEqual(put({ type: sharedActions.SHOW_MODAL }));
   });
 });

@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Modal = ({ show, handleClose, winningNames }) => {
-  console.log('gameWinnerNames', winningNames)
   const showHideStyle = show ? 'block' : 'none';
   return (
     <ModalDiv showModal={ showHideStyle }>

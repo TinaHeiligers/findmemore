@@ -33,7 +33,6 @@ export default function playersReducer(
       const players = currentState.get('all').toJS();
       const winningScore = Math.max.apply(Math, players.map(o => o.playerScore));
       const winnersNames = players.filter(entry => entry.playerScore === winningScore).map(player => player.name).join(' and ');
-      console.log('playerActions.DETERMINE_GAME_WINNER, winnersNames', winnersNames)
       return currentState.set('gameWinnerNames', winnersNames);
     }
     default:
