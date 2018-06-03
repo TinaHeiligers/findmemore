@@ -11,12 +11,12 @@ export default function sharedReducer(
 ) {
   switch (action.type) {
     case sharedActions.SHOW_MODAL: {
-      const newShared = Immutable.Map({ 'event': null, modalVisible: true });
+      const newShared = Immutable.Map({ event: null, modalVisible: true });
       const newState = currentState.merge(newShared);
       return newState;
     }
     case sharedActions.HIDE_MODAL: {
-      const newShared = Immutable.Map({ 'event': null, modalVisible: false });
+      const newShared = Immutable.Map({ event: null, modalVisible: false });
       const newState = currentState.merge(newShared);
       return newState;
     }

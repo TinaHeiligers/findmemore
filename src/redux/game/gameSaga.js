@@ -30,7 +30,6 @@ export function* startGame(payload) {
 export function* setGameOverWatcher() {
   yield takeEvery(gameActions.SET_GAME_OVER, setGameOver);
 }
-
 export function* setGameOver() {
   yield put({ type: gameActions.END_GAME });
   yield put({ type: sharedActions.SHOW_MODAL });
