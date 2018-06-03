@@ -35,19 +35,19 @@ export function* chooseCardRequestWatcher() {
 export function* chooseCardRequest(action) {
   yield put({ type: cardsActions.CHOOSE_CARD, index: action.index });
   const cards = yield select(selectedCards);
-
   if (cards.size === 2) {
     yield put(cardsActions.matchCardsRequest());
     yield put(gameActions.switchTurns());
     const gameCards = yield select(allGameCards);
     const matchedCardsCount = yield select(totalMatchedCards);
+    console.log("gameCards", gameCards)
+    console.log("matchedCardsCount", matchedCardsCount)
     if (gameCards === matchedCardsCount + 2) {
+      // the test is skipping this path
       yield put(gameActions.setGameOver());
     }
     yield put(playerActions.switchPlayer());
   }
-
-
 }
 
 export function* matchCardsRequestWatcher() {
