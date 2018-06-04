@@ -80,11 +80,23 @@ describe('cards reducer -> get cards', () => {
     const actualselectedCards = newState.get('selectedCards');
     expect(actualselectedCards.toJS()).toEqual([]);
   });
-  it.only('updates state on RESET_MATCHED_CARDS', () => {
+  it('updates state on RESET_MATCHED_CARDS', () => {
     const testState = defaultState.set('totalMatchedCards', 4);
     let testAction = cardsActions.resetMatchedCardsCount();
     const newState = reducer(testState, testAction);
     expect(newState.get('totalMatchedCards')).toEqual(0);
   });
-  //TODO: COUNT_MATCHED_CARDS
+  it('updates state on COUNT_MATCHED_CARDS', () => {
+    const testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: true, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: true, selected: true },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
+      ];
+    const testState = defaultState
+    .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+    let testAction = cardsActions.countMatchedCards();
+    const newState = reducer(testState, testAction);
+    expect(newState.get('totalMatchedCards')).toEqual(2);
+  });
 });
