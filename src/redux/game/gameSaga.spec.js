@@ -20,7 +20,7 @@ describe('game saga -> startGameWatcher', () => {
     .toEqual(takeEvery(gameActions.START_GAME, startGame));
   });
 });
-describe.only('game saga -> startGame', () => {
+describe('game saga -> startGame', () => {
   const testLevel = { level: 'easy' };
   const startGameGen = startGame(testLevel);
   it('should put RESET_PLAYER_SCORES', () => {

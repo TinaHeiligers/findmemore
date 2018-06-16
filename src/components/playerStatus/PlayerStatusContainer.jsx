@@ -3,14 +3,18 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import PlayerStatusComponents from 'components/PlayerStatus/playerStatusComponents.jsx';
+import { SwitchPlayerTurnsModal } from 'components/shared/Modal';
 import playerActions from 'redux/player/playerActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
+import sharedActions from 'redux/shared/sharedActions';
+const { hideModal } = sharedActions;
 
 const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
 const { updateTotalScores, updatePlayerScore } = playerActions;
+
 class PlayerStatusContainer extends Component {
   // TODO add PropTypes
   static propTypes = {
@@ -22,6 +26,8 @@ class PlayerStatusContainer extends Component {
     currentPlayerIndex: PropTypes.number,
     updateTotalScores: PropTypes.func,
     updatePlayerScore: PropTypes.func,
+    hideModal: PropTypes.func,
+
   };
   message(player) {
     const playerScore = player.get('playerScore');
@@ -31,6 +37,11 @@ class PlayerStatusContainer extends Component {
     if (this.props.gameState === GAME_STATE.get('switchTurns')) {
       return `It's your turn ${this.props.players.getIn([this.props.currentPlayerIndex, 'name'])}, click anywhere to start your turn`;
     }
+  }
+  showModal() {
+    const showHide = this.props.gameState === GAME_STATE.get('switchTurns') && this.props.modalVisible;
+    console.log("this.props.gameState === GAME_STATE.get('switchTurns'):", this.props.gameState === GAME_STATE.get('switchTurns'))
+    return showHide;
   }
   render() {
     return(
@@ -43,6 +54,14 @@ class PlayerStatusContainer extends Component {
               </PlayerStatusListItem>);
           }) }
         <CardsRemainingSpan className='cards-remaining'>Cards remaining: { (this.props.cards.size - this.props.totalScores) }</CardsRemainingSpan>
+        { /* I want to move the switch player turn message to a modal that can be animated later on*/ }
+        { this.showModal() &&
+          <SwitchPlayerTurnsModal
+            show
+            handleClose
+            nextPlayerName={this.props.players.getIn([this.props.currentPlayerIndex, 'name'])}>
+          </SwitchPlayerTurnsModal>
+        }
         <span style={ { 'fontSize': 20 } }>{ this.switchTurnMessage() }</span>
         <div style={ { 'fontSize': 20 } }>Cards matched: { this.props.matchedCardsCount/2 }</div>
       </PlayerStatusWrapper>
@@ -57,7 +76,9 @@ export default connect(
     totalScores: state.getIn(['players', 'totalScores']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     gameState: state.getIn(['game', 'state']),
+    modalVisible: state.getIn(['shared', 'modalVisible']),
   }), {
     updateTotalScores,
     updatePlayerScore,
+    hideModal,
 })(PlayerStatusContainer);

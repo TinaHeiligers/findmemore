@@ -15,7 +15,7 @@ import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in i
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
-import Modal from 'components/shared/Modal';
+import { GameOverModal } from 'components/shared/Modal';
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
@@ -48,11 +48,12 @@ class CardsContainer extends Component {
           })
         }
         { this.props.modalVisible &&
-          <Modal
+          <GameOverModal
             show={ this.props.modalVisible }
             handleClose={ this.props.hideModal }
-            winningNames={ this.props.winningNames }>
-          </Modal>
+            winningNames={ this.props.winningNames }
+            nextPlayerName={ null }>
+          </GameOverModal>
         }
       </CardsWrapper>
     );
