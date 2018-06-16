@@ -19,8 +19,8 @@ export function* startGame(payload) {
     yield put({ type: playerActions.RESET_PLAYER_SCORES });
     yield put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: 0 });
     yield put({ type: cardsActions.RESET_MATCHED_CARDS_COUNT });
-    // TODO: reset the selectedCards
-    // TODO: investigate why startGame after a game doesn't work properly.
+    yield put({ type: gameActions.START_NEXT_TURN });
+
     yield put({
       type: cardsActions.GET_CARDS_REQUEST,
       level: payload.level,

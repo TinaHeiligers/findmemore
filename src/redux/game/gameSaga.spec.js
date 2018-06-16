@@ -20,7 +20,7 @@ describe('game saga -> startGameWatcher', () => {
     .toEqual(takeEvery(gameActions.START_GAME, startGame));
   });
 });
-describe('game saga -> startGame', () => {
+describe.only('game saga -> startGame', () => {
   const testLevel = { level: 'easy' };
   const startGameGen = startGame(testLevel);
   it('should put RESET_PLAYER_SCORES', () => {
@@ -34,6 +34,10 @@ describe('game saga -> startGame', () => {
   it('should put RESET_MATCHED_CARDS_COUNT after UPDATE_TOTAL_SCORE', () => {
     expect(startGameGen.next(playerActions.updateTotalScores()).value)
     .toEqual(put({ type: cardsActions.RESET_MATCHED_CARDS_COUNT }));
+  });
+  it('should put RESET_SELECTED_CARDS after RESET_MATCHED_CARDS_COUNT', () => {
+    expect(startGameGen.next(cardsActions.resetMatchedCardsCount()).value)
+    .toEqual(put({ type: gameActions.START_NEXT_TURN }));
   });
   it('should put GET_CARDS_REQUEST action given a game level', () => {
     expect(startGameGen.next(testLevel).value)
