@@ -14,6 +14,7 @@ const ButtonHard = components.ButtonHard;
 const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
 const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 //TODO: add click events and redux action creators to handle the clicks.
+//Needs work on starting a new game after a game has been won.
 class GameStatusContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),

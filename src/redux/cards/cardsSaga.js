@@ -8,6 +8,7 @@ import { getCards } from 'redux/cards/cardsServices';
 export const selectedCards = state => state.getIn(['cards', 'selectedCards']);
 export const hasMatch = state => state.getIn(['cards', 'hasMatch']);
 export const totalMatchedCards = state => state.getIn(['cards', 'totalMatchedCards']);
+export const allGameCards = state => state.getIn(['cards', 'all']).size;
 
 export function* getCardsRequestWatcher() {
   yield takeEvery(cardsActions.GET_CARDS_REQUEST, getCardsRequest);
@@ -37,6 +38,11 @@ export function* chooseCardRequest(action) {
   if (cards.size === 2) {
     yield put(cardsActions.matchCardsRequest());
     yield put(gameActions.switchTurns());
+    const gameCards = yield select(allGameCards);
+    const matchedCardsCount = yield select(totalMatchedCards);
+    if (gameCards === matchedCardsCount + 2) {
+      yield put(gameActions.setGameOver());
+    }
     yield put(playerActions.switchPlayer());
   }
 }

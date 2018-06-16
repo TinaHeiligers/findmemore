@@ -15,6 +15,7 @@ import {
   selectedCards,
   hasMatch,
   totalMatchedCards,
+  allGameCards,
 } from 'redux/cards/cardsSaga';
 
 const SEP = '\n      ';
@@ -77,8 +78,20 @@ describe('cards saga -> chooseCardRequest', () => {
     expect(chooseCardRequestGen.next(cardsActions.matchCardsRequest()).value)
     .toEqual(put({ type: gameActions.SWITCH_TURNS }));
   });
-  it('should put switchPlayer after switchTurns', () => {
+  it('should select allGameCards after SWITCH-TURNS', () => {
     expect(chooseCardRequestGen.next(gameActions.switchTurns()).value)
+    .toEqual(select(allGameCards)); // this answer is the value of the generator now
+  });
+  it('should select totalMatchedCards after selecting allGameCards', () => {
+    expect(chooseCardRequestGen.next(2).value) // passing in the value of the generator from select(allGameCards)
+    .toEqual(select(totalMatchedCards));// this answer is the value of the generator now
+  });
+  it('should put SET_GAME_OVER when totalMatchedCards + 2 equals allGameCards size', () => {
+    expect(chooseCardRequestGen.next(0).value)// passing in the value of the generator from select(totalMatchedCards)
+    .toEqual(put(gameActions.setGameOver()));
+  });
+  it('should put switchPlayer after setGameOver', () => {
+    expect(chooseCardRequestGen.next(gameActions.setGameOver()).value)
     .toEqual(put({ type: playerActions.SWITCH_PLAYER }));
   });
 });

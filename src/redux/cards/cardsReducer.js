@@ -65,6 +65,9 @@ export default function cardsReducer(
       const updatedState = currentState.set('totalMatchedCards', updatedCount);
       return updatedState;
     }
+    case cardsActions.RESET_MATCHED_CARDS_COUNT: {
+      return currentState.merge({ totalMatchedCards: 0 });
+    }
     default:
       return currentState;
   }

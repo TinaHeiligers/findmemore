@@ -2,25 +2,30 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
+// REDUX
 import cardsActions from 'redux/cards/cardsActions';
+import sharedActions from 'redux/shared/sharedActions';
+import { GAME_STATE } from 'redux/game/gameReducer';
 const {
   chooseCardRequest
 } = cardsActions;
-import { GAME_STATE } from 'redux/game/gameReducer';
-
+const { hideModal } = sharedActions;
+// UI COMPONENTS
+import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
-//TODO: add click events and redux action creators to handle the clicks.
+import Modal from 'components/shared/Modal';
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
-    players: PropTypes.instanceOf(Immutable.List),
-    currentPlayerIndex: PropTypes.number,
-  };
+    chooseCardRequest: PropTypes.func,
+    modalVisible: PropTypes.bool,
+    hideModal: PropTypes.func,
+    winningNames: PropTypes.string,
+  }
   selectCard(e, card, index) {
     e.preventDefault();
     if(this.props.gameState === GAME_STATE.get('playerTurn')) {
@@ -40,7 +45,15 @@ class CardsContainer extends Component {
               { card.get('status') === 'visible' ? card.get('name') : '' }
             </CardDivDynamic>
             );
-          }) }
+          })
+        }
+        { this.props.modalVisible &&
+          <Modal
+            show={ this.props.modalVisible }
+            handleClose={ this.props.hideModal }
+            winningNames={ this.props.winningNames }>
+          </Modal>
+        }
       </CardsWrapper>
     );
   }
@@ -48,12 +61,12 @@ class CardsContainer extends Component {
 export default connect(
   state => ({
     cards: state.getIn(['cards', 'all']),
-    matchedCardsCount: state.getIn(['cards', 'totalMatchedCards']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-    currentPlayerIndex: state.getIn(['players', 'current']),
-    players: state.getIn(['players', 'all']),
+    modalVisible: state.getIn(['shared', 'modalVisible']),
+    winningNames: state.getIn(['players', 'gameWinnerNames'])
   }), {
     chooseCardRequest,
+    hideModal,
   })(CardsContainer);
 

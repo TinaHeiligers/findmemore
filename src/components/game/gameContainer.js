@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import CardsContainer from 'components/cards/CardsContainer';
 import GameStatusContainer from 'components/gameStatus/GameStatusContainer';
 import PlayerStatusContainer from 'components/playerStatus/PlayerStatusContainer';
-import gameComponents from 'components/game/gameComponents.js'; // path in imports is relative to src.
+import gameComponents from 'components/game/gameComponents';
 import gameActions from 'redux/game/gameActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
+
 const GameWrapper = gameComponents.GameWrapper;
 const { startNextTurn } = gameActions;
+
 class GameContainer extends Component {
   static propTypes = {
     gameState: PropTypes.string,
+    startNextTurn: PropTypes.func,
   };
   watchClick(e) {
     e.preventDefault();

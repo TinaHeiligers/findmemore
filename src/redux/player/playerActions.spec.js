@@ -29,4 +29,12 @@ describe ('player action creators -> playerActions', () => {
     const testUpdatePlayerScore = playerActions.updatePlayerScore();
     expect(testUpdatePlayerScore).toEqual({ type: playerActions.UPDATE_PLAYER_SCORE });
   });
+  it('issues an action to determine the game winner -> playerActions', () => {
+    const testDetermineGameWinner = playerActions.determineGameWinner();
+    expect(testDetermineGameWinner).toEqual({ type: playerActions.DETERMINE_GAME_WINNER });
+  });
+  it('issues an action to reset the player scores -> playerActions', () => {
+    const testResetPlayerScores = playerActions.resetPlayerScores();
+    expect(testResetPlayerScores).toEqual({ type: playerActions.RESET_PLAYER_SCORES });
+  });
 });

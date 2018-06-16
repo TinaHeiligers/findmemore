@@ -21,4 +21,12 @@ describe ('game action creators -> gameActions', () => {
     const testPlayerTurn = gameActions.playerTurn();
     expect(testPlayerTurn).toEqual({ type: gameActions.PLAYER_TURN });
   });
+  it('issues a game over action on SET_GAME_OVER', () => {
+    const testGameOver = gameActions.setGameOver();
+    expect(testGameOver).toEqual({ type: gameActions.SET_GAME_OVER });
+  });
+  it('endGame issues a GAME_END action', () => {
+    const testGameEnd = gameActions.endGame();
+    expect(testGameEnd).toEqual({ type: gameActions.END_GAME });
+  });
 });
