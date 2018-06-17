@@ -39,9 +39,10 @@ class PlayerStatusContainer extends Component {
     }
   }
   showModal() {
-    const showHide = this.props.gameState === GAME_STATE.get('switchTurns') && this.props.modalVisible;
-    console.log("this.props.gameState === GAME_STATE.get('switchTurns'):", this.props.gameState === GAME_STATE.get('switchTurns'))
-    return showHide;
+    return this.props.gameState === GAME_STATE.get('switchTurns');
+  }
+  calcCardsRemaining() {
+    return `Cards remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`
   }
   render() {
     return(
@@ -53,13 +54,13 @@ class PlayerStatusContainer extends Component {
                 <span>{ this.message(player) }</span>
               </PlayerStatusListItem>);
           }) }
-        <CardsRemainingSpan className='cards-remaining'>Cards remaining: { (this.props.cards.size - this.props.totalScores) }</CardsRemainingSpan>
+        <CardsRemainingSpan className='cards-remaining'>{this.calcCardsRemaining()}</CardsRemainingSpan>
         { /* I want to move the switch player turn message to a modal that can be animated later on*/ }
         { this.showModal() &&
           <SwitchPlayerTurnsModal
             show
-            handleClose
-            nextPlayerName={this.props.players.getIn([this.props.currentPlayerIndex, 'name'])}>
+            handleClose={ this.props.hideModal }
+            nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
           </SwitchPlayerTurnsModal>
         }
         <span style={ { 'fontSize': 20 } }>{ this.switchTurnMessage() }</span>
@@ -76,7 +77,7 @@ export default connect(
     totalScores: state.getIn(['players', 'totalScores']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     gameState: state.getIn(['game', 'state']),
-    modalVisible: state.getIn(['shared', 'modalVisible']),
+    // modalVisible: state.getIn(['shared', 'modalVisible']),
   }), {
     updateTotalScores,
     updatePlayerScore,
