@@ -16,7 +16,6 @@ const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
 const { updateTotalScores, updatePlayerScore } = playerActions;
 
 class PlayerStatusContainer extends Component {
-  // TODO add PropTypes
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
     matchedCardsCount: PropTypes.number,
@@ -27,7 +26,6 @@ class PlayerStatusContainer extends Component {
     updateTotalScores: PropTypes.func,
     updatePlayerScore: PropTypes.func,
     hideModal: PropTypes.func,
-
   };
   message(player) {
     const playerScore = player.get('playerScore');
@@ -70,7 +68,6 @@ export default connect(
     totalScores: state.getIn(['players', 'totalScores']),
     currentPlayerIndex: state.getIn(['players', 'current']),
     gameState: state.getIn(['game', 'state']),
-    // modalVisible: state.getIn(['shared', 'modalVisible']),
   }), {
     updateTotalScores,
     updatePlayerScore,
