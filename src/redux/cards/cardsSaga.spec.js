@@ -83,7 +83,7 @@ describe('cards saga -> matchCardsRequestWatcher', () => {
     .toEqual(takeEvery(cardsActions.MATCH_CARDS_REQUEST, matchCardsRequest));
   });
 });
-describe.only('cards saga -> matchCardsRequest', () => {
+describe('cards saga -> matchCardsRequest', () => {
   const matchCardsRequestGen = matchCardsRequest();
   it('should put MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next().value)
