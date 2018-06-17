@@ -35,6 +35,10 @@ describe('game saga -> startGame', () => {
     expect(startGameGen.next(playerActions.updateTotalScores()).value)
     .toEqual(put({ type: cardsActions.RESET_MATCHED_CARDS_COUNT }));
   });
+  it('should put RESET_SELECTED_CARDS after RESET_MATCHED_CARDS_COUNT', () => {
+    expect(startGameGen.next(cardsActions.resetMatchedCardsCount()).value)
+    .toEqual(put({ type: gameActions.START_NEXT_TURN }));
+  });
   it('should put GET_CARDS_REQUEST action given a game level', () => {
     expect(startGameGen.next(testLevel).value)
     .toEqual(put({ type: cardsActions.GET_CARDS_REQUEST, level: testLevel.level }));

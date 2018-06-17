@@ -83,9 +83,9 @@ class StartPage extends Component {
         </StartFormDiv>
         { players.size ?
           <ButtonDiv>
-            <ButtonEasy onClick={() => this.startGame('easy')}>easy</ButtonEasy>
-            <ButtonMedium onClick={() => this.startGame('medium')}>medium</ButtonMedium>
-            <ButtonHard onClick={() => this.startGame('hard')}>hard</ButtonHard>
+            <ButtonEasy onClick={ () => this.startGame('easy') }>easy</ButtonEasy>
+            <ButtonMedium onClick={ () => this.startGame('medium') }>medium</ButtonMedium>
+            <ButtonHard onClick={ () => this.startGame('hard') }>hard</ButtonHard>
           </ButtonDiv> :
           <ButtonDiv />
         }

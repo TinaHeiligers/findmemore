@@ -37,13 +37,6 @@ export function* chooseCardRequest(action) {
   const cards = yield select(selectedCards);
   if (cards.size === 2) {
     yield put(cardsActions.matchCardsRequest());
-    yield put(gameActions.switchTurns());
-    const gameCards = yield select(allGameCards);
-    const matchedCardsCount = yield select(totalMatchedCards);
-    if (gameCards === matchedCardsCount + 2) {
-      yield put(gameActions.setGameOver());
-    }
-    yield put(playerActions.switchPlayer());
   }
 }
 
@@ -61,6 +54,13 @@ export function* matchCardsRequest() {
       yield put({ type: playerActions.UPDATE_PLAYER_SCORE });
       yield put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: matchedCardsCount });
     }
+    yield put(gameActions.switchTurns());
+    const gameCards = yield select(allGameCards);
+    const matchedCardsCount = yield select(totalMatchedCards);
+    if (gameCards === matchedCardsCount) {
+      yield put(gameActions.setGameOver());
+    }
+    yield put(playerActions.switchPlayer());
   } catch (err) {
     yield put({ type: cardsActions.MATCH_CARDS_ERROR, error: { message: 'cannot match cards' } });
   }
