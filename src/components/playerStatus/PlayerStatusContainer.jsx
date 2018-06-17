@@ -33,11 +33,6 @@ class PlayerStatusContainer extends Component {
     const playerScore = player.get('playerScore');
     return this.props.gameState === 'unstarted' ? 'Welcome!' : playerScore;
   }
-  switchTurnMessage() {
-    if (this.props.gameState === GAME_STATE.get('switchTurns')) {
-      return `It's your turn ${this.props.players.getIn([this.props.currentPlayerIndex, 'name'])}, click anywhere to start your turn`;
-    }
-  }
   showModal() {
     return this.props.gameState === GAME_STATE.get('switchTurns');
   }
@@ -63,7 +58,6 @@ class PlayerStatusContainer extends Component {
             nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
           </SwitchPlayerTurnsModal>
         }
-        <span style={ { 'fontSize': 20 } }>{ this.switchTurnMessage() }</span>
         <div style={ { 'fontSize': 20 } }>Cards matched: { this.props.matchedCardsCount/2 }</div>
       </PlayerStatusWrapper>
     );
