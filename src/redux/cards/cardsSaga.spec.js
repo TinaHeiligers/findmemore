@@ -74,26 +74,7 @@ describe('cards saga -> chooseCardRequest', () => {
     expect(chooseCardRequestGen.next(testSelectedCards).value)
     .toEqual(put({ type: cardsActions.MATCH_CARDS_REQUEST }));
   });
-  it('should put switchTurns after matchCardsRequest', () => {
-    expect(chooseCardRequestGen.next(cardsActions.matchCardsRequest()).value)
-    .toEqual(put({ type: gameActions.SWITCH_TURNS }));
-  });
-  it('should select allGameCards after SWITCH-TURNS', () => {
-    expect(chooseCardRequestGen.next(gameActions.switchTurns()).value)
-    .toEqual(select(allGameCards)); // this answer is the value of the generator now
-  });
-  it('should select totalMatchedCards after selecting allGameCards', () => {
-    expect(chooseCardRequestGen.next(2).value) // passing in the value of the generator from select(allGameCards)
-    .toEqual(select(totalMatchedCards));// this answer is the value of the generator now
-  });
-  it('should put SET_GAME_OVER when totalMatchedCards + 2 equals allGameCards size', () => {
-    expect(chooseCardRequestGen.next(0).value)// passing in the value of the generator from select(totalMatchedCards)
-    .toEqual(put(gameActions.setGameOver()));
-  });
-  it('should put switchPlayer after setGameOver', () => {
-    expect(chooseCardRequestGen.next(gameActions.setGameOver()).value)
-    .toEqual(put({ type: playerActions.SWITCH_PLAYER }));
-  });
+  
 });
 describe('cards saga -> matchCardsRequestWatcher', () => {
   const matchCardsRequestWatcherGen = matchCardsRequestWatcher();
@@ -102,7 +83,7 @@ describe('cards saga -> matchCardsRequestWatcher', () => {
     .toEqual(takeEvery(cardsActions.MATCH_CARDS_REQUEST, matchCardsRequest));
   });
 });
-describe('cards saga -> matchCardsRequest', () => {
+describe.only('cards saga -> matchCardsRequest', () => {
   const matchCardsRequestGen = matchCardsRequest();
   it('should put MATCH_CARDS', () => {
     expect(matchCardsRequestGen.next().value)
@@ -126,7 +107,28 @@ describe('cards saga -> matchCardsRequest', () => {
   it('should put UPDATE_TOTAL_SCORE when totalMatchedCards has a value', () => {
     const testMatchedCardsCount = 4;
     expect(matchCardsRequestGen.next().value)
-    .toEqual(put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: testMatchedCardsCount }))
+    .toEqual(put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: testMatchedCardsCount }));
+  });
+  it('should put switchTurns after matchCardsRequest', () => {
+    const testMatchedCardsCount = 4;
+    expect(matchCardsRequestGen.next(playerActions.updateTotalScores(testMatchedCardsCount)).value)
+    .toEqual(put({ type: gameActions.SWITCH_TURNS }));
+  });
+  it('should select allGameCards after SWITCH-TURNS', () => {
+    expect(matchCardsRequestGen.next(gameActions.switchTurns()).value)
+    .toEqual(select(allGameCards)); // this answer is the value of the generator now
+  });
+  it('should select totalMatchedCards after selecting allGameCards', () => {
+    expect(matchCardsRequestGen.next(2).value) // passing in the value of the generator from select(allGameCards)
+    .toEqual(select(totalMatchedCards));// this answer is the value of the generator now
+  });
+  it('should put SET_GAME_OVER when totalMatchedCards equals allGameCards size', () => {
+    expect(matchCardsRequestGen.next(2).value)// passing in the value of the generator from select(totalMatchedCards)
+    .toEqual(put(gameActions.setGameOver()));
+  });
+  it('should put switchPlayer after setGameOver', () => {
+    expect(matchCardsRequestGen.next(gameActions.setGameOver()).value)
+    .toEqual(put({ type: playerActions.SWITCH_PLAYER }));
   });
   it('should put MATCH_CARDS_ERROR action on an error', () => {
     const testError = { message: 'cannot match cards' };

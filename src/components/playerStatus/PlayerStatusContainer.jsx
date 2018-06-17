@@ -49,8 +49,7 @@ class PlayerStatusContainer extends Component {
                 <span>{ this.message(player) }</span>
               </PlayerStatusListItem>);
           }) }
-        <CardsRemainingSpan className='cards-remaining'>{this.calcCardsRemaining()}</CardsRemainingSpan>
-        { /* I want to move the switch player turn message to a modal that can be animated later on*/ }
+        <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
         { this.showModal() &&
           <SwitchPlayerTurnsModal
             show
