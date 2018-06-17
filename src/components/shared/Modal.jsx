@@ -1,12 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-// make this generic to handle switch player turn as well.
-export const GameOverModal = ({ show, handleClose, winningNames }) => {
-  const showHideStyle = show ? 'block' : 'none';
+export const GameOverModal = ({ handleClose, winningNames }) => {
   const message = `Well done ${ winningNames }, you won!`;
   return (
-    <ModalDiv showModal={ showHideStyle }>
+    <ModalDiv>
       <ModalSection onClick={ handleClose }>
         <div>Game over!</div>
         <div style={ { fontSize: '6vh' } }>{ message }</div>
@@ -14,11 +12,10 @@ export const GameOverModal = ({ show, handleClose, winningNames }) => {
     </ModalDiv>
   );
 };
-export const SwitchPlayerTurnsModal = ({ show, handleClose, nextPlayerName }) => {
-  const showHideStyle = show ? 'block' : 'none';
+export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
   const nextPlayerMessage = `It's your turn ${nextPlayerName}, click anywhere to start your turn`;
   return (
-    <ModalDiv showModal={ showHideStyle }>
+    <ModalDiv>
       <ModalSection onClick={ handleClose }>
         <div style={ { fontSize: '6vh' } }>{ nextPlayerMessage }</div>
       </ModalSection>
@@ -27,7 +24,7 @@ export const SwitchPlayerTurnsModal = ({ show, handleClose, nextPlayerName }) =>
 };
 
 const ModalDiv = styled.div`
-  display: ${props => props.showModal};
+  display: block;
   position: fixed;
   top: 29%;
   left: 5%;

@@ -49,7 +49,6 @@ class CardsContainer extends Component {
         }
         { this.props.modalVisible &&
           <GameOverModal
-            show={ this.props.modalVisible }
             handleClose={ this.props.hideModal }
             winningNames={ this.props.winningNames }
             nextPlayerName={ null }>

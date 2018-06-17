@@ -13,8 +13,7 @@ const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
 const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
 const GameStatusDiv = GameStatusComponents.GameStatusDiv;
-//TODO: add click events and redux action creators to handle the clicks.
-//Needs work on starting a new game after a game has been won.
+
 class GameStatusContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
@@ -30,12 +29,11 @@ class GameStatusContainer extends Component {
   render() {
     return(
       <GameStatusWrapper gameLevel={ this.props.gameLevel }>
-      <GameStatusDiv>Play again?</GameStatusDiv>
+        <GameStatusDiv>Play again?</GameStatusDiv>
         <ButtonDiv>
-          {/*<ButtonEasy name='easy' margin={ '3px' } onClick={ () => this.props.startGame('easy') }>easy</ButtonEasy>*/}
-          <ButtonEasy name='easy' margin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
-          <ButtonMedium name='medium' margin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
-          <ButtonHard name='hard' margin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
+          <ButtonEasy name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
+          <ButtonMedium name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
+          <ButtonHard name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
         </ButtonDiv>
       </GameStatusWrapper>
     )

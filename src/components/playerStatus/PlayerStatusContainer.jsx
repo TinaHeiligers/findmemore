@@ -50,7 +50,6 @@ class PlayerStatusContainer extends Component {
         <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
         { this.showModal() &&
           <SwitchPlayerTurnsModal
-            show
             handleClose={ this.props.hideModal }
             nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
           </SwitchPlayerTurnsModal>
