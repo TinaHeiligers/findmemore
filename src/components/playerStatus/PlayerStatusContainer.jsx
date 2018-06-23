@@ -13,6 +13,7 @@ const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
+const CardsMatchedSpan = PlayerStatusComponents.CardsMatchedSpan;
 const { updateTotalScores, updatePlayerScore } = playerActions;
 
 class PlayerStatusContainer extends Component {
@@ -54,7 +55,7 @@ class PlayerStatusContainer extends Component {
             nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
           </SwitchPlayerTurnsModal>
         }
-        <div style={ { 'fontSize': 20 } }>Cards matched: { this.props.matchedCardsCount/2 }</div>
+        <CardsMatchedSpan>Cards matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
       </PlayerStatusWrapper>
     );
   }
