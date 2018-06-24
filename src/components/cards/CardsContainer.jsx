@@ -29,7 +29,6 @@ class CardsContainer extends Component {
   }
   selectCard(e, card, index) {
     e.preventDefault();
-    // this is where I need to check if the card selected has already been selected or has been matched.
     if(this.props.gameState === GAME_STATE.get('playerTurn')) {
       this.props.chooseCardRequest(index);
     }
