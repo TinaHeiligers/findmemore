@@ -67,14 +67,14 @@ class StartPage extends Component {
         </StartPageMainDivH2>
         <StartFormDiv>
         { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
-          <StartPageP>{this.message(players.size)}</StartPageP>
+          <StartPageP>{ this.message(players.size) }</StartPageP>
           { players.size === 2 ?
             <div></div> :
             <form
-              ref={ (input) => this.playerForm = input }
-              onSubmit={ (e) => this.handleCreatePlayer(e) }>
+              ref={ input => this.playerForm = input }
+              onSubmit={ e => this.handleCreatePlayer(e) }>
               <InputWithProps
-                innerRef={ (input) => this.name = input }/>
+                innerRef={ input => this.name = input }/>
               <div>
                 <ButtonAddMe>Add Me</ButtonAddMe>
               </div>
