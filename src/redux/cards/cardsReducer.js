@@ -19,6 +19,9 @@ export default function cardsReducer(
       return currentState.set('error', action.error);
     case cardsActions.CHOOSE_CARD: {
       const selectedCard = Immutable.Map(currentState.getIn(['all', action.index]));
+      if (selectedCard.get('selected') || selectedCard.get('matched')) {
+        return currentState;
+      }
       const newCard = selectedCard.merge({
         status: 'visible',
         selected: true,

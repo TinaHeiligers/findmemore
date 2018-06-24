@@ -11,11 +11,12 @@ const {
 } = cardsActions;
 const { hideModal } = sharedActions;
 // UI COMPONENTS
-import CardsComponents from 'components/cards/cardsComponents.jsx'; // path in imports is relative to src.
+import CardsComponents from 'components/cards/cardsComponents.jsx';
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
 import { GameOverModal } from 'components/shared/Modal';
+
 class CardsContainer extends Component {
   static propTypes = {
     cards: PropTypes.instanceOf(Immutable.List),
