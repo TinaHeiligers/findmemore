@@ -1,5 +1,3 @@
-// import { shuffle } from './helpers';
-//note that I repeat the cards in this array with different keys but the same object for the key.
 const cards = [
   {
     name: 'cat',
