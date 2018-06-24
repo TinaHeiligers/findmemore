@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import animalTracks from 'redux/cards/images/animaltracks-pattern.jpg';
 const GameStatusWrapper = styled.div`
   grid-row: 2;
@@ -11,11 +11,8 @@ const GameStatusWrapper = styled.div`
   bottom: 0;
   margin: 0px 10px 0px 0px;
   border: 1px solid gold;
-  filter: drop-shadow(2px 2px 5px #D4AF37);
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 90px;
+  filter: drop-shadow(2px -2px 5px #D4AF37);
+  border-top-right-radius: 65px;
   border-bottom: none;
   border-left: none;
   padding: 1vh;

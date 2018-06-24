@@ -12,7 +12,7 @@ const PlayerStatusWrapper = styled.div`
   border-right: none;
   border-bottom: none;
   border-top-left-radius: 65px;
-  filter: drop-shadow(2px 2px 5px #D4AF37);
+  filter: drop-shadow(-2px -2px 5px #D4AF37);
 `;
 const PlayerStatusListItem = styled.div`
     position: relative;
@@ -30,11 +30,11 @@ const PlayerNameSpan = styled.span`
 `;
 const CardsInfoSpan = styled.span`
   position: relative;
-  top: 45px;
+  top: 0px;
   list-style: none;
   padding-left: 3vw;
   text-align: left;
-  font-size: 2.5vw;
+  font-size: 2vw;
   color: #8b0000;
   text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
 `;
