@@ -5,10 +5,13 @@ npm-debug.log*
 
 # Build stuff
 dist/**
-src/public/*.js 
+src/public/*.js
 src/public/*.json
+src/public/*.png
+src/public/*.jpg
 
 # Miscellaneous
 .DS_Store
 .#*
 *.org
+
