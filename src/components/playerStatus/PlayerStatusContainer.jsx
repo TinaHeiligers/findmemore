@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-import PlayerStatusComponents from 'components/PlayerStatus/playerStatusComponents.jsx';
+import PlayerStatusComponents from 'components/playerStatus/playerStatusComponents.jsx';
 import { SwitchPlayerTurnsModal } from 'components/shared/Modal';
 import playerActions from 'redux/player/playerActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
