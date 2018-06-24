@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-
+/* eslint-disable no-undef*/
 module.exports = {
   entry: {
     vendor: [
@@ -30,3 +30,4 @@ module.exports = {
     })
   ]
 }
+/* eslint-enable no-undef*/
