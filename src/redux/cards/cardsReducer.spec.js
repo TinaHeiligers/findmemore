@@ -4,6 +4,11 @@ import Immutable from 'immutable';
 
 describe('cards reducer -> get cards', () => {
   const defaultState = reducer(initialState, { type: 'unexpected' });
+  let testAllCards;
+  let testSelectedCards;
+  let testDefaultState;
+  let testAction;
+  let testState;
   it('returns an object', () => {
     expect(defaultState).toBeInstanceOf(Object);
   });
@@ -30,30 +35,58 @@ describe('cards reducer -> get cards', () => {
   });
   it('updates state on CHOOSE_CARD', () => {
     const newCard = Immutable.Map({ name: 'testName', image: 'testImage', status: 'hidden', matched: false, selected: false });
-    const testDefaultState = defaultState.setIn(['all', 0], newCard);
+    testDefaultState = defaultState.setIn(['all', 0], newCard);
     let testAction = cardsActions.chooseCard(0);
     const newState = reducer(testDefaultState, testAction);
     const actualNewCardEntries = newState.getIn(['all', 0]);
     // alternate syntax:
     const expectedCardEntries = Immutable.Map({ name: 'testName', image: 'testImage', status: 'visible', matched: false, selected: true })
-    expect(actualNewCardEntries).toEqual(expectedCardEntries)
+    expect(actualNewCardEntries).toEqual(expectedCardEntries);
     // alternate syntax:
     expect(newState.get('all').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
     expect(newState.get('selectedCards').toJS()).toEqual([{ name: 'testName', image: 'testImage', matched: false, selected: true, status: 'visible' }]);
     expect(newState.get('error')).toBeNull();
   });
+  it('does not select an already selected card on CHOOSE_CARD', () => {
+    testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: false },
+      ];
+    testSelectedCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
+    ];
+    testDefaultState = defaultState
+      .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
+      .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
+    testAction = cardsActions.chooseCard(0);
+    testState = reducer(testDefaultState, testAction);
+    expect(testState.get('all').toJS()).toEqual(testAllCards);
+    expect(testState.get('selectedCards').toJS()).toEqual(testSelectedCards);
+  });
+  it('does not select an already matched card on CHOOSE_CARD', () => {
+    testAllCards = [
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: true, selected: false },
+      { name: 'testName1', image: 'testImage1', status: 'visible', matched: true, selected: false },
+      ];
+    testDefaultState = defaultState
+      .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))));
+    testAction = cardsActions.chooseCard(0);
+    testState = reducer(testDefaultState, testAction);
+    expect(testState.get('all').toJS()).toEqual(testAllCards);
+    expect(testState.get('selectedCards').size).toEqual(0);
+  });
   it('updates state on MATCH_CARDS', () => {
-    const testAllCards = [
+    testAllCards = [
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
       { name: 'testName2', image: 'testImage2', status: 'hidden', matched: false, selected: false },
       ];
-    const testSelectedCards = [
+    testSelectedCards = [
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
       { name: 'testName1', image: 'testImage1', status: 'visible', matched: false, selected: true },
     ];
-    const testDefaultState = defaultState
+    testDefaultState = defaultState
     .set('all', Immutable.List(testAllCards.map(card => Immutable.Map(card))))
     .set('selectedCards', Immutable.List(testSelectedCards.map(card => Immutable.Map(card))));
     const testAction = cardsActions.matchCards();
