@@ -16,17 +16,22 @@ const StartPageWrapper = styled.div`
 `;
 const StartPageMainDivH1 = styled.h1`
   text-align: center;
-  font-size: 5vw;
+  font-size: 4vw;
+  margin-top: 3vh;
+  font-weight: bold;
   padding: 1vh;
+  margin-bottom: 2vh;
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
-  font-size: 4vw;
+  font-size: 3vw;
+  font-style: italic;
   padding: 1vh;
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
 })`
+  margin-top: 2vh;
   padding: 1vh;
   text-align: center;
 `;
@@ -44,17 +49,15 @@ const InputWithProps = styled.input.attrs({
   margin: props => props.size || '0.5vw',
   padding: props => props.size || '0.5vw',
 })`
-  outline: 'none',
-  font-family: 'Baloo', sans-serif;
+  outline: 'none';
   text-align: center;
-  font-size: 4vw;
-  border: 0.5vw solid gray;
+  font-size: 1.3vw;
+  border: 3px solid #b0a293;
   margin: 0.5vw;
-  padding: 0.5vw;
+  padding: 1vw;
   border-radius: 2vw;
-  border-style: inset;
+  border-style: double;
   min-width: 50%;
-  min-height: 50%
   &:focus {
     outline: none;
     background: silver;
@@ -64,21 +67,20 @@ const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
 })`
   padding: 0.5vw;
-  font-size: 5vw;
+  font-size: 1vw;
   margin: 0.5vw;
   border: none;
   border-radius: 2vw;
   background: radial-gradient(white,blue);
 `;
 const Button = styled.button`
-  font-family: 'Baloo', sans-serif;
   text-align: center;
   margin: 2vw;
   border-radius: 3vw;
   border: none;
   height: 10vh;
   width: 10vw;
-  font-size: 1.5vw;
+  font-size: 1vw;
 
 `;
 const ButtonEasy = Button.extend`
