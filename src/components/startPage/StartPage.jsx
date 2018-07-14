@@ -33,7 +33,7 @@ class StartPage extends Component {
    message(num) {
     switch (num) {
       case 1:
-        return "Add another player or click a button to start";
+        return "Add another player";
       case 2:
         return "We're all set! Click a button to start:";
       default:
@@ -76,7 +76,7 @@ class StartPage extends Component {
               <InputWithProps
                 innerRef={ input => this.name = input }/>
               <div>
-                <ButtonAddMe>Add Me</ButtonAddMe>
+                <ButtonAddMe>add me</ButtonAddMe>
               </div>
             </form>
           }

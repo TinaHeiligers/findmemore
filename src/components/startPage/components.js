@@ -15,6 +15,7 @@ const StartPageWrapper = styled.div`
   min-height: 50%
 `;
 const StartPageMainDivH1 = styled.h1`
+  font-family: 'Baloo';
   text-align: center;
   font-size: 4vw;
   margin-top: 3vh;
@@ -25,14 +26,12 @@ const StartPageMainDivH1 = styled.h1`
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
   font-size: 3vw;
-  font-style: italic;
   padding: 1vh;
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
 })`
-  margin-top: 2vh;
-  padding: 1vh;
+  padding: 1vh 0 0.5vh 0;
   text-align: center;
 `;
 const StartFormDiv = styled.div`
@@ -46,68 +45,70 @@ const ButtonDiv = styled.div`
 const InputWithProps = styled.input.attrs({
   type: 'text',
   placeholder: 'Player Name',
-  margin: props => props.size || '0.5vw',
-  padding: props => props.size || '0.5vw',
 })`
-  outline: 'none';
   text-align: center;
-  font-size: 1.3vw;
+  font-size: 2vw;
   border: 3px solid #b0a293;
   margin: 0.5vw;
-  padding: 1vw;
-  border-radius: 2vw;
+  padding: 0.2vh 5vw;
+  border-radius: 1vw;
   border-style: double;
-  min-width: 50%;
   &:focus {
     outline: none;
-    background: silver;
   }
 `;
 const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
 })`
-  padding: 0.5vw;
-  font-size: 1vw;
-  margin: 0.5vw;
+  text-align: center;
+  border-radius: 1vw;
   border: none;
-  border-radius: 2vw;
-  background: radial-gradient(white,blue);
+  padding: 0.2vh 3vw;
+  font-size: 2vh;
+  outline: none;
+  font-family: 'Patrick Hand';
+  margin: 1vw;
+  cursor: pointer;
+  border-style: solid;
+  text-shadow: #b0a293 0 0 1px;
+  background: linear-gradient(white,#b0a293);
 `;
 const Button = styled.button`
   text-align: center;
-  margin: 2vw;
   border-radius: 3vw;
   border: none;
-  height: 10vh;
-  width: 10vw;
-  font-size: 1vw;
+  padding: 1.5vh 4vw;
+  font-size: 3vh;
+  outline: none;
+  font-family: 'Baloo';
+  margin: 1vw;
+  cursor: pointer;
+  border-style: solid;
+  text-shadow: white 0 0 1px;
 
 `;
 const ButtonEasy = Button.extend`
-  background: radial-gradient(#00e600, #006800);
+  background: linear-gradient(#6fa579,#046d04);
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
-  &:focus {
-    background: radial-gradient(#006800, #00e600);
-    color: white;
+  &:focus, &:hover {
+    background: linear-gradient(#046d04, #6fa579);
   }
 `;
 const ButtonMedium = Button.extend`
-  background: radial-gradient(#ff8c00, #cd6600);
+  background: linear-gradient(#ff8c00, #cd6600);
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
-  &:focus {
-    background: radial-gradient(#cd6600, #ff8c00);
-    color: white;
+  &:focus, &:hover {
+    background: linear-gradient(#cd6600, #ff8c00);
   }
 `;
 const ButtonHard = Button.extend`
-  background: radial-gradient(#ff0000, #8b0000);
+  background: linear-gradient(#ff0000, #8b0000);
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
-  &:focus {
-    background: radial-gradient(#8b0000, #ff0000);
-    color: white;
+  &:focus, &:hover {
+    background: linear-gradient(#8b0000, #ff0000);
   }
 `;
 const components = {
