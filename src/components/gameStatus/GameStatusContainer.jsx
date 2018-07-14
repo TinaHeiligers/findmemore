@@ -6,11 +6,11 @@ import gameActions from 'redux/game/gameActions';
 const { startGame } = gameActions;
 import styled, { ThemeProvider } from 'styled-components';
 import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx'; // path in imports is relative to src.
-import components from 'components/startPage/components.js'; // path in imports is relative to src.
-const ButtonDiv = components.ButtonDiv;
-const ButtonEasy = components.ButtonEasy;
-const ButtonMedium = components.ButtonMedium;
-const ButtonHard = components.ButtonHard;
+// import components from 'components/startPage/components.js'; // path in imports is relative to src.
+const GameStatusButtonDiv = GameStatusComponents.GameStatusButtonDiv;
+const ButtonEasy = GameStatusComponents.ButtonEasy;
+const ButtonMedium = GameStatusComponents.ButtonMedium;
+const ButtonHard = GameStatusComponents.ButtonHard;
 const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
 const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 
@@ -30,11 +30,11 @@ class GameStatusContainer extends Component {
     return(
       <GameStatusWrapper gameLevel={ this.props.gameLevel }>
         <GameStatusDiv>Play again?</GameStatusDiv>
-        <ButtonDiv>
+        <GameStatusButtonDiv>
           <ButtonEasy name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
           <ButtonMedium name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
           <ButtonHard name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
-        </ButtonDiv>
+        </GameStatusButtonDiv>
       </GameStatusWrapper>
     )
   }
