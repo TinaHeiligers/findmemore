@@ -16,27 +16,26 @@ const PlayerStatusWrapper = styled.div`
 `;
 const PlayerStatusListItem = styled.div`
     position: relative;
+    line-height: 1em;
     top: 10px;
     left: 10px;
     list-style: none;
     padding-left: 3vw;
     text-align: left;
-    font-size: 4vw;
-    color: #8b0000;
-    text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
+    font-size: 5vw;
+    color: black;
 `;
 const PlayerNameSpan = styled.span`
   margin-right: 10px;
 `;
 const CardsInfoSpan = styled.span`
   position: relative;
-  top: 0px;
+  top: 2vh;
   list-style: none;
   padding-left: 3vw;
   text-align: left;
-  font-size: 2vw;
-  color: #8b0000;
-  text-shadow: 0.1vw 0.1vw 0 black, -0.1vw -0.1vw 0 black, 0.1vw -0.1vw 0 black, -0.1vw 0.1vw 0 black, 0.1vw 0.1vw 0 black, 0vw 0vw 1vw black;
+  font-size: 3vw;
+  color: black;
 `;
 const CardsRemainingSpan = CardsInfoSpan.extend`
   left: 10px;

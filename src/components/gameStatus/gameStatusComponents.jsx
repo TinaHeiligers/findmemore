@@ -18,20 +18,62 @@ const GameStatusWrapper = styled.div`
   padding: 1vh;
 `;
 const GameStatusDiv = styled.div`
-color: #8b0000;
-  text-shadow:
-    0.1vw 0.1vw 0 black,
-    -0.1vw -0.1vw 0 black,
-    0.1vw -0.1vw 0 black,
-    -0.1vw 0.1vw 0 black,
-    0.1vw 0.1vw 0 black,
-    0vw 0vw 1vw black;
+  color: black;
   text-align: center;
   margin-top: 0.1vh;
   font-size: 5vw;
 `;
+const GameStatusButtonDiv = styled.div`
+  text-align: center;
+  font-size: 1vw;
+  position: 'inline-flex';
+  margin: 5vh 0px;
+`;
+const Button = styled.button`
+  text-align: center;
+  border-radius: 3vw;
+  border: none;
+  padding: 0.5vh 3vw;
+  font-size: 2vh;
+  outline: none;
+  font-family: 'Baloo';
+  margin: 1vw;
+  cursor: pointer;
+  border-style: solid;
+  text-shadow: white 0 0 1px;
+
+`;
+const ButtonEasy = Button.extend`
+  background: linear-gradient(#6fa579,#046d04);
+  outline: none;
+  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
+  &:focus, &:hover {
+    background: linear-gradient(#046d04, #6fa579);
+  }
+`;
+const ButtonMedium = Button.extend`
+  background: linear-gradient(#ff8c00, #cd6600);
+  outline: none;
+  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
+  &:focus, &:hover {
+    background: linear-gradient(#cd6600, #ff8c00);
+  }
+`;
+const ButtonHard = Button.extend`
+  background: linear-gradient(#ff0000, #8b0000);
+  outline: none;
+  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'}
+  &:focus, &:hover {
+    background: linear-gradient(#8b0000, #ff0000);
+  }
+`;
 const GameStatusComponents = {
   GameStatusWrapper,
   GameStatusDiv,
+  GameStatusButtonDiv,
+  Button,
+  ButtonEasy,
+  ButtonMedium,
+  ButtonHard,
 };
 export default GameStatusComponents;

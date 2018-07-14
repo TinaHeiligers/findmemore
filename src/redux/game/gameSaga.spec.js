@@ -23,6 +23,10 @@ describe('game saga -> startGameWatcher', () => {
 describe('game saga -> startGame', () => {
   const testLevel = { level: 'easy' };
   const startGameGen = startGame(testLevel);
+  it('should put HIDE_MODAL', () => {
+    expect(startGameGen.next().value)
+    .toEqual(put({ type: sharedActions.HIDE_MODAL }));
+  });
   it('should put RESET_PLAYER_SCORES', () => {
     expect(startGameGen.next().value)
     .toEqual(put({ type: playerActions.RESET_PLAYER_SCORES }));
