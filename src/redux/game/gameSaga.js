@@ -16,6 +16,7 @@ export function* startGameWatcher() {
 }
 export function* startGame(payload) {
   try {
+    yield put({ type: sharedActions.HIDE_MODAL });
     yield put({ type: playerActions.RESET_PLAYER_SCORES });
     yield put({ type: playerActions.UPDATE_TOTAL_SCORE, totalScores: 0 });
     yield put({ type: cardsActions.RESET_MATCHED_CARDS_COUNT });

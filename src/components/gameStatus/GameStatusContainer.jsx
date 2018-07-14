@@ -3,7 +3,9 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
+import sharedActions from 'redux/shared/sharedActions';
 const { startGame } = gameActions;
+// const { hideModal } = sharedActions;
 import styled, { ThemeProvider } from 'styled-components';
 import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx'; // path in imports is relative to src.
 // import components from 'components/startPage/components.js'; // path in imports is relative to src.
@@ -24,6 +26,7 @@ class GameStatusContainer extends Component {
   handleStartGame = (e) => {
     e.preventDefault();
     const level = e.target.name;
+    // this.props.hideModal();
     this.props.startGame(level);
   }
   render() {
@@ -45,5 +48,7 @@ export default connect(
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
     router: state.get('router'),
-  }), { startGame })(GameStatusContainer);
+  }), { startGame,
+   // hideModal,
+    })(GameStatusContainer);
 
