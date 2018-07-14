@@ -17,21 +17,25 @@ const StartPageWrapper = styled.div`
 const StartPageMainDivH1 = styled.h1`
   font-family: 'Baloo';
   text-align: center;
-  font-size: 4vw;
+  font-size: 5vw;
   margin-top: 3vh;
-  font-weight: bold;
-  padding: 1vh;
-  margin-bottom: 2vh;
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
   font-size: 3vw;
-  padding: 1vh;
+  padding-bottom: 1vh;
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
 })`
-  padding: 1vh 0 0.5vh 0;
+  font-size: 4vh;
+  text-align: center;
+`;
+const StartPageP2 = styled.p.attrs({
+  fontSize: props => props.size || '2em',
+})`
+  font-size: 3vh;
+  padding: 1vh 0;
   text-align: center;
 `;
 const StartFormDiv = styled.div`
@@ -41,6 +45,9 @@ const StartFormDiv = styled.div`
 const ButtonDiv = styled.div`
   text-align: center;
   font-size: 1vw;
+  position: absolute;
+  bottom: 10vh;
+  width: 100%;
 `;
 const InputWithProps = styled.input.attrs({
   type: 'text',
@@ -61,17 +68,19 @@ const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
 })`
   text-align: center;
+  font-size: 2vw;
+  border: 3px solid #100f0d;
+  margin: 0.5vw;
+  padding: 0.2vh 5vw;
   border-radius: 1vw;
-  border: none;
-  padding: 0.2vh 3vw;
-  font-size: 2vh;
   outline: none;
   font-family: 'Patrick Hand';
-  margin: 1vw;
   cursor: pointer;
-  border-style: solid;
   text-shadow: #b0a293 0 0 1px;
   background: linear-gradient(white,#b0a293);
+  &:focus, &:hover {
+    background: linear-gradient(#b0a293, white);
+  }
 `;
 const Button = styled.button`
   text-align: center;
@@ -116,6 +125,7 @@ const components = {
   StartPageMainDivH1,
   StartPageMainDivH2,
   StartPageP,
+  StartPageP2,
   StartFormDiv,
   Button,
   ButtonAddMe,

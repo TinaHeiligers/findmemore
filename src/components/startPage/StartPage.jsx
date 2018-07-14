@@ -8,6 +8,7 @@ const StartPageWrapper = components.StartPageWrapper;
 const StartPageMainDivH1 = components.StartPageMainDivH1;
 const StartPageMainDivH2 = components.StartPageMainDivH2;
 const StartPageP = components.StartPageP;
+const StartPageP2 = components.StartPageP2;
 const StartFormDiv = components.StartFormDiv;
 const ButtonDiv = components.ButtonDiv;
 const InputWithProps = components.InputWithProps;
@@ -67,15 +68,16 @@ class StartPage extends Component {
         </StartPageMainDivH2>
         <StartFormDiv>
         { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
-          <StartPageP>{ this.message(players.size) }</StartPageP>
+          <StartPageP2>{ this.message(players.size) }</StartPageP2>
           { players.size === 2 ?
             <div></div> :
             <form
+              style={ { display: 'inline' } }
               ref={ input => this.playerForm = input }
               onSubmit={ e => this.handleCreatePlayer(e) }>
+              <div>
               <InputWithProps
                 innerRef={ input => this.name = input }/>
-              <div>
                 <ButtonAddMe>add me</ButtonAddMe>
               </div>
             </form>
