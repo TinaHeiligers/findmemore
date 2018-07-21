@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 // TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
-  font-family: 'Baloo', sans-serif;
+  font-family: 'Muli', sans-serif;
   box-shadow: 0 0 2vw black;
   position: absolute;
   top:4vh;
@@ -15,13 +15,15 @@ const StartPageWrapper = styled.div`
   min-height: 50%
 `;
 const StartPageMainDivH1 = styled.h1`
+  font-family: 'Lobster', cursive;
   text-align: center;
-  font-size: 5vw;
+  font-size: 6vw;
   padding: 1vh;
 `;
 const StartPageMainDivH2 = styled.h2`
+  font-family: 'Lobster', cursive;
   text-align: center;
-  font-size: 4vw;
+  font-size: 3vw;
   padding: 1vh;
 `;
 const StartPageP = styled.p.attrs({
@@ -40,14 +42,14 @@ const ButtonDiv = styled.div`
 `;
 const InputWithProps = styled.input.attrs({
   type: 'text',
-  placeholder: 'Player Name',
+  placeholder: 'name',
   margin: props => props.size || '0.5vw',
   padding: props => props.size || '0.5vw',
 })`
   outline: 'none',
-  font-family: 'Baloo', sans-serif;
+  font-family: 'Muli', sans-serif;
   text-align: center;
-  font-size: 4vw;
+  font-size: 2vw;
   border: 0.5vw solid gray;
   margin: 0.5vw;
   padding: 0.5vw;
@@ -63,15 +65,16 @@ const InputWithProps = styled.input.attrs({
 const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
 })`
-  padding: 0.5vw;
-  font-size: 5vw;
+  font-family: 'Lobster', cursive;
+  padding: 0.5vh 1vw;
+  font-size: 2vw;
   margin: 0.5vw;
   border: none;
-  border-radius: 2vw;
+  border-radius: 1vw;
   background: radial-gradient(white,blue);
 `;
 const Button = styled.button`
-  font-family: 'Baloo', sans-serif;
+  font-family: 'Muli', sans-serif;
   text-align: center;
   margin: 2vw;
   border-radius: 3vw;

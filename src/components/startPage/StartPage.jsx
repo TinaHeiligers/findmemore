@@ -37,7 +37,7 @@ class StartPage extends Component {
       case 2:
         return "We're all set! Click a button to start:";
       default:
-        return "Please add your name to start playing!";
+        return "Enter your name";
     }
   }
   handleCreatePlayer(event) {
@@ -59,11 +59,11 @@ class StartPage extends Component {
       <StartPageWrapper>
         <ThemeProvider theme={ theme }>
           <StartPageMainDivH1>
-            Find Me
+            FIND ME
           </StartPageMainDivH1>
         </ThemeProvider>
         <StartPageMainDivH2>
-          Find my matching partner in all the cards!
+          Match a card with it's partner
         </StartPageMainDivH2>
         <StartFormDiv>
         { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
@@ -76,7 +76,7 @@ class StartPage extends Component {
               <InputWithProps
                 innerRef={ input => this.name = input }/>
               <div>
-                <ButtonAddMe>Add Me</ButtonAddMe>
+                <ButtonAddMe>add</ButtonAddMe>
               </div>
             </form>
           }
