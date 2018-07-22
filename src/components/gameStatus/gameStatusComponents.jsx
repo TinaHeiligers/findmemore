@@ -21,7 +21,7 @@ const GameStatusDiv = styled.div`
   color: black;
   text-align: center;
   margin-top: 0.1vh;
-  font-size: 5vw;
+  font-size: 2vw;
 `;
 const GameStatusButtonDiv = styled.div`
   text-align: center;

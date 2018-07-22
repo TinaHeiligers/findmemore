@@ -22,7 +22,7 @@ const PlayerStatusListItem = styled.div`
     list-style: none;
     padding-left: 3vw;
     text-align: left;
-    font-size: 5vw;
+    font-size: 4vw;
     color: black;
 `;
 const PlayerNameSpan = styled.span`
@@ -34,7 +34,7 @@ const CardsInfoSpan = styled.span`
   list-style: none;
   padding-left: 3vw;
   text-align: left;
-  font-size: 3vw;
+  font-size: 2vw;
   color: black;
 `;
 const CardsRemainingSpan = CardsInfoSpan.extend`
