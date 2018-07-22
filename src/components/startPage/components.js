@@ -15,7 +15,7 @@ const StartPageWrapper = styled.div`
   min-height: 50%
 `;
 const StartPageMainDivH1 = styled.h1`
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'sans-serif';
   text-align: center;
   font-size: 13vw;
   margin-top: 3vh;
@@ -90,7 +90,7 @@ const Button = styled.button`
   padding: 1.5vh 4vw;
   font-size: 3vh;
   outline: none;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', 'sans-serif';
   margin: 1vw;
   cursor: pointer;
   border-style: solid;
