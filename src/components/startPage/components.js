@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 // TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
   font-family: 'Raleway', sans-serif;
@@ -9,8 +9,7 @@ const StartPageWrapper = styled.div`
   bottom:4vh;
   right:4vw;
   border-radius: 3vw;
-  background-color: #987;
-  opacity: 0.7;
+  background-color: #99887794;
   min-width: 50%;
   min-height: 50%
 `;
@@ -19,14 +18,14 @@ const StartPageMainDivH1 = styled.h1`
   text-align: center;
   font-size: 13vw;
   margin-top: 3vh;
-  color: hsla(112, 80%, 3%, 1);
+  color: hsla(112, 79%, 6%, 1);
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
   font-size: 3vw;
   font-style: italic;
   padding-bottom: 4vh;
-  color: hsla(112,80%,9%,1);
+  color: hsla(119, 3%, 10%, 1);
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
