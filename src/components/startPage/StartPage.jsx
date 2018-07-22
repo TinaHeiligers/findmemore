@@ -36,9 +36,9 @@ class StartPage extends Component {
       case 1:
         return "Add another player";
       case 2:
-        return "We're all set! Click a button to start:";
+        return "We're all set!";
       default:
-        return "Please add your name to start playing!";
+        return "";
     }
   }
   handleCreatePlayer(event) {
