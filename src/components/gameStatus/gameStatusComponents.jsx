@@ -40,7 +40,7 @@ const Button = styled.button`
   margin: 1vw;
   cursor: pointer;
   border-style: solid;
-  text-shadow: white 0 0 1px;
+  /*text-shadow: white 0 0 1px;*/
 
 `;
 const ButtonEasy = Button.extend`
@@ -62,7 +62,7 @@ const ButtonMedium = Button.extend`
 const ButtonHard = Button.extend`
   background: linear-gradient(#ff0000, #8b0000);
   outline: none;
-  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'}
+  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#8b0000, #ff0000);
   }

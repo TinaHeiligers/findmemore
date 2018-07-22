@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 // TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
-  font-family: 'Baloo', sans-serif;
+  font-family: 'Raleway', sans-serif;
   box-shadow: 0 0 2vw black;
   position: absolute;
   top:4vh;
@@ -15,15 +15,16 @@ const StartPageWrapper = styled.div`
   min-height: 50%
 `;
 const StartPageMainDivH1 = styled.h1`
-  font-family: 'Baloo';
+  font-family: 'Raleway', sans-serif;
   text-align: center;
-  font-size: 5vw;
+  font-size: 13vw;
   margin-top: 3vh;
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
-  font-size: 3vw;
-  padding-bottom: 1vh;
+  font-size: 4vw;
+  font-style: italic;
+  padding-bottom: 6vh;
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
@@ -56,8 +57,8 @@ const InputWithProps = styled.input.attrs({
   text-align: center;
   font-size: 2vw;
   border: 3px solid #b0a293;
-  margin: 0.5vw;
-  padding: 0.2vh 5vw;
+  margin: 1.0vh;
+  padding: 2.2vh 5vw;
   border-radius: 1vw;
   border-style: double;
   &:focus {
@@ -70,11 +71,11 @@ const ButtonAddMe = styled.button.attrs({
   text-align: center;
   font-size: 2vw;
   border: 3px solid #100f0d;
-  margin: 0.5vw;
-  padding: 0.2vh 5vw;
+  margin: 1.0vw;
+  padding: 2.2vh 2vw;
   border-radius: 1vw;
   outline: none;
-  font-family: 'Patrick Hand';
+  font-family: 'Merriweather', serif;
   cursor: pointer;
   text-shadow: #b0a293 0 0 1px;
   background: linear-gradient(white,#b0a293);
@@ -89,7 +90,7 @@ const Button = styled.button`
   padding: 1.5vh 4vw;
   font-size: 3vh;
   outline: none;
-  font-family: 'Baloo';
+  font-family: 'Raleway', sans-serif;
   margin: 1vw;
   cursor: pointer;
   border-style: solid;
