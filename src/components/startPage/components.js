@@ -19,12 +19,14 @@ const StartPageMainDivH1 = styled.h1`
   text-align: center;
   font-size: 13vw;
   margin-top: 3vh;
+  color: hsla(112, 80%, 3%, 1);
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
   font-size: 4vw;
   font-style: italic;
   padding-bottom: 6vh;
+  color: hsla(112, 80%, 9%, 1);
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
@@ -94,13 +96,12 @@ const Button = styled.button`
   margin: 1vw;
   cursor: pointer;
   border-style: solid;
-  text-shadow: white 0 0 1px;
-
 `;
 const ButtonEasy = Button.extend`
   background: linear-gradient(#6fa579,#046d04);
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
+  color: hsla(100, 100%, 2%, 1);
   &:focus, &:hover {
     background: linear-gradient(#046d04, #6fa579);
   }
