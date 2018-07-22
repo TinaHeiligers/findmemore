@@ -23,16 +23,18 @@ const StartPageMainDivH1 = styled.h1`
 `;
 const StartPageMainDivH2 = styled.h2`
   text-align: center;
-  font-size: 4vw;
+  font-size: 3vw;
   font-style: italic;
-  padding-bottom: 6vh;
-  color: hsla(112, 80%, 9%, 1);
+  padding-bottom: 4vh;
+  color: hsla(112,80%,9%,1);
 `;
 const StartPageP = styled.p.attrs({
   fontSize: props => props.size || '1em',
 })`
   font-size: 4vh;
+  font-weight: bold;
   text-align: center;
+  color: hsla(120, 44%, 7%, 1);
 `;
 const StartPageP2 = styled.p.attrs({
   fontSize: props => props.size || '2em',
@@ -40,6 +42,7 @@ const StartPageP2 = styled.p.attrs({
   font-size: 3vh;
   padding: 1vh 0;
   text-align: center;
+  color: hsl(120, 44%, 11%);
 `;
 const StartFormDiv = styled.div`
   text-align: center;
@@ -109,6 +112,7 @@ const ButtonEasy = Button.extend`
 const ButtonMedium = Button.extend`
   background: linear-gradient(#ff8c00, #cd6600);
   outline: none;
+  color: hsl(30, 97%, 0%);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#cd6600, #ff8c00);
@@ -117,6 +121,7 @@ const ButtonMedium = Button.extend`
 const ButtonHard = Button.extend`
   background: linear-gradient(#ff0000, #8b0000);
   outline: none;
+  color: hsla(20, 93%, 2%, 1);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#8b0000, #ff0000);

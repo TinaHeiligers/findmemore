@@ -47,6 +47,7 @@ const ButtonEasy = Button.extend`
   background: linear-gradient(#6fa579,#046d04);
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
+  color: hsla(100, 100%, 2%, 1);
   &:focus, &:hover {
     background: linear-gradient(#046d04, #6fa579);
   }
@@ -54,6 +55,7 @@ const ButtonEasy = Button.extend`
 const ButtonMedium = Button.extend`
   background: linear-gradient(#ff8c00, #cd6600);
   outline: none;
+  color: hsl(30, 97%, 0%);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#cd6600, #ff8c00);
@@ -62,6 +64,7 @@ const ButtonMedium = Button.extend`
 const ButtonHard = Button.extend`
   background: linear-gradient(#ff0000, #8b0000);
   outline: none;
+  color: hsla(20, 93%, 2%, 1);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#8b0000, #ff0000);
