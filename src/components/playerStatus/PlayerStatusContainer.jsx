@@ -10,6 +10,7 @@ import sharedActions from 'redux/shared/sharedActions';
 const { hideModal } = sharedActions;
 
 const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
+const InfoDiv = PlayerStatusComponents.InfoDiv;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
@@ -36,28 +37,28 @@ class PlayerStatusContainer extends Component {
     return this.props.gameState === GAME_STATE.get('switchTurns');
   }
   calcCardsRemaining() {
-    return `Cards remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`
+    return `Cards remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`;
   }
   render() {
     return(
       <PlayerStatusWrapper>
+        <InfoDiv>
           { this.props.players.map((player, index) => {
             return (
               <PlayerStatusListItem key={ index }>
                 <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
-                <span>{ this.message(player) }</span>
+                <span style={ { fontSize: '1.5em' } }>{ this.message(player) }</span>
               </PlayerStatusListItem>);
           }) }
-        <div style={ { marginTop: '4vh' } }>
-          <CardsRemainingSpan>{ this.calcCardsRemaining() }</CardsRemainingSpan>
-          { this.showModal() &&
-            <SwitchPlayerTurnsModal
-              handleClose={ this.props.hideModal }
-              nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
-            </SwitchPlayerTurnsModal>
-          }
-          <CardsMatchedSpan>Cards matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
-        </div>
+        </InfoDiv>
+        <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
+        { this.showModal() &&
+          <SwitchPlayerTurnsModal
+            handleClose={ this.props.hideModal }
+            nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
+          </SwitchPlayerTurnsModal>
+        }
+        <CardsMatchedSpan>Cards matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
       </PlayerStatusWrapper>
     );
   }
