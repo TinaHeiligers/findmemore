@@ -41,30 +41,30 @@ const Button = styled.button`
 
 `;
 const ButtonEasy = Button.extend`
-  background: linear-gradient(#6fa579,#046d04);
+  background: linear-gradient(hsla(131, 23%, 54%, 0.5),hsla(120, 93%, 22%, 0.5));
   outline: none;
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   color: hsla(100, 100%, 2%, 1);
   &:focus, &:hover {
-    background: linear-gradient(#046d04, #6fa579);
+    background: linear-gradient(hsla(120, 93%, 22%, 0.5),hsla(131, 23%, 54%, 0.5));
   }
 `;
 const ButtonMedium = Button.extend`
-  background: linear-gradient(#ff8c00, #cd6600);
+  background: linear-gradient(hsla(33, 100%, 50%, 0.5),hsla(30, 100%, 40%, 0.5));
   outline: none;
   color: hsl(30, 97%, 0%);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
-    background: linear-gradient(#cd6600, #ff8c00);
+    background: linear-gradient(hsla(30, 100%, 40%, 0.5), hsla(33, 100%, 50%, 0.5));
   }
 `;
 const ButtonHard = Button.extend`
-  background: linear-gradient(#ff0000, #8b0000);
+  background: linear-gradient(hsla(0, 100%, 50%, 0.5),hsla(0, 100%, 27%, 0.5));
   outline: none;
   color: hsla(20, 93%, 2%, 1);
   margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
-    background: linear-gradient(#8b0000, #ff0000);
+    background: linear-gradient(hsla(0, 100%, 27%, 0.5), hsla(0, 100%, 50%, 0.5));
   }
 `;
 const GameStatusComponents = {

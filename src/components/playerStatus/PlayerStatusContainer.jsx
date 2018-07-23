@@ -11,6 +11,7 @@ const { hideModal } = sharedActions;
 
 const PlayerStatusWrapper = PlayerStatusComponents.PlayerStatusWrapper;
 const InfoDiv = PlayerStatusComponents.InfoDiv;
+const CardsInfo = PlayerStatusComponents.CardsInfo;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
@@ -51,6 +52,7 @@ class PlayerStatusContainer extends Component {
               </PlayerStatusListItem>);
           }) }
         </InfoDiv>
+        <CardsInfo>
         <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
         { this.showModal() &&
           <SwitchPlayerTurnsModal
@@ -59,6 +61,7 @@ class PlayerStatusContainer extends Component {
           </SwitchPlayerTurnsModal>
         }
         <CardsMatchedSpan>Cards matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
+        </CardsInfo>
       </PlayerStatusWrapper>
     );
   }

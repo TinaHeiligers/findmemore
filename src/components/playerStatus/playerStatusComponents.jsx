@@ -21,6 +21,13 @@ const InfoDiv = styled.div`
   margin-bottom: 2.8vh;
   margin-top: 2vh;
 `;
+const CardsInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-right: 5em;
+  margin-bottom: 2.8vh;
+  margin-top: 2vh;
+`;
 const PlayerStatusListItem = styled.div`
   position: relative;
   line-height: 1em;
@@ -59,6 +66,7 @@ const CardsMatchedSpan = CardsInfoSpan.extend`
 const PlayerStatusComponents = {
   PlayerStatusWrapper,
   InfoDiv,
+  CardsInfo,
   PlayerStatusListItem,
   PlayerNameSpan,
   CardsRemainingSpan,
