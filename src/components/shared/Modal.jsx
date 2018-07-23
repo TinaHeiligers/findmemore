@@ -17,7 +17,7 @@ export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
   return (
     <ModalDiv>
       <PlayerTurnModalSection onClick={ handleClose }>
-        <div style={ { fontSize: '6vh', textAlign: 'center' } }>{ nextPlayerMessage }</div>
+        <div style={ { fontSize: '4vh', textAlign: 'center' } }>{ nextPlayerMessage }</div>
       </PlayerTurnModalSection>
     </ModalDiv>
   );
@@ -26,7 +26,7 @@ export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
 const ModalDiv = styled.div`
   display: block;
   position: fixed;
-  top: 29%;
+  top: 0%;
   left: 5%;
   width: 90%;
   background: #fcfcdf6e;
@@ -35,17 +35,17 @@ const ModalDiv = styled.div`
 `
 const GameOverModalSection = styled.section`
   color: black;
-  font-size: 6vh;
-  line-height: 6vh;
-  padding: 2vw;
+  font-size: 4vh;
+  line-height: 5vh;
+  padding: 1vw;
   margin-top: 0.1vh;
   cursor: pointer;
 `;
 const PlayerTurnModalSection = styled.section`
   color: black;
-  font-size: 6vh;
-  line-height: 6vh;
-  padding: 2vw;
+  font-size: 4vh;
+  line-height: 4vh;
+  padding: 1vw;
   margin-top: 0.1vh;
 `;
 

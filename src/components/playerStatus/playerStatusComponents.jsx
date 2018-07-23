@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import animalTracks from 'redux/cards/images/animaltracks-pattern.jpg';
 const PlayerStatusWrapper = styled.div`
   grid-row: 2;
-  grid-column: 2;
+  grid-column: 1;
   background-image: url(${animalTracks});
   background-repeat: repeat;
   background-size: cover;
