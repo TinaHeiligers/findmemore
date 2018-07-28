@@ -78,7 +78,7 @@ class StartPage extends Component {
               <div>
               <InputWithProps
                 innerRef={ input => this.name = input }/>
-                <ButtonAddMe>add me</ButtonAddMe>
+                <ButtonAddMe>Add</ButtonAddMe>
               </div>
             </form>
           }
