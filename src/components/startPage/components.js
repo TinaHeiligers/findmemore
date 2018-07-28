@@ -86,7 +86,7 @@ const ButtonAddMe = styled.button.attrs({
 `;
 const Button = styled.button`
   text-align: center;
-  border-radius: 3vw;
+  border-radius: 10px;
   border: none;
   /* padding: 1.5vh 4vw; */
   font-size: 1.5em;
