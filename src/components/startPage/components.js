@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 // TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
-  font-family: 'Raleway',sans-serif;
+  /*font-family: 'Raleway', 'sans-serif';*/
   box-shadow: 0 0 2vw black;
   position: absolute;
   top: 4%;
@@ -15,7 +15,7 @@ const StartPageWrapper = styled.div`
 `;
 const StartPageMainDivH1 = styled.h1`
   margin-top: 4vh;
-  font-family: 'Raleway','sans-serif';
+  /*font-family: 'Raleway','sans-serif';*/
   text-align: center;
   font-size: 4em;
   color: hsla(112,79%,6%,1);
@@ -76,7 +76,7 @@ const ButtonAddMe = styled.button.attrs({
   width: 20%;
   border-radius: 1vw;
   outline: none;
-  font-family: 'Merriweather',serif;
+  // font-family: 'Merriweather',serif;
   cursor: pointer;
   text-shadow: #b0a293 0 0 1px;
   background: linear-gradient(white,#b0a293);
@@ -91,7 +91,7 @@ const Button = styled.button`
   /* padding: 1.5vh 4vw; */
   font-size: 1.5em;
   outline: none;
-  font-family: 'Raleway','sans-serif';
+  /*font-family: 'Raleway','sans-serif';*/
   /* margin: 1vw; */
   cursor: pointer;
   border-style: solid;
@@ -119,7 +119,7 @@ const ButtonHard = Button.extend`
   background: linear-gradient(#ff0000,#8b0000);
   outline: none;
   color: hsla(20,93%,2%,1);
-  margin: ${props => props.smallMargin ? props.smallMargin : '0vw'};
+  margin: ${props => props.smallMargin ? props.smallMargin : '1vw'};
   &:focus, &:hover {
     background: linear-gradient(#8b0000, #ff0000);
   }
