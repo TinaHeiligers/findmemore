@@ -67,19 +67,17 @@ class StartPage extends Component {
           Find my matching partner in all the cards!
         </StartPageMainDivH2>
         <StartFormDiv>
-        { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
+        { players && players.map((player, index) => <StartPageP key={ index }>Welcome { player.get('name') }!</StartPageP>) }
           <StartPageP2>{ this.message(players.size) }</StartPageP2>
           { players.size === 2 ?
             <div></div> :
             <form
-              style={ { display: 'inline' } }
+              style={ { display: 'inline-flex', alignItems: 'center',position: 'absolute', bottom: '40vh', left: '3.5vw' } }
               ref={ input => this.playerForm = input }
               onSubmit={ e => this.handleCreatePlayer(e) }>
-              <div>
               <InputWithProps
                 innerRef={ input => this.name = input }/>
-                <ButtonAddMe>Add</ButtonAddMe>
-              </div>
+              <ButtonAddMe>Add</ButtonAddMe>
             </form>
           }
         </StartFormDiv>
