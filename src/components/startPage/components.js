@@ -57,6 +57,9 @@ const InputWithProps = styled.input.attrs({
   &:focus {
     outline: none;
   }
+  @media (min-width: 767px) {
+    width: 41vw;
+  }
 `;
 const ButtonDiv = styled.div`
   font-size: 1em;
@@ -81,6 +84,9 @@ const ButtonAddMe = styled.button.attrs({
   background: linear-gradient(white,#b0a293);
   &:focus, &:hover {
     background: linear-gradient(#b0a293, white);
+  }
+  @media (min-width: 767px) {
+    width: 14vw;
   }
 `;
 const Button = styled.button`

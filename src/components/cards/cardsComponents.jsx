@@ -4,20 +4,20 @@ const gameLevelColumnHash = {
   'easy': 'repeat(4, 1fr)',
   'medium': 'repeat(4, 1fr)',
   'hard': 'repeat(6, 1fr)',
-}
+};
 const gameLevelRowHash = {
   'easy': 'repeat(3, 1fr)',
   'medium': 'repeat(4, 1fr)',
   'hard': 'repeat(4, 1fr)',
-}
+};
 const CardsWrapper = styled.div`
   grid-row: 1;
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: ${props => gameLevelColumnHash[props.gameLevel]};
   grid-template-rows: ${props => gameLevelRowHash[props.gameLevel]};
-  grid-gap: 10px;
-  padding: 60px 175px;
+  grid-gap: 2%;
+  padding: 6vh 3vw;
 `;
 const CardDiv = styled.div`
   background-image: url(${props => (props.image && props.status === 'visible') ? props.image : cardBackImage});

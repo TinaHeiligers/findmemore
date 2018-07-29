@@ -5,3 +5,9 @@
   bottom: 40vh;
   left: 3.5vw;
 }
+
+@media (min-width: 767px) {
+  .inputform {
+    left: 19vw;
+  }
+}
