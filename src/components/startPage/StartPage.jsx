@@ -16,6 +16,7 @@ const ButtonAddMe = components.ButtonAddMe;
 const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
+import 'components/startPage/startPage.css';
 // REDUX
 import playersActions from 'redux/player/playerActions';
 import gameActions from 'redux/game/gameActions';
@@ -72,7 +73,7 @@ class StartPage extends Component {
           { players.size === 2 ?
             <div></div> :
             <form
-              style={ { display: 'inline-flex', alignItems: 'center',position: 'absolute', bottom: '40vh', left: '3.5vw' } }
+              className='inputform'
               ref={ input => this.playerForm = input }
               onSubmit={ e => this.handleCreatePlayer(e) }>
               <InputWithProps
