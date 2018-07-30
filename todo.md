@@ -9,4 +9,8 @@
 - [ ] Add options to select card categories to play
 
 ## Design TODO's:
+Have 2 grid rows
+Only show the player info during game play (if ! gameOver)
+Have a button to opt into restart
+At game over, replace player status (info) with buttons to start a new game
 add media queries to change grid from 1 column, 3 rows to 2 columns, 1 row for landscape views (ipads and desktop)

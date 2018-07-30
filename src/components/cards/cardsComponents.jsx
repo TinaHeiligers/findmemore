@@ -11,13 +11,13 @@ const gameLevelRowHash = {
   'hard': 'repeat(4, 1fr)',
 };
 const CardsWrapper = styled.div`
-  grid-row: 1;
+  grid-row: 2;
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: ${props => gameLevelColumnHash[props.gameLevel]};
   grid-template-rows: ${props => gameLevelRowHash[props.gameLevel]};
   grid-gap: 2%;
-  padding: 16vh 3vw 13vh 3vw;
+  padding: 16vh 3vw 5vh 3vw;
 `;
 const CardDiv = styled.div`
   background-image: url(${props => (props.image && props.status === 'visible') ? props.image : cardBackImage});

@@ -26,7 +26,7 @@ export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
 const ModalDiv = styled.div`
   display: block;
   position: fixed;
-  top: 4vh;
+  top: 28vh;
   left: 4.5vw;
   width: 91vw;
   background: #fcfcdf6e;

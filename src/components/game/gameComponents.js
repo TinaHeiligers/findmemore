@@ -5,11 +5,11 @@ const GameWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   grid-template-columns: 100vw;
-  grid-template-rows: 70vh 15vh 15vh;
+  grid-template-rows: 25vh 75vh;
 `;
 
 const PlayerWrapper = styled.div`
-  grid-row: 2;
+  grid-row: 1;
   grid-column: 1;
   background-color: red;
 `;

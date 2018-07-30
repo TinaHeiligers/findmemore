@@ -25,9 +25,9 @@ class GameContainer extends Component {
   render() {
     return (
       <GameWrapper onClick={ (e) => this.watchClick(e) }>
+        { GAME_STATE.get('over') === this.props.gameState ?
+          <GameStatusContainer /> : <PlayerStatusContainer /> }
         <CardsContainer />
-        <GameStatusContainer />
-        <PlayerStatusContainer />
       </GameWrapper>
     );
   }
