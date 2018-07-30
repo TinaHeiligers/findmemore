@@ -43,7 +43,6 @@ class CardsContainer extends Component {
               image={ card.get('status') === 'visible' ? card.get('image') : cardBackImage }
               size={ card.get('status') === 'visible' ? 'cover' : null }
               onClick={ e => this.selectCard(e, card, index) }>
-              { card.get('status') === 'visible' ? card.get('name') : '' }
             </CardDivDynamic>
             );
           })

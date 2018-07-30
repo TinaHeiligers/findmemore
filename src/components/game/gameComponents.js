@@ -4,8 +4,8 @@ const GameWrapper = styled.div`
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 84vw 16vw;
-  grid-template-rows: 75vh 25vh;
+  grid-template-columns: 100vw;
+  grid-template-rows: 70vh 15vh 15vh;
 `;
 
 const PlayerWrapper = styled.div`
