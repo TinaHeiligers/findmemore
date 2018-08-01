@@ -16,8 +16,8 @@ const CardsWrapper = styled.div`
   display: grid;
   grid-template-columns: ${props => gameLevelColumnHash[props.gameLevel]};
   grid-template-rows: ${props => gameLevelRowHash[props.gameLevel]};
-  grid-gap: 2%;
-  padding: 16vh 3vw 5vh 3vw;
+  grid-gap: 3%;
+  padding: 10vh 3vw 0vh 3vw;
 `;
 const CardDiv = styled.div`
   background-image: url(${props => (props.image && props.status === 'visible') ? props.image : cardBackImage});

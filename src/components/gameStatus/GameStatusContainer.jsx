@@ -32,7 +32,6 @@ class GameStatusContainer extends Component {
   render() {
     return(
       <GameStatusWrapper gameLevel={ this.props.gameLevel }>
-        <GameStatusDiv>Restart</GameStatusDiv>
         <GameStatusButtonDiv>
           <ButtonEasy name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
           <ButtonMedium name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>

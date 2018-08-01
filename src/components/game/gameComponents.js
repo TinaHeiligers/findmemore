@@ -5,7 +5,7 @@ const GameWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   grid-template-columns: 100vw;
-  grid-template-rows: 25vh 75vh;
+  grid-template-rows: 20vh 70vh 10vh;
 `;
 
 const PlayerWrapper = styled.div`

@@ -6,7 +6,7 @@ const PlayerStatusWrapper = styled.div`
   background-image: url(${animalTracks});
   background-repeat: repeat;
   background-size: cover;
-  margin: 8vh 1vw 1vh 1vw;
+  margin: 3vh 1vw 4vh 1vw;
   padding: 1vh;
   border: 1px solid gold;
   border-radius: 10px;
@@ -19,13 +19,11 @@ const InfoDiv = styled.div`
 const CardsInfo = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 3vh;
 `;
 const PlayerStatusListItem = styled.div`
   position: relative;
   list-style: none;
   text-align: left;
-  /*font-size: 1em;*/
   color: black;
 `;
 const PlayerNameSpan = styled.span`

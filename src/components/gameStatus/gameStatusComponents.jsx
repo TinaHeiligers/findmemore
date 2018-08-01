@@ -1,26 +1,18 @@
 import styled from 'styled-components';
-import animalTracks from 'redux/cards/images/animaltracks-pattern.jpg';
 const GameStatusWrapper = styled.div`
-  background-image: url(${animalTracks});
-  grid-row: 1;
-  grid-column: 1;
-  left: 0;
-  bottom: 0;
-  margin: 10px 10px;
-  border: 1px solid gold;
-  filter: drop-shadow(2px 2px 5px #D4AF37);
-  border-radius: 10px;
+    grid-row: 3;
+    grid-column: 1;
 `;
 const GameStatusDiv = styled.div`
   color: black;
   text-align: center;
   font-size: 1.3em;
-  margin-top: 2vh;
 `;
 const GameStatusButtonDiv = styled.div`
   text-align: center;
   font-size: 1em;
-  position: 'inline-flex';
+  margin-top: 2.5vh;
+  position: inline-flex;
 `;
 const Button = styled.button`
   text-align: center;

@@ -26,13 +26,13 @@ export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
 const ModalDiv = styled.div`
   display: block;
   position: fixed;
-  top: 28vh;
+  top: 18.5vh;
   left: 4.5vw;
   width: 91vw;
   background: #fcfcdf6e;
   border-radius: 10px;
   border: 3px solid black;
-`
+`;
 const GameOverModalSection = styled.section`
   color: black;
   font-size: 1.2em;
