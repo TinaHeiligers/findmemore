@@ -6,7 +6,7 @@ const PlayerStatusWrapper = styled.div`
   background-image: url(${animalTracks});
   background-repeat: repeat;
   background-size: cover;
-  margin: 3vh 1vw 4vh 1vw;
+  margin: 3vh 1vw 3vh 1vw;
   padding: 1vh;
   border: 1px solid gold;
   border-radius: 10px;

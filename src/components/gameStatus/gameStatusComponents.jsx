@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 const GameStatusWrapper = styled.div`
-    grid-row: 3;
-    grid-column: 1;
+  grid-row: 4;
+  grid-column: 1;
 `;
 const GameStatusDiv = styled.div`
   color: black;
