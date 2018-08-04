@@ -1,0 +1,11 @@
+.inputform {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 2em;
+}
+
+@media (min-width: 767px) {
+  .inputform {
+    left: 19vw;
+  }
+}

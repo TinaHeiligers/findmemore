@@ -5,7 +5,7 @@ export default styled.button`
   background-color: ${props => (props.primary ? '#4caf50' : '#008CBA')};
   border: none;
   color: white;
-  padding: 15px 32px;
+  /*padding: 15px 32px;*/
   text-align: center;
   text-decoration: none;
   display: inline-block;

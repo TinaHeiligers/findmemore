@@ -4,40 +4,28 @@ const gameLevelColumnHash = {
   'easy': 'repeat(4, 1fr)',
   'medium': 'repeat(4, 1fr)',
   'hard': 'repeat(6, 1fr)',
-}
+};
 const gameLevelRowHash = {
   'easy': 'repeat(3, 1fr)',
   'medium': 'repeat(4, 1fr)',
   'hard': 'repeat(4, 1fr)',
-}
+};
 const CardsWrapper = styled.div`
-  grid-row: 1;
+  grid-row: 3;
   grid-column: 1 / -1;
   display: grid;
   grid-template-columns: ${props => gameLevelColumnHash[props.gameLevel]};
   grid-template-rows: ${props => gameLevelRowHash[props.gameLevel]};
-  grid-gap: 10px;
-  padding: 15px;
-`;
-const CardDiv = styled.div`
-  background-image: url(${props => (props.image && props.status === 'visible') ? props.image : cardBackImage});
-  background-color: white;
-  background-size: ${props => props.status === 'visible' ? 'cover' : null};
-  background-position:center;
-  border-radius: 10px;
-  border: 1px solid goldenrod;
-  filter: drop-shadow(2px 2px 5px #B8860B);
-  &:focus {
-    background-image: url(${props => props.image});
-    background-size: cover;
-  }
+  grid-gap: 3% 1.5%;
+  padding: 0vh 3vw 0vh 3vw;
 `;
 const CardDivDynamic = styled.div.attrs({
   image: props => props.image,
-  size: props => props.size,
+  status: props => props.status,
 })`
   background-image: url(${props => props.image});
-  background-size: ${props => props.size};
+  background-repeat: ${props => props.status === 'visible' ? 'no-repeat' : 'repeat' };
+  background-size: ${props => props.status === 'visible' ? 'contain' : null};
   background-color: white;
   background-position:center;
   border-radius: 10px;
@@ -46,7 +34,6 @@ const CardDivDynamic = styled.div.attrs({
 `;
 const CardsComponents = {
   CardsWrapper,
-  CardDiv,
   CardDivDynamic,
 };
 export default CardsComponents;

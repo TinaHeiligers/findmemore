@@ -16,6 +16,7 @@ const ButtonAddMe = components.ButtonAddMe;
 const ButtonEasy =components.ButtonEasy;
 const ButtonMedium = components.ButtonMedium;
 const ButtonHard = components.ButtonHard;
+import 'components/startPage/startPage.css';
 // REDUX
 import playersActions from 'redux/player/playerActions';
 import gameActions from 'redux/game/gameActions';
@@ -67,19 +68,17 @@ class StartPage extends Component {
           Find my matching partner in all the cards!
         </StartPageMainDivH2>
         <StartFormDiv>
-        { players && players.map((player, index) => <StartPageP key={ index } size='2em'>Welcome { player.get('name') }!</StartPageP>) }
+        { players && players.map((player, index) => <StartPageP key={ index }>Welcome { player.get('name') }!</StartPageP>) }
           <StartPageP2>{ this.message(players.size) }</StartPageP2>
           { players.size === 2 ?
             <div></div> :
             <form
-              style={ { display: 'inline' } }
+              className='inputform'
               ref={ input => this.playerForm = input }
               onSubmit={ e => this.handleCreatePlayer(e) }>
-              <div>
               <InputWithProps
                 innerRef={ input => this.name = input }/>
-                <ButtonAddMe>add me</ButtonAddMe>
-              </div>
+              <ButtonAddMe>Add</ButtonAddMe>
             </form>
           }
         </StartFormDiv>

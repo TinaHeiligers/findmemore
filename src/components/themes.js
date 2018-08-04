@@ -1,18 +1,18 @@
 const themes = {
   foo: {
-    font: 'Tahoma',
+    // font: 'Tahoma',
     color: 'red',
-    fontSize: '20px',
+    // fontSize: '20px',
   },
   bar: {
-    font: 'Tahoma',
+    // font: 'Tahoma',
     color: 'green',
-    fontSize: '20px',
+    // fontSize: '20px',
   },
   nav: {
-    font: 'Helvetica',
+    // font: 'Helvetica',
     color: 'gray',
-    fontSize: '20px',
+    // fontSize: '20px',
   },
 };
 export default themes;

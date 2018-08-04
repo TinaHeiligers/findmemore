@@ -4,13 +4,13 @@ const GameWrapper = styled.div`
   display: grid;
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 40vw 60vw;
-  grid-template-rows: 70vh 30vh;
+  grid-template-columns: 100vw;
+  grid-template-rows: 17vh 14vh 60vh 10vh;
 `;
 
 const PlayerWrapper = styled.div`
-  grid-row: 2;
-  grid-column: 2;
+  grid-row: 1;
+  grid-column: 1;
   background-color: red;
 `;
 const gameComponents = {
