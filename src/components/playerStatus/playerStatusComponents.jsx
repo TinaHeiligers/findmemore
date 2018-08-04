@@ -28,8 +28,8 @@ const PlayerNameSpan = styled.span`
   margin: 0 10px;
   font-size: 2em;
   color: hsl(120, 44%, 11%);
-  @media (min-width: 1366px) {
-    font-size: 4em;
+  @media (min-width: 768px) {
+    font-size: 3em;
   }
 `;
 const PlayerScoreSpan = styled.span`
@@ -37,8 +37,8 @@ const PlayerScoreSpan = styled.span`
   color: hsl(120, 44%, 11%);
   font-family: Dosis, sans-serif;
   font-weight: 600;
-  @media (min-width: 1366px) {
-    font-size: 5em;
+  @media (min-width: 768px) {
+    font-size: 4em;
   }
 `;
 const CardsInfoSpan = styled.span`
