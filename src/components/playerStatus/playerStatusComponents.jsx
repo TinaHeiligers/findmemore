@@ -22,14 +22,12 @@ const CardsInfo = styled.div`
   justify-content: space-between;
 `;
 const PlayerStatusListItem = styled.div`
-  position: relative;
-  list-style: none;
   text-align: left;
   color: black;
 `;
 const PlayerNameSpan = styled.span`
   margin: 0 10px;
-  font-size: 3em;
+  font-size: 2em;
   color: hsl(120, 44%, 11%);
 `;
 const PlayerScoreSpan = styled.span`
