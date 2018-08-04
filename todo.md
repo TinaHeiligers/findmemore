@@ -13,4 +13,5 @@
 ## Design TODO's:
 
 - [ ] add media queries to change grid from 1 column, 3 rows to 2 columns, 1 row for landscape views (ipads and desktop)
+- [ ] explore a different way of displaying player scores that fixes landscape orientation with phones
 - [ ] update messages for single player game
