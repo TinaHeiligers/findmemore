@@ -32,6 +32,8 @@ const PlayerNameSpan = styled.span`
 const PlayerScoreSpan = styled.span`
   font-size: 3em;
   color: hsl(120, 44%, 11%);
+  font-family: Dosis, sans-serif;
+  font-weight: 600;
 `;
 const CardsInfoSpan = styled.span`
   position: relative;

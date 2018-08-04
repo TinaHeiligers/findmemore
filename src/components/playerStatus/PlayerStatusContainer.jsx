@@ -83,14 +83,14 @@ class PlayerStatusContainer extends Component {
             // <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
             // <CardsMatchedSpan>Pairs matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
           }
-          {
-            this.showModal() &&
-            <SwitchPlayerTurnsModal
-              handleClose={ this.props.hideModal }
-              nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
-            </SwitchPlayerTurnsModal>
-          }
         </CardsInfo>
+        {
+          this.showModal() &&
+          <SwitchPlayerTurnsModal
+            handleClose={ this.props.hideModal }
+            nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
+          </SwitchPlayerTurnsModal>
+        }
       </PlayerStatusWrapper>
     );
   }
