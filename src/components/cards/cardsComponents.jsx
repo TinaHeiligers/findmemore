@@ -19,25 +19,13 @@ const CardsWrapper = styled.div`
   grid-gap: 3% 1.5%;
   padding: 0vh 3vw 0vh 3vw;
 `;
-const CardDiv = styled.div`
-  background-image: url(${props => (props.image && props.status === 'visible') ? props.image : cardBackImage});
-  background-color: white;
-  background-size: ${props => props.status === 'visible' ? 'cover' : null};
-  background-position:center;
-  border-radius: 10px;
-  border: 1px solid goldenrod;
-  filter: drop-shadow(2px 2px 5px #B8860B);
-  &:focus {
-    background-image: url(${props => props.image});
-    background-size: cover;
-  }
-`;
 const CardDivDynamic = styled.div.attrs({
   image: props => props.image,
-  size: props => props.size,
+  status: props => props.status,
 })`
   background-image: url(${props => props.image});
-  background-size: ${props => props.size};
+  background-repeat: ${props => props.status === 'visible' ? 'no-repeat' : 'repeat' };
+  background-size: ${props => props.status === 'visible' ? 'contain' : null};
   background-color: white;
   background-position:center;
   border-radius: 10px;
@@ -46,7 +34,6 @@ const CardDivDynamic = styled.div.attrs({
 `;
 const CardsComponents = {
   CardsWrapper,
-  CardDiv,
   CardDivDynamic,
 };
 export default CardsComponents;
