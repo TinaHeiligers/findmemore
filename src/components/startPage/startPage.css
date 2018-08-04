@@ -1,9 +1,7 @@
 .inputform {
   display: inline-flex;
   align-items: center;
-  position: absolute;
-  bottom: 40vh;
-  left: 3.5vw;
+  margin-top: 2em;
 }
 
 @media (min-width: 767px) {

@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 // TODO: make the Wrappers shared.
 const StartPageWrapper = styled.div`
+  display: grid;
+  width: 94%;
+  height: 92%;
+  grid-template-columns: 94vw;
+  grid-template-rows: 20vh 15vh 45vh 15vh;
   box-shadow: 0 0 2vw black;
   position: absolute;
   top: 4%;
@@ -13,20 +18,24 @@ const StartPageWrapper = styled.div`
   min-height: 50%;
 `;
 const StartPageMainDivH1 = styled.h1`
-  margin-top: 15vh;
+  grid-row: 1;
+  font-family: Dosis, sans-serif;
+  font-weight: 600;
   text-align: center;
-  font-size: 4em;
+  font-size: 5em;
   color: hsla(112,79%,6%,1);
 `;
 const StartPageMainDivH2 = styled.h2`
-  margin-top: 1vh;
+  grid-row: 2;
   text-align: center;
+  padding: 0 1em;
   font-size: 1.5em;
   font-style: italic;
   color: hsla(119,3%,10%,1);
 `;
 const StartFormDiv = styled.div`
   text-align: center;
+  grid-row: 3;
   /*margin-top: 12vh;*/
 `;
 const StartPageP = styled.p.attrs({
@@ -64,9 +73,9 @@ const InputWithProps = styled.input.attrs({
 const ButtonDiv = styled.div`
   font-size: 1em;
   text-align: center;
-  position: absolute;
-  bottom: 10vh;
-  width: 100%;
+  grid-row: 4;
+  font-size: 1em;
+  text-align: center;
 `;
 const ButtonAddMe = styled.button.attrs({
   type: 'Submit',
