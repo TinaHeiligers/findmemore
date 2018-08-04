@@ -13,11 +13,13 @@ export const GameOverModal = ({ handleClose, winningNames }) => {
   );
 };
 export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
-  const nextPlayerMessage = `It's your turn ${nextPlayerName}, click anywhere to start your turn`;
+  const nextPlayerMessage = `It's your turn ${nextPlayerName}.`;
+  const messageInfo = `Click anywhere to start your turn.`;
   return (
     <ModalDiv>
       <PlayerTurnModalSection onClick={ handleClose }>
         <div style={ { fontSize: '1.2em', textAlign: 'center' } }>{ nextPlayerMessage }</div>
+        <div style={ { fontSize: '0.8em', textAlign: 'center' } }>{ messageInfo }</div>
       </PlayerTurnModalSection>
     </ModalDiv>
   );

@@ -27,8 +27,12 @@ const PlayerStatusListItem = styled.div`
   color: black;
 `;
 const PlayerNameSpan = styled.span`
-  margin-right: 10px;
-  font-size: 2em;
+  margin: 0 10px;
+  font-size: 3em;
+  color: hsl(120, 44%, 11%);
+`;
+const PlayerScoreSpan = styled.span`
+  font-size: 3em;
   color: hsl(120, 44%, 11%);
 `;
 const CardsInfoSpan = styled.span`
@@ -52,6 +56,7 @@ const PlayerStatusComponents = {
   CardsInfo,
   PlayerStatusListItem,
   PlayerNameSpan,
+  PlayerScoreSpan,
   CardsRemainingSpan,
   CardsMatchedSpan,
 };

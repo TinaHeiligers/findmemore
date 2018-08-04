@@ -14,6 +14,7 @@ const InfoDiv = PlayerStatusComponents.InfoDiv;
 const CardsInfo = PlayerStatusComponents.CardsInfo;
 const PlayerStatusListItem = PlayerStatusComponents.PlayerStatusListItem;
 const PlayerNameSpan = PlayerStatusComponents.PlayerNameSpan;
+const PlayerScoreSpan = PlayerStatusComponents.PlayerScoreSpan;
 const CardsRemainingSpan = PlayerStatusComponents.CardsRemainingSpan;
 const CardsMatchedSpan = PlayerStatusComponents.CardsMatchedSpan;
 const { updateTotalScores, updatePlayerScore } = playerActions;
@@ -38,29 +39,57 @@ class PlayerStatusContainer extends Component {
     return this.props.gameState === GAME_STATE.get('switchTurns');
   }
   calcCardsRemaining() {
-    return `Cards remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`;
+    return `Pairs remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`;
+  }
+  renderPlayerScores() {
+    // return ({ this.props.players.map((player, index) => {
+    //         return (
+    //           <PlayerStatusListItem key={ index }>
+    //             <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
+    //             <span style={ { fontSize: '1.5em' } }>{ this.message(player) }</span>
+    //           </PlayerStatusListItem>);
+    //       }) })
+    return (
+      <InfoDiv>
+        { this.renderPlayerScore(this.props.players.get(0), 0) }
+        { this.props.players.size > 1 ? this.renderPlayerScore(this.props.players.get(1), 1) : null }
+      </InfoDiv>
+    );
+  }
+  renderPlayerScore(player, index) {
+    if (index % 2 == 0) {
+      return (
+        <PlayerStatusListItem key={ index }>
+          <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
+          <PlayerScoreSpan>{ this.message(player) }</PlayerScoreSpan>
+        </PlayerStatusListItem>
+      );
+    } else {
+      return (
+        <PlayerStatusListItem key={ index }>
+          <PlayerScoreSpan>{ this.message(player) }</PlayerScoreSpan>
+          <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
+        </PlayerStatusListItem>
+      );
+    }
   }
   render() {
     return(
       <PlayerStatusWrapper>
-        <InfoDiv>
-          { this.props.players.map((player, index) => {
-            return (
-              <PlayerStatusListItem key={ index }>
-                <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
-                <span style={ { fontSize: '1.5em' } }>{ this.message(player) }</span>
-              </PlayerStatusListItem>);
-          }) }
-        </InfoDiv>
+        { this.renderPlayerScores() }
         <CardsInfo>
-          <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
-          { this.showModal() &&
+          {
+            null
+            // <CardsRemainingSpan className='cards-remaining'>{ this.calcCardsRemaining() }</CardsRemainingSpan>
+            // <CardsMatchedSpan>Pairs matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
+          }
+          {
+            this.showModal() &&
             <SwitchPlayerTurnsModal
               handleClose={ this.props.hideModal }
               nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
             </SwitchPlayerTurnsModal>
           }
-          <CardsMatchedSpan>Cards matched: { this.props.matchedCardsCount/2 }</CardsMatchedSpan>
         </CardsInfo>
       </PlayerStatusWrapper>
     );
