@@ -40,8 +40,6 @@ const ModalDiv = styled.div`
 const GameOverModalSection = styled.section`
   color: black;
   font-size: 1.2em;
-  line-height: 1.2em;
-  padding: 1vw;
   margin-top: 0.1vh;
   cursor: pointer;
   filter: drop-shadow(2px 2px 5px #D4AF37);
@@ -49,8 +47,6 @@ const GameOverModalSection = styled.section`
 const PlayerTurnModalSection = styled.section`
   color: black;
   font-size: 1.2em;
-  line-height: 1.2em;
-  padding: 1vw;
   margin-top: 0.1vh;
 `;
 const NextPlayerMessageDiv = styled.div`
@@ -58,17 +54,29 @@ const NextPlayerMessageDiv = styled.div`
   font-weight: 600;
   font-size: 1.2em;
   text-align: center;
+  @media (min-width: 1366px) {
+    font-size: 2.2em;
+  }
 `;
 const NextPlayerMessageInfoDiv = styled.div`
   font-size: 0.8em;
   text-align: center;
+  @media (min-width: 1366px) {
+    font-size: 1.8em;
+  }
 `;
 const GameOverMessageDiv = styled.div`
   text-align: center;
+  @media (min-width: 1366px) {
+    font-size: 1.8em;
+  }
 `;
 const GameOverWinnerDiv = styled.div`
   font-family: Dosis, sans-serif;
   font-weight: 600;
   font-size: 1.2em;
   text-align: center;
+  @media (min-width: 1366px) {
+    font-size: 2.2em;
+  }
 `;

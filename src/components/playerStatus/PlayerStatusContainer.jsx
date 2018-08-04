@@ -42,13 +42,6 @@ class PlayerStatusContainer extends Component {
     return `Pairs remaining: ${(this.props.cards.size/2 - this.props.totalScores)}`;
   }
   renderPlayerScores() {
-    // return ({ this.props.players.map((player, index) => {
-    //         return (
-    //           <PlayerStatusListItem key={ index }>
-    //             <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
-    //             <span style={ { fontSize: '1.5em' } }>{ this.message(player) }</span>
-    //           </PlayerStatusListItem>);
-    //       }) })
     return (
       <InfoDiv>
         { this.renderPlayerScore(this.props.players.get(0), 0) }
