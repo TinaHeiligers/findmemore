@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import animalTracks from 'redux/cards/images/animaltracks-pattern.jpg';
 const PlayerStatusWrapper = styled.div`
-  overflow: hidden;
   grid-row: 1;
   grid-column: 1;
   background-image: url(${animalTracks});
