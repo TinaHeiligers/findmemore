@@ -25,7 +25,7 @@ The app continues to be a study playground that will more than likely continue t
 * if you want to add a new dependency to the cache, add it to dll.webpack.config.js
 
 ## Website:
-Game play: deployed at: [findMe](https://findme.tinkerantreats.com/)
+Game play: [findMe](https://findme.tinkerantreats.com/)
 
 ## Future Plans:
 1. Full game functionality served by a backend (probably Node with Hapi)
