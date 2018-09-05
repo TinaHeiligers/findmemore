@@ -29,27 +29,17 @@ const ModalDiv = styled.div`
   grid-row: 2;
   grid-column: 1;
   display: block;
-  /*position: fixed;
-  top: 14vh;
-  left: 4.5vw;
-  width: 91vw;*/
 `;
-
-  // background: #fcfcdf6e;
-  // border-radius: 10px;
-  // border: 3px solid black;
 
 const GameOverModalSection = styled.section`
   color: black;
   font-size: 1.2em;
-  /*margin-top: 0.1vh;*/
   cursor: pointer;
   filter: drop-shadow(2px 2px 5px #D4AF37);
 `;
 const PlayerTurnModalSection = styled.section`
   color: black;
   font-size: 1.2em;
-  /*margin-top: 0.1vh;*/
 `;
 const NextPlayerMessageDiv = styled.div`
   font-family: Dosis, sans-serif;

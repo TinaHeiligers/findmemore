@@ -2,20 +2,14 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
-// REDUX
 import cardsActions from 'redux/cards/cardsActions';
 import sharedActions from 'redux/shared/sharedActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
-const {
-  chooseCardRequest
-} = cardsActions;
-const { hideModal } = sharedActions;
-// UI COMPONENTS
+import cardBackImage from 'redux/cards/images/card-back.png';
 import CardsComponents from 'components/cards/cardsComponents.jsx';
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
-import cardBackImage from 'redux/cards/images/card-back.png';
-// import { GameOverModal } from 'components/shared/Modal';
+const { chooseCardRequest } = cardsActions;
 
 class CardsContainer extends Component {
   static propTypes = {
@@ -23,9 +17,6 @@ class CardsContainer extends Component {
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
     chooseCardRequest: PropTypes.func,
-    modalVisible: PropTypes.bool,
-    // hideModal: PropTypes.func,
-    // winningNames: PropTypes.string,
   }
   selectCard(e, card, index) {
     e.preventDefault();
@@ -47,12 +38,6 @@ class CardsContainer extends Component {
             );
           })
         }
-        {/*{ this.props.modalVisible &&
-          <GameOverModal
-            handleClose={ this.props.hideModal }
-            winningNames={ this.props.winningNames }>
-          </GameOverModal>
-        }*/}
       </CardsWrapper>
     );
   }
@@ -62,10 +47,5 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-    // modalVisible: state.getIn(['shared', 'modalVisible']),
-    // winningNames: state.getIn(['players', 'gameWinnerNames'])
-  }), {
-    chooseCardRequest,
-    hideModal,
-  })(CardsContainer);
+  }), { chooseCardRequest })(CardsContainer);
 

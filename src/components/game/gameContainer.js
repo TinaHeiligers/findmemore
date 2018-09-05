@@ -18,6 +18,7 @@ class GameContainer extends Component {
   static propTypes = {
     gameState: PropTypes.string,
     startNextTurn: PropTypes.func,
+    modalVisible: PropTypes.bool,
   };
   watchClick(e) {
     e.preventDefault();
