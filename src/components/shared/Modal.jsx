@@ -40,7 +40,7 @@ const ModalDiv = styled.div`
   // border: 3px solid black;
 
 const GameOverModalSection = styled.section`
-  color: red;
+  color: black;
   font-size: 1.2em;
   /*margin-top: 0.1vh;*/
   cursor: pointer;

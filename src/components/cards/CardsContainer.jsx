@@ -15,7 +15,7 @@ import CardsComponents from 'components/cards/cardsComponents.jsx';
 const CardsWrapper = CardsComponents.CardsWrapper;
 const CardDivDynamic = CardsComponents.CardDivDynamic;
 import cardBackImage from 'redux/cards/images/card-back.png';
-import { GameOverModal } from 'components/shared/Modal';
+// import { GameOverModal } from 'components/shared/Modal';
 
 class CardsContainer extends Component {
   static propTypes = {
@@ -24,8 +24,8 @@ class CardsContainer extends Component {
     gameLevel: PropTypes.string,
     chooseCardRequest: PropTypes.func,
     modalVisible: PropTypes.bool,
-    hideModal: PropTypes.func,
-    winningNames: PropTypes.string,
+    // hideModal: PropTypes.func,
+    // winningNames: PropTypes.string,
   }
   selectCard(e, card, index) {
     e.preventDefault();
@@ -47,12 +47,12 @@ class CardsContainer extends Component {
             );
           })
         }
-        { this.props.modalVisible &&
+        {/*{ this.props.modalVisible &&
           <GameOverModal
             handleClose={ this.props.hideModal }
             winningNames={ this.props.winningNames }>
           </GameOverModal>
-        }
+        }*/}
       </CardsWrapper>
     );
   }
@@ -62,8 +62,8 @@ export default connect(
     cards: state.getIn(['cards', 'all']),
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
-    modalVisible: state.getIn(['shared', 'modalVisible']),
-    winningNames: state.getIn(['players', 'gameWinnerNames'])
+    // modalVisible: state.getIn(['shared', 'modalVisible']),
+    // winningNames: state.getIn(['players', 'gameWinnerNames'])
   }), {
     chooseCardRequest,
     hideModal,

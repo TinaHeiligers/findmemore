@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CardsContainer from 'components/cards/CardsContainer';
 import GameStatusContainer from 'components/gameStatus/GameStatusContainer';
 import PlayerStatusContainer from 'components/playerStatus/PlayerStatusContainer';
-import { SwitchPlayerTurnsModal } from 'components/shared/Modal';
+import { SwitchPlayerTurnsModal, GameOverModal } from 'components/shared/Modal';
 import gameComponents from 'components/game/gameComponents';
 import gameActions from 'redux/game/gameActions';
 import { GAME_STATE } from 'redux/game/gameReducer';
@@ -41,7 +41,14 @@ class GameContainer extends Component {
               nextPlayerName={ this.props.players.getIn([this.props.currentPlayerIndex, 'name']) }>
             </SwitchPlayerTurnsModal>
         }
+        { this.props.modalVisible &&
+          <GameOverModal
+            handleClose={ this.props.hideModal }
+            winningNames={ this.props.winningNames }>
+          </GameOverModal>
+        }
         <CardsContainer />
+
       </GameWrapper>
     );
   }
@@ -51,4 +58,6 @@ export default connect(
     gameState: state.getIn(['game', 'state']),
     players: state.getIn(['players', 'all']),
     currentPlayerIndex: state.getIn(['players', 'current']),
+    modalVisible: state.getIn(['shared', 'modalVisible']),
+    winningNames: state.getIn(['players', 'gameWinnerNames'])
   }), { startNextTurn, hideModal })(GameContainer);
