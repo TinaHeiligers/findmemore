@@ -26,14 +26,14 @@ class GameStatusContainer extends Component {
   }
   render() {
     return(
-      <GameStatusWrapper gameLevel={ this.props.gameLevel }>
+      <GameStatusWrapper className='gameStatusWrapper' gameLevel={ this.props.gameLevel }>
         <GameStatusButtonDiv>
-          <ButtonEasy name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
-          <ButtonMedium name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
-          <ButtonHard name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
+          <ButtonEasy className='buttonEasy' name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
+          <ButtonMedium className='buttonEasy'  name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
+          <ButtonHard className='buttonEasy'  name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
         </GameStatusButtonDiv>
       </GameStatusWrapper>
-    )
+    );
   }
 }
 export default connect(

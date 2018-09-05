@@ -26,10 +26,11 @@ class CardsContainer extends Component {
   }
   render() {
     return(
-      <CardsWrapper gameLevel={ this.props.gameLevel }>
+      <CardsWrapper className='cardsWrapper' gameLevel={ this.props.gameLevel }>
         { this.props.cards.map((card, index) => {
           return (
             <CardDivDynamic
+              className='cardDivDynamic'
               key={ index }
               image={ card.get('status') === 'visible' ? card.get('image') : cardBackImage }
               status={ card.get('status') }

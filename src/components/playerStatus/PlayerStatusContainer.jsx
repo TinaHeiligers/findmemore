@@ -34,23 +34,23 @@ class PlayerStatusContainer extends Component {
   renderPlayerScore(player, index) {
     if (index % 2 == 0) {
       return (
-        <PlayerStatusListItem key={ index }>
-          <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
-          <PlayerScoreSpan>{ this.message(player) }</PlayerScoreSpan>
+        <PlayerStatusListItem key={ index } className='playerStatusListItem'>
+          <PlayerNameSpan className='playerNameSpan'>{ player.get('name') }</PlayerNameSpan>
+          <PlayerScoreSpan className='playerNameSpan'>{ this.message(player) }</PlayerScoreSpan>
         </PlayerStatusListItem>
       );
     } else {
       return (
-        <PlayerStatusListItem key={ index }>
-          <PlayerScoreSpan>{ this.message(player) }</PlayerScoreSpan>
-          <PlayerNameSpan>{ player.get('name') }</PlayerNameSpan>
+        <PlayerStatusListItem key={ index } className='playerStatusListItem'>
+          <PlayerScoreSpan className='playerScoreSpan'>{ this.message(player) }</PlayerScoreSpan>
+          <PlayerNameSpan className='playerNameSpan'>{ player.get('name') }</PlayerNameSpan>
         </PlayerStatusListItem>
       );
     }
   }
   render() {
     return(
-      <PlayerStatusWrapper>
+      <PlayerStatusWrapper className='playerStatusWrapper'>
         { this.renderPlayerScores() }
       </PlayerStatusWrapper>
     );
