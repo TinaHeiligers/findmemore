@@ -3,18 +3,13 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
-import sharedActions from 'redux/shared/sharedActions';
 const { startGame } = gameActions;
-// const { hideModal } = sharedActions;
-import styled, { ThemeProvider } from 'styled-components';
-import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx'; // path in imports is relative to src.
-// import components from 'components/startPage/components.js'; // path in imports is relative to src.
+import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx';
 const GameStatusButtonDiv = GameStatusComponents.GameStatusButtonDiv;
 const ButtonEasy = GameStatusComponents.ButtonEasy;
 const ButtonMedium = GameStatusComponents.ButtonMedium;
 const ButtonHard = GameStatusComponents.ButtonHard;
 const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
-const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 
 class GameStatusContainer extends Component {
   static propTypes = {
@@ -22,23 +17,23 @@ class GameStatusContainer extends Component {
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
     router: PropTypes.instanceOf(Immutable.Map),
+    startGame: PropTypes.func,
   };
   handleStartGame = (e) => {
     e.preventDefault();
     const level = e.target.name;
-    // this.props.hideModal();
     this.props.startGame(level);
   }
   render() {
     return(
-      <GameStatusWrapper gameLevel={ this.props.gameLevel }>
+      <GameStatusWrapper className='gameStatusWrapper' gameLevel={ this.props.gameLevel }>
         <GameStatusButtonDiv>
-          <ButtonEasy name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
-          <ButtonMedium name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
-          <ButtonHard name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
+          <ButtonEasy className='buttonEasy' name='easy' smallMargin={ '3px' } onClick={ this.handleStartGame }>easy</ButtonEasy>
+          <ButtonMedium className='buttonEasy'  name='medium' smallMargin={ '3px' } onClick={ this.handleStartGame }>medium</ButtonMedium>
+          <ButtonHard className='buttonEasy'  name='hard' smallMargin={ '3px' } onClick={ this.handleStartGame }>hard</ButtonHard>
         </GameStatusButtonDiv>
       </GameStatusWrapper>
-    )
+    );
   }
 }
 export default connect(
@@ -47,7 +42,5 @@ export default connect(
     gameState: state.getIn(['game', 'state']),
     gameLevel: state.getIn(['game', 'level']),
     router: state.get('router'),
-  }), { startGame,
-   // hideModal,
-    })(GameStatusContainer);
+  }), { startGame })(GameStatusContainer);
 
