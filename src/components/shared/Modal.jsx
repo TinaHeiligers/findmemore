@@ -16,21 +16,23 @@ export const SwitchPlayerTurnsModal = ({ handleClose, nextPlayerName }) => {
   const nextPlayerMessage = `It's your turn ${nextPlayerName}.`;
   const messageInfo = `Click anywhere to start your turn.`;
   return (
-    <ModalDiv>
-      <PlayerTurnModalSection onClick={ handleClose }>
-        <NextPlayerMessageDiv>{ nextPlayerMessage }</NextPlayerMessageDiv>
-        <NextPlayerMessageInfoDiv>{ messageInfo }</NextPlayerMessageInfoDiv>
+    <ModalDiv className='modalDiv'>
+      <PlayerTurnModalSection className='playerTurnModalSection' onClick={ handleClose }>
+        <NextPlayerMessageDiv className='nextPlayerMessageDiv'>{ nextPlayerMessage }</NextPlayerMessageDiv>
+        <NextPlayerMessageInfoDiv className='nextPlayerMessageInfoDiv'>{ messageInfo }</NextPlayerMessageInfoDiv>
       </PlayerTurnModalSection>
     </ModalDiv>
   );
 };
 
 const ModalDiv = styled.div`
+  grid-row: 2;
+  grid-column: 1;
   display: block;
-  position: fixed;
-  top: 18vh;
+  /*position: fixed;
+  top: 14vh;
   left: 4.5vw;
-  width: 91vw;
+  width: 91vw;*/
 `;
 
   // background: #fcfcdf6e;
@@ -38,16 +40,16 @@ const ModalDiv = styled.div`
   // border: 3px solid black;
 
 const GameOverModalSection = styled.section`
-  color: black;
+  color: red;
   font-size: 1.2em;
-  margin-top: 0.1vh;
+  /*margin-top: 0.1vh;*/
   cursor: pointer;
   filter: drop-shadow(2px 2px 5px #D4AF37);
 `;
 const PlayerTurnModalSection = styled.section`
   color: black;
   font-size: 1.2em;
-  margin-top: 0.1vh;
+  /*margin-top: 0.1vh;*/
 `;
 const NextPlayerMessageDiv = styled.div`
   font-family: Dosis, sans-serif;
