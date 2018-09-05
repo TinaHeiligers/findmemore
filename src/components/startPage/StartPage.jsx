@@ -45,7 +45,7 @@ class StartPage extends Component {
   handleCreatePlayer(event) {
     event.preventDefault();
     if (this.props.players.size < 2) {
-      this.props.addPlayer(this.name.value);
+      this.props.addPlayer(this.name.value || `player ${this.props.players.size + 1}`);
       this.playerForm.reset();
       }
     else {

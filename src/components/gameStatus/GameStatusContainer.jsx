@@ -3,18 +3,13 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
-// import sharedActions from 'redux/shared/sharedActions';
 const { startGame } = gameActions;
-// const { hideModal } = sharedActions;
-// import styled, { ThemeProvider } from 'styled-components';
-import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx'; // path in imports is relative to src.
-// import components from 'components/startPage/components.js'; // path in imports is relative to src.
+import GameStatusComponents from 'components/gameStatus/gameStatusComponents.jsx';
 const GameStatusButtonDiv = GameStatusComponents.GameStatusButtonDiv;
 const ButtonEasy = GameStatusComponents.ButtonEasy;
 const ButtonMedium = GameStatusComponents.ButtonMedium;
 const ButtonHard = GameStatusComponents.ButtonHard;
 const GameStatusWrapper = GameStatusComponents.GameStatusWrapper;
-// const GameStatusDiv = GameStatusComponents.GameStatusDiv;
 
 class GameStatusContainer extends Component {
   static propTypes = {
@@ -22,15 +17,14 @@ class GameStatusContainer extends Component {
     gameState: PropTypes.string,
     gameLevel: PropTypes.string,
     router: PropTypes.instanceOf(Immutable.Map),
+    startGame: PropTypes.func,
   };
   handleStartGame = (e) => {
     e.preventDefault();
     const level = e.target.name;
-    console.log('In handleStartGame with level:', level)
     this.props.startGame(level);
   }
   render() {
-    console.log('In gameStatusContainer')
     return(
       <GameStatusWrapper gameLevel={ this.props.gameLevel }>
         <GameStatusButtonDiv>

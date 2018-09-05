@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import Immutable from 'immutable';
 import CardsContainer from 'components/cards/CardsContainer';
 import GameStatusContainer from 'components/gameStatus/GameStatusContainer';
 import PlayerStatusContainer from 'components/playerStatus/PlayerStatusContainer';
@@ -17,8 +18,12 @@ const { startNextTurn } = gameActions;
 class GameContainer extends Component {
   static propTypes = {
     gameState: PropTypes.string,
+    players: PropTypes.instanceOf(Immutable.List),
+    currentPlayerIndex: PropTypes.number,
     startNextTurn: PropTypes.func,
     modalVisible: PropTypes.bool,
+    winningNames: PropTypes.string,
+    hideModal: PropTypes.func,
   };
   watchClick(e) {
     e.preventDefault();
@@ -49,7 +54,6 @@ class GameContainer extends Component {
           </GameOverModal>
         }
         <CardsContainer />
-
       </GameWrapper>
     );
   }
@@ -61,4 +65,7 @@ export default connect(
     currentPlayerIndex: state.getIn(['players', 'current']),
     modalVisible: state.getIn(['shared', 'modalVisible']),
     winningNames: state.getIn(['players', 'gameWinnerNames'])
-  }), { startNextTurn, hideModal })(GameContainer);
+  }), {
+    startNextTurn,
+    hideModal,
+  })(GameContainer);
