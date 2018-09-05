@@ -46,20 +46,20 @@ const NextPlayerMessageDiv = styled.div`
   font-weight: 600;
   font-size: 1.2em;
   text-align: center;
-  @media (min-width: 1366px) {
+  @media (min-width: 767px) {
     font-size: 2.2em;
   }
 `;
 const NextPlayerMessageInfoDiv = styled.div`
   font-size: 0.8em;
   text-align: center;
-  @media (min-width: 1366px) {
+  @media (min-width: 767px) {
     font-size: 1.8em;
   }
 `;
 const GameOverMessageDiv = styled.div`
   text-align: center;
-  @media (min-width: 1366px) {
+  @media (min-width: 767px) {
     font-size: 1.8em;
   }
 `;
@@ -68,7 +68,7 @@ const GameOverWinnerDiv = styled.div`
   font-weight: 600;
   font-size: 1.2em;
   text-align: center;
-  @media (min-width: 1366px) {
+  @media (min-width: 767px) {
     font-size: 2.2em;
   }
 `;
