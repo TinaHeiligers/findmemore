@@ -2,7 +2,7 @@
 
 - [ ] CSS
 - [ ] Animations for game over and player turn - start with modal on player turn
-- [ ] Adds defaults for empty player names
+- [ ] Add defaults for empty player names
 
 ## EPICS
 

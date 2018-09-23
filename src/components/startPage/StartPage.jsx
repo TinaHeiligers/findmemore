@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
@@ -34,7 +35,7 @@ class StartPage extends Component {
     addPlayer: PropTypes.func,
     startGame: PropTypes.func,
   };
-   message(num) {
+  message(num) {
     switch (num) {
       case 1:
         return "Add another player";
