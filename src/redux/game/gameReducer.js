@@ -1,6 +1,5 @@
 import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
-// const { START_GAME, SWITCH_TURNS, PLAYER_TURN } = gameActions;
 
 export const GAME_STATE = Immutable.Map({
   unstarted: 'unstarted',
@@ -8,7 +7,6 @@ export const GAME_STATE = Immutable.Map({
   switchTurns: 'switchTurns',
   over: 'over',
 });
-
 const initialState = Immutable.Map({
   level: null,
   state: GAME_STATE.get('unstarted'),

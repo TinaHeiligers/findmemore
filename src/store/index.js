@@ -3,13 +3,11 @@ import Immutable from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-// import { routerForBrowser } from 'redux-little-router';
 import { immutableRouterForBrowser } from 'redux-little-router';
 import reducers from 'redux/rootReducers';
 import rootSaga from 'redux/rootSagas';
 
 export default function () {
-  // any data to attach to the router key of state when we're on this route
   const routes = {
     '/startPage' : {
       title: 'Start',

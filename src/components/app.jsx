@@ -10,7 +10,6 @@ import img from 'redux/cards/images/table.jpg';
 const AppDiv = styled.div`
   height: 100vh;
   width: 100vw;
-  /*padding: 1px;*/
   background-image: url(${img});
   background-size: cover;
 `;
