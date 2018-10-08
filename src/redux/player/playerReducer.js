@@ -4,7 +4,7 @@ import playerActions from 'redux/player/playerActions';
 export const initialState = Immutable.Map({
   current: null,
   all: Immutable.List(),
-  totalScores: 0, //add 1 for every pair matched (we halve the number of matched cards)
+  totalScores: 0,
   gameWinnerNames: null,
 });
 export default function playersReducer(
