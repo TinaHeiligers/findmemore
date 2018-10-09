@@ -2,11 +2,11 @@ import { applyMiddleware, createStore } from 'redux';
 import { combineReducers } from 'redux-immutable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
-import { immutableRouterForBrowser } from 'redux-little-router';
+import { connectRouter, routerMiddleware } from 'connected-react-router/immutable';
 import reducers from 'redux/rootReducers';
 import rootSaga from 'redux/rootSagas';
 
-export default () => {
+export default (history) => {
   const routes = {
     '/startPage' : {
       title: 'Start',
@@ -18,20 +18,12 @@ export default () => {
       title: 'Help',
     },
   };
-  const { 
-    reducer: routerReducer, 
-    enhancer, 
-    middleware: routerMiddleware,
-  } = immutableRouterForBrowser({ routes });
+  const rootReducer = combineReducers(reducers);
   const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [routerMiddleware, sagaMiddleware];
-  const allReducers = {
-    ...reducers,
-    router: routerReducer
-  };
+  const middlewares = [routerMiddleware(history), sagaMiddleware];
   const store = createStore(
-    combineReducers(allReducers),
-    composeWithDevTools(enhancer, applyMiddleware(...middlewares))
+    connectRouter(history)(rootReducer),
+    composeWithDevTools(applyMiddleware(...middlewares))
   );
   sagaMiddleware.run(rootSaga);
   return store;

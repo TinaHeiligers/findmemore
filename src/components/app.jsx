@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { replace, ImmutableFragment } from 'redux-little-router';
+import { Route, Switch } from 'react-router';
+import { replace, ConnectedRouter } from 'connected-react-router/immutable';
 import styled from 'styled-components';
 import Help from 'components/help.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
@@ -21,15 +22,15 @@ class App extends Component {
   render() {
     return (
       <AppDiv>
-        <ImmutableFragment forRoute='/startPage'>
-          <StartPage />
-        </ImmutableFragment>
-        <ImmutableFragment forRoute='/game'>
-          <GameContainer />
-        </ImmutableFragment>
-        <ImmutableFragment forRoute='/help'>
-          <Help />
-        </ImmutableFragment>
+        <ConnectedRouter history={this.props.history}>
+          <div>
+            <Switch>
+              <Route path='/startPage' component={StartPage} />
+              <Route path='/game' component={GameContainer} />
+              <Route path='/help' component={Help} />
+            </Switch>
+          </div>
+        </ConnectedRouter>
       </AppDiv>
     );
   }

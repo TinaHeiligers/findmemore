@@ -1,5 +1,5 @@
 import { takeEvery, call, all, fork, put, select } from 'redux-saga/effects';
-import { push } from 'redux-little-router';
+import { push } from 'connected-react-router/immutable';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';
 import gameActions from 'redux/game/gameActions';
