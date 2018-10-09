@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import Help from 'components/help.jsx';
 import StartPage from 'components/startPage/StartPage.jsx';
 import GameContainer from 'components/game/gameContainer';
+import Container from 'components/Container';
 import img from 'redux/cards/images/table.jpg';
 
 const AppDiv = styled.div`
@@ -21,15 +22,17 @@ class App extends Component {
   render() {
     return (
       <AppDiv>
-        <ImmutableFragment forRoute='/startPage'>
-          <StartPage />
-        </ImmutableFragment>
-        <ImmutableFragment forRoute='/game'>
-          <GameContainer />
-        </ImmutableFragment>
-        <ImmutableFragment forRoute='/help'>
-          <Help />
-        </ImmutableFragment>
+        <Container>
+          <ImmutableFragment forRoute='/startPage'>
+            <StartPage />
+          </ImmutableFragment>
+          <ImmutableFragment forRoute='/game'>
+            <GameContainer />
+          </ImmutableFragment>
+          <ImmutableFragment forRoute='/help'>
+            <Help />
+          </ImmutableFragment>
+        </Container>
       </AppDiv>
     );
   }

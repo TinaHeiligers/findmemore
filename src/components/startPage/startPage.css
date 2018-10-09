@@ -7,5 +7,6 @@
 @media (min-width: 767px) {
   .inputform {
     left: 19vw;
+    max-width: 90%;
   }
 }
