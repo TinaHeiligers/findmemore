@@ -4,7 +4,9 @@ const StartPageWrapper = styled.div`
   display: grid;
   width: 94%;
   height: 92%;
-  grid-template-columns: 94vw;
+  max-width: 1310px;
+  margin: 0 auto;
+  grid-template-columns: 100%;
   grid-template-rows: 20vh 15vh 45vh 15vh;
   box-shadow: 0 0 2vw black;
   position: absolute;
@@ -14,7 +16,6 @@ const StartPageWrapper = styled.div`
   right: 3%;
   border-radius: 3vw;
   background-color: #99887794;
-  min-width: 50%;
   min-height: 50%;
 `;
 const StartPageMainDivH1 = styled.h1`

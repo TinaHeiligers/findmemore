@@ -1,10 +1,12 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const GameWrapper = styled.div`
   display: grid;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
-  grid-template-columns: 100vw;
+  max-width: 1310px;
+  margin: 0 auto;
+  grid-template-columns: 100%;
   grid-template-rows: 17vh 14vh 60vh 10vh;
 `;
 
