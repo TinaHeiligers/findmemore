@@ -38,11 +38,11 @@ class StartPage extends Component {
   message(num) {
     switch (num) {
       case 1:
-        return "Add another player";
+        return 'Add another player';
       case 2:
         return "We're all set!";
       default:
-        return "";
+        return '';
     }
   }
   handleCreatePlayer(event) {
