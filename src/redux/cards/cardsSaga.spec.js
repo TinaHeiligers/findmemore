@@ -1,6 +1,6 @@
 import { call, put, takeEvery, select } from 'redux-saga/effects';
-import { push } from 'redux-little-router';
-import Immutable from 'Immutable';
+import { push } from 'connected-react-router/immutable';
+import Immutable from 'immutable';
 import gameActions from 'redux/game/gameActions';
 import cardsActions from 'redux/cards/cardsActions';
 import playerActions from 'redux/player/playerActions';

@@ -4,6 +4,8 @@ const path = require('path');
 module.exports = {
   entry: {
     vendor: [
+      'connected-react-router',
+      'history',
       'prop-types',
       'react',
       'react-dom',
@@ -11,7 +13,6 @@ module.exports = {
       'react-redux',
       'redux',
       'redux-devtools-extension',
-      'redux-little-router',
       'redux-saga',
       'redux-saga-tester',
       'styled-components',

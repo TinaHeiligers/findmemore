@@ -1,11 +1,11 @@
 
-# React, Styled-Components, Redux-Little-Router, Redux, Redux Saga, Babel, Webpack HMR boilerplate
+# React, Styled-Components, Connected React Router, Redux, Redux Saga, Babel, Webpack HMR boilerplate
 
 ## About
 The original game was written while learning React on it's own as a purely client-side non-persistent game.
 Since then, it has undergone several iterations:
 v.1.0.1 Re-written while at the Grace Hopper Accademy, implementing css-animations. Remained client-side only, non-persistent state.
-v.1.0.2 Current version, implementing redux as a state management method (with Immutable.js), styled components, redux-little-router for routing and redux saga in preparation for the backend.
+v.1.0.2 Current version, implementing redux as a state management method (with Immutable.js), styled components, connected react router for routing and redux saga in preparation for the backend.
 The app continues to be a study playground that will more than likely continue to evolve as I learn (or try to learn!) more.
 
 ## Features
