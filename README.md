@@ -14,9 +14,20 @@ The app continues to be a study playground that will more than likely continue t
 * A fairly production-ready webpack config (dll, uglify, minify, image compression, image inlining) (tailor it further based on the needs of your project)
 
 ## Installation
-* clone the repo
-* npm install
-* npm start to run dev server
+* clone the repo: 
+```
+git clone git@github.com:TinaHeiligers/findmemore.git
+```
+* install the node modules (lately, npm has been throwing errors, it is strongly suggested to use yarn instead)
+```
+yarn install
+```
+If you don't have yarn, first install it following the [directions](https://yarnpkg.com/en/docs/getting-started) for your operating system. (https://yarnpkg.com/en/docs/getting-started)
+
+* start the dev server:
+```
+yarn start
+```
 
 ## Webpack DLL
 * this plugin caches vendor dependencies so they're not rebuilt on every hot reload!
