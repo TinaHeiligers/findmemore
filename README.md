@@ -1,3 +1,5 @@
+## DEPRECATED
+EOL: 2017
 
 # React, Styled-Components, Connected React Router, Redux, Redux Saga, Babel, Webpack HMR boilerplate
 
